@@ -13,6 +13,7 @@ public class Diary implements Serializable {
 	private Date dDate;
 	private String dCode;
 	private String dTag;
+	private String uPic;
 	private int bNo;
 	private int uNo;
 	
@@ -68,6 +69,14 @@ public class Diary implements Serializable {
 		this.dTag = dTag;
 	}
 
+	public String getuPic() {
+		return uPic;
+	}
+
+	public void setuPic(String uPic) {
+		this.uPic = uPic;
+	}
+
 	public int getbNo() {
 		return bNo;
 	}
@@ -99,6 +108,8 @@ public class Diary implements Serializable {
 		builder.append(dCode);
 		builder.append(", dTag=");
 		builder.append(dTag);
+		builder.append(", uPic=");
+		builder.append(uPic);
 		builder.append(", bNo=");
 		builder.append(bNo);
 		builder.append(", uNo=");
@@ -106,6 +117,6 @@ public class Diary implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	
 }

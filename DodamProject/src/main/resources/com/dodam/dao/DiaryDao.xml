@@ -9,10 +9,11 @@
 	<resultMap id="DiaryMap" type="Diary">
 		<result property="dNo" 			column="d_no" 			jdbcType="NUMERIC"/>
 		<result property="dPic"			column="d_pic"			jdbcType="VARCHAR"/>
-		<result property="dContent"		column="d_content"		/>
+		<result property="dContent"		column="d_content"		jdbcType="CLOB"/>
 		<result property="dDate"		column="d_date"			jdbcType="DATE"/>
 		<result property="dCode"		column="d_code"			jdbcType="VARCHAR"/>
 		<result property="dTag"			column="d_tag"			jdbcType="VARCHAR"/>
+		<result property="uPic"			column="u_pic"			jdbcType="VARCHAR"/>
 		<result property="bNo"			column="b_no"			jdbcType="NUMERIC"/>
 		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
 	</resultMap>
