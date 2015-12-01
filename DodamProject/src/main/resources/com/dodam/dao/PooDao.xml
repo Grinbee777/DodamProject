@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.PooDao">
+
+	<resultMap id="PooMap" type="Poo">
+		<result property="pNo"			column="p_no"		jdbcType="NUMERIC"/>
+		<result property="pTime"		column="p_time"		jdbcType="VARCHAR"/>
+		<result property="dsNo"			column="ds_no"		jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	
+</mapper>

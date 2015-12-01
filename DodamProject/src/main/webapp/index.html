@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+<h1>ajax test</h1>
+
+<button id='btn1'>AJAX(일반)</button><br>
+<button id='btn2'>AJAX(json)</button><br>
+
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script>
+$('#btn1').click(function(){
+	alert('okok');
+	$.ajax('diary/getDiaryList', {
+		dataType: 'html',
+		success: function(result) {
+			console.log(result);
+		}
+	});	
+});
+
+$('#btn2').click(function(){
+	alert('okok');
+	$.getJSON('diary/json/getDiaryList', function(result) {
+		console.log(result);
+    });
+		
+});
+
+</script>
+</body>
+
+</html>

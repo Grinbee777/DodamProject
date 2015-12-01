@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.DiaryDao">
+
+	<resultMap id="DiaryMap" type="Diary">
+		<result property="dNo" 			column="d_no" 			jdbcType="NUMERIC"/>
+		<result property="dPic"			column="d_pic"			jdbcType="VARCHAR"/>
+		<result property="dContent"		column="d_content"		/>
+		<result property="dDate"		column="d_date"			jdbcType="DATE"/>
+		<result property="dCode"		column="d_code"			jdbcType="VARCHAR"/>
+		<result property="dTag"			column="d_tag"			jdbcType="VARCHAR"/>
+		<result property="bNo"			column="b_no"			jdbcType="NUMERIC"/>
+		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<select id="getDiaryList" resultMap="DiaryMap">
+		SELECT * FROM diary
+	</select>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+
+	 
+</mapper>

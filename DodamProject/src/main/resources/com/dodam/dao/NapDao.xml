@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.NapDao">
+
+	<resultMap id="NapMap" type="Nap">
+		<result property="nNo"			column="n_no"			jdbcType="NUMERIC"/>
+		<result property="nStart"		column="n_start"		jdbcType="VARCHAR"/>
+		<result property="nEnd"			column="n_end"			jdbcType="VARCHAR"/>
+		<result property="nState"		column="n_state"		jdbcType="NUMERIC"/>
+		<result property="dsNo"			column="ds_no"			jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	
+</mapper>

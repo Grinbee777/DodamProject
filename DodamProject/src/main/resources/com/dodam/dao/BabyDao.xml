@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.BabyDao">
+
+	<resultMap id="BabyMap" type="Baby">
+		<result property="bNo"			column="b_no"			jdbcType="NUMERIC"/>
+		<result property="bName"		column="b_name"			jdbcType="VARCHAR"/>
+		<result property="bBirth"		column="b_birth"		jdbcType="VARCHAR"/>
+		<result property="bSex"			column="b_sex"			jdbcType="NUMERIC"/>
+		<result property="bNature"		column="b_nature"		jdbcType="VARCHAR"/>
+		<result property="bType"		column="b_type"			jdbcType="VARCHAR"/>
+		<result property="bPhoto"		column="b_photo"		jdbcType="VARCHAR"/>
+		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
+		
+	</resultMap>
+	
+	<!-- BabyDao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+
+	
+</mapper>

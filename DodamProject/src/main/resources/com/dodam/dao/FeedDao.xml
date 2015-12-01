@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.FeedDao">
+
+	<resultMap id="FeedMap" type="Feed">
+		<result property="fNo"			column="f_no"			jdbcType="NUMERIC"/>
+		<result property="fTime"		column="f_time"			jdbcType="VARCHAR"/>
+		<result property="fAmount"		column="f_Amount"		jdbcType="NUMERIC"/>
+		<result property="dsNo"			column="ds_no"			jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	
+</mapper>

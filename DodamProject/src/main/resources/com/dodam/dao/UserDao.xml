@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.UserDao">
+
+	<resultMap id="UserMap" type="User">
+		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
+		<result property="mail"			column="mail"			jdbcType="VARCHAR"/>
+		<result property="uPic"			column="u_pic"			jdbcType="VARCHAR"/>
+		<result property="uPcode"		column="u_pcode"		jdbcType="NUMERIC"/>
+		<result property="password"		column="password"		jdbcType="VARCHAR"/>
+		<result property="socialNo"		column="social_no"		jdbcType="VARCHAR"/>
+		<result property="uBirth"		column="u_birth"		jdbcType="VARCHAR"/>
+		<result property="regDate"		column="reg_date"		jdbcType="DATE"/>
+		
+	</resultMap>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.RepliesDao">
+
+	<resultMap id="RepliesMap" type="Replies">
+		<result property="rNo"			column="r_no"			jdbcType="NUMERIC"/>
+		<result property="rName"		column="r_name"			jdbcType="VARCHAR"/>
+		<result property="rContent"		column="r_content"		jdbcType="VARCHAR"/>
+		<result property="pNo"			column="p_no"			jdbcType="NUMERIC"/>
+		<result property="rOrder"		column="r_order"		jdbcType="NUMERIC"/>
+		<result property="rLevel"		column="r_level"		jdbcType="NUMERIC"/>
+		<result property="rDate"		column="r_date"			jdbcType="DATE"/>
+		<result property="dNo"			column="d_no"			jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	
+</mapper>
