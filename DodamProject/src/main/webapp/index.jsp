@@ -19,6 +19,7 @@
 
 	<a href="http://192.168.1.2:8080/diary/getDiaryList">get List Click!</a>
 	<a href="http://192.168.1.2:8080/diary/json/getDiaryList">get JSON Click!</a>
+	<img src="/resources/img/016.jpg">
 
 </body>
 
