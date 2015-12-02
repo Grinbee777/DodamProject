@@ -17,9 +17,6 @@
 		<result property="diaryUser.uNo"			column="u_no"			jdbcType="NUMERIC"/>
 	</resultMap>
 	
-	<select id="getDiaryList" resultMap="DiaryMap">
-		SELECT * FROM diary
-	</select>
 	
 	<insert id="insertDiary" parameterType="diary">
 		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),#{dCode:VARCHAR},#{dTag:VARCHAR},#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC})
@@ -33,5 +30,18 @@
 	<update id="updateDiary" parameterType="diary">
 		UPDATE diary SET  D_PIC = #{dPic:VARCHAR}  ,D_CONTENT = #{dContent:CLOB}  ,D_CODE = #{dCode:VARCHAR}  ,D_TAG = #{dTag:VARCHAR}  ,B_NO = #{diaryBaby.bNo:NUMERIC}
 		WHERE D_NO = #{dNo:NUMERIC}
-	</update>	 
+	</update>
+	
+	<delete id="deleteDiary">
+		DELETE FROM diary WHERE d_no=#{dNo:NUMERIC}
+	</delete>
+	
+	<update id="updateDCode" parameterType="diary">
+		UPDATE diary SET D_CODE = #{dCode:VARCHAR} WHERE D_NO = #{dNo:NUMERIC}
+	</update>
+	
+	<select id="getDiaryList" parameterType="int" resultMap="DiaryMap">
+		SELECT * FROM diary WHERE U_NO = #{value}
+	</select>	
+		 
 </mapper>

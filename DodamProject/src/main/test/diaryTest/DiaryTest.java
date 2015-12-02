@@ -1,5 +1,7 @@
 package diaryTest;
 
+import java.util.List;
+
 import org.apache.http.client.HttpClient;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,7 +55,7 @@ public class DiaryTest {
 		System.out.println("get Diary ==" + diary);
 		
 	}
-	@Test
+	//@Test
 	public void testUpdateDiary()throws Exception{
 		Diary diary = new Diary();
 		Baby baby = new Baby();
@@ -82,6 +84,39 @@ public class DiaryTest {
 		System.out.println("Update Diary 후 GetDiary : " + diaryService.getDiary(100000));
 	}
 	
+	//@Test
+	public void testDeleteDiary() throws Exception{
+		
+		Diary diary = new Diary();
+		
+		diary.setdNo(100001);
+		System.out.println("delete diary : " + diaryService.deleteDiary(diary.getdNo()));
+	}
+	
+	//@Test
+	public void testUpdateDCode() throws Exception{
+		
+		Diary diary = new Diary();
+		diary.setdNo(100002);
+		diary.setdCode("open");
+		
+		diaryService.updateDCode(diary);
+		System.out.println("updateDCode : " + diaryService.getDiary(100002));
+	}
+	
+	@Test
+	public void testGetDiaryList()throws Exception{
+		
+		Diary diary = new Diary();
+		User user = new User();
+		user.setuNo(100015);
+		//diary.setDiaryUser(user);
+		List<Diary> list = diaryService.getDiaryList(user.getuNo());
+		
+		for(Diary i: list){
+			System.out.println("getDiaryList"+i);
+		}
+	}
 	
 	
 }

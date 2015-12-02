@@ -34,15 +34,14 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public List<Diary> getDiaryList() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Diary> getDiaryList(int uNo) throws Exception {		
+		return diaryDao.getDiaryList(uNo);
 	}
 
 	@Override
-	public int updateDCode(String dCode) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateDCode(Diary diary) throws Exception {
+		
+		return diaryDao.updateDCode(diary);
 	}
 
 	@Override
@@ -52,8 +51,8 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public int deleteDiary(int dNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return diaryDao.deleteDiary(dNo);
 	}
 	
 
