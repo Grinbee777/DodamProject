@@ -6,7 +6,7 @@ import com.dodam.service.domain.Diary;
 
 public interface DiaryService {
 	
-	int insert(Diary diary) throws Exception;
+	int insertDiary(Diary diary) throws Exception;
 	
 	Diary getDiary(int dNo) throws Exception;
 	

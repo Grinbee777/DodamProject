@@ -6,7 +6,7 @@ import com.dodam.service.domain.Diary;
 
 
 public interface DiaryDao {
-	int insert(Diary diary);
+	int insertDiary(Diary diary);
 	Diary getDiary(int dNo);
 	List<Diary> getDiaryList();
 	int updateDCode(String dCode);

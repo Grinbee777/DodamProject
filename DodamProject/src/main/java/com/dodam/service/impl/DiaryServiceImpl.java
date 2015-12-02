@@ -24,9 +24,8 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public int insert(Diary diary) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertDiary(Diary diary) throws Exception {
+		return diaryDao.insertDiary(diary);
 	}
 
 	@Override
