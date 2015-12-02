@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.dodam.service.domain.User;
 
+
 public interface UserService {
 	
 	int insertUser(User user) throws Exception;

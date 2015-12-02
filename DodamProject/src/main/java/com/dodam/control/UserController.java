@@ -1,5 +1,13 @@
 package com.dodam.control;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,25 +27,26 @@ public class UserController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userservice;
+	private SqlSession sqlSession;
 	
 	
-	/*public UserController() {
-		System.out.println(":::::"+getClass().getName()+" 생성!");
+	public UserController() {
+		System.out.println(":::::"+getClass().getName()+" ��!");
 	}
 	
 	@RequestMapping(value="insertUser", method=RequestMethod.POST)
     	public int insertUser(@ModelAttribute("user") User user)throws Exception{
 		
-		System.out.println("/user/insertUser : POST");
+		System.out.println("insertUser ����?? ");
 		userservice.insertUser(user);
 		
-		return;
+		return 0;
 		
-	}*/
+	}
 	
 	@RequestMapping(value="checkDuplication",method=RequestMethod.POST)
 	public String checkDuplication(@RequestParam("mail")String mail, Model model )throws Exception{
-		System.out.println("/user/checkDuplication : POST");
+		System.out.println("checkDuplication 들어오나여?");
 		boolean result=userservice.checkDuplication(mail);
 		
 		model.addAttribute("result", new Boolean(result));
@@ -48,13 +57,42 @@ public class UserController {
 		
 	}
 	
-/*	@RequestMapping(value="getUser",method=RequestMethod.GET)
+	@RequestMapping(value="getUser",method=RequestMethod.GET)
 	public String getUser(@RequestParam("uNo")int uNo,Model model)throws Exception{
-		System.out.println("/user/getUser : GET");
+		System.out.println("getUser 들어오나요??");
 		User user = userservice.getUser(uNo);
 		model.addAttribute("user",user);
-		return ;
-	}*/
+		return null ;
+	}
+	
+	@RequestMapping(value="getUserList")
+	public List<User>getUserList()throws Exception{	
+		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println("getUserList 들어오나요??");
+		return sqlSession.selectList(null, map);
+		
+		
+	}
+	
+	@RequestMapping( value="updateUser", method=RequestMethod.POST )
+	public int updateUser( @ModelAttribute("user") User user , Model model , HttpSession session) throws Exception{
+
+		System.out.println("updateUser 들어오낭??? ");
+		//Business Logic
+		userservice.updateUser(user);
+		
+		int sessionId=((User)session.getAttribute("user")).getuNo();
+		
+		
+		return sessionId ;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 		
