@@ -9,18 +9,29 @@
 	<resultMap id="DailyStateMap" type="DailyState">
 		<result property="dsNo"			column="ds_no"			jdbcType="NUMERIC"/>
 		<result property="bNo"			column="b_no"			jdbcType="NUMERIC"/>
-		<result property="dsDate"		column="ds_date"		jdbcType="DATE"/>	
-
-	<association property="dsNap"  javaType="Nap">
-			<id property="" column="" jdbcType="NUMERIC"/>
-			<result property="" column="" jdbcType=""/>
-			<result property="" column="" jdbcType=""/>
-			<result property="" column="" jdbcType=""/>
-
-		</association>
-
+		<result property="dsDate"		column="ds_date"		jdbcType="DATE"/>
 	</resultMap>
 	
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	<!-- 
+
+	getDailyStateList(int bNo);
+	deleteDailyState(int no); 
+	 -->
+	<insert id="insertDState" parameterType="DailyState">
+		INSERT
+		INTO daily_state (
+		DS_NO
+		,B_NO
+		,DS_DATE
+		) VALUES (
+		NULL
+		,#{bNo}
+		,#{dsDate}
+		)
+	</insert>
+	
+	<select id="getDailyState" parameterType="DailyState"></select>
+	
 	
 </mapper>
