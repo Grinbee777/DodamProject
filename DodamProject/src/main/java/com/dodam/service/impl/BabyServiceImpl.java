@@ -24,15 +24,13 @@ public class BabyServiceImpl implements BabyService {
 	}
 
 	@Override
-	public int addBaby(Baby baby) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertBaby(Baby baby) throws Exception {
+		return babyDao.insertBaby(baby);
 	}
 
 	@Override
 	public Baby getBaby(int bNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return babyDao.getBaby(bNo);
 	}
 
 /*	@Override
@@ -43,14 +41,12 @@ public class BabyServiceImpl implements BabyService {
 
 	@Override
 	public int updateBaby(Baby baby) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return babyDao.updateBaby(baby);
 	}
 
 	@Override
 	public int deleteBaby(int bNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return babyDao.deleteBaby(bNo);
 	}
 	
 }

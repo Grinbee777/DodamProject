@@ -33,11 +33,44 @@ public class BabyController {
 		System.out.println("addBaby Controller 들어옴");
 		System.out.println(baby);
 		
-		babyService.addBaby(baby);
+		babyService.insertBaby(baby);
 		
 		
 		model.addAttribute("baby",baby);
 		
+	}
+	
+	@RequestMapping(value="/json/updateBaby")
+	public void updateJsonBaby(@RequestBody Baby baby, Model model) throws Exception{
+		
+		System.out.println("updateBaby Controller 들어옴");
+		System.out.println(baby);
+		
+		babyService.updateBaby(baby);
+		
+		model.addAttribute("baby",baby);
+	}
+	
+	@RequestMapping(value="/json/getBaby")
+	public void getJsonBaby(@RequestBody Baby baby, Model model ) throws Exception{
+		
+		System.out.println("getBaby controller 들어옴");
+		System.out.println(baby);
+		
+		Baby getBaby=babyService.getBaby(baby.getbNo());
+		
+		model.addAttribute("baby",getBaby);
+	}
+	
+	@RequestMapping(value="/json/deleteBaby")
+	public void deleteJsonBaby(@RequestBody Baby baby,Model model) throws Exception{
+		
+		System.out.println("deleteBaby Controller 들어옴");
+		System.out.println(baby);
+		
+		babyService.deleteBaby(baby.getbNo());
+		
+		model.addAttribute("baby",baby);
 	}
 	
 	

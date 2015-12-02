@@ -1,3 +1,4 @@
+
 package com.dodam.service.domain;
 
 import java.io.Serializable;
@@ -12,7 +13,7 @@ public class Baby implements Serializable {
 	protected String bNature;
 	protected String bType;
 	protected String bPhoto;
-	protected int uNo;
+	protected User mom;
 	
 	public Baby() {
 	}
@@ -72,13 +73,13 @@ public class Baby implements Serializable {
 	public void setbPhoto(String bPhoto) {
 		this.bPhoto = bPhoto;
 	}
-
-	public int getuNo() {
-		return uNo;
+	
+	public User getMom(){
+		return mom;
 	}
-
-	public void setuNo(int uNo) {
-		this.uNo = uNo;
+	
+	public void setMom(User mom){
+		this.mom=mom;
 	}
 
 	@Override
@@ -98,8 +99,8 @@ public class Baby implements Serializable {
 		builder.append(bType);
 		builder.append(", bPhoto=");
 		builder.append(bPhoto);
-		builder.append(", uNo=");
-		builder.append(uNo);
+		builder.append(", mom=");
+		builder.append(mom);
 		builder.append("]");
 		return builder.toString();
 	}

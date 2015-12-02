@@ -7,11 +7,11 @@ import com.dodam.service.domain.User;
 
 public interface BabyService {
 	
-	int addBaby(Baby baby) throws Exception;
+	int insertBaby(Baby baby) throws Exception;
 	
 	Baby getBaby(int uNo) throws Exception;
 	
 	int updateBaby(Baby baby) throws Exception;
 	
-	int deleteBaby(int uNo)throws Exception;
+	int deleteBaby(int bNo)throws Exception;
 }
