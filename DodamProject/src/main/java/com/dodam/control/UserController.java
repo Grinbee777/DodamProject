@@ -43,6 +43,7 @@ public class UserController {
 		model.addAttribute("result", new Boolean(result));
 		model.addAttribute("mail",mail);
 		
+		
 		return mail ;
 		
 	}
