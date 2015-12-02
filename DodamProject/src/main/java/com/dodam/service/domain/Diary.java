@@ -14,8 +14,10 @@ public class Diary implements Serializable {
 	private String dCode;
 	private String dTag;
 	private String uPic;
-	private int bNo;
-	private int uNo;
+/*	private int bNo;
+	private int uNo;*/
+	private Baby diaryBaby;
+	private User diaryUser;
 	
 	public Diary() {
 		// TODO Auto-generated constructor stub
@@ -76,7 +78,7 @@ public class Diary implements Serializable {
 	public void setuPic(String uPic) {
 		this.uPic = uPic;
 	}
-
+/*
 	public int getbNo() {
 		return bNo;
 	}
@@ -91,7 +93,23 @@ public class Diary implements Serializable {
 
 	public void setuNo(int uNo) {
 		this.uNo = uNo;
+	}*/
+	public Baby getDiaryBaby() {
+		return diaryBaby;
 	}
+
+	public void setDiaryBaby(Baby diaryBaby) {
+		this.diaryBaby = diaryBaby;
+	}
+
+	public User getDiaryUser() {
+		return diaryUser;
+	}
+
+	public void setDiaryUser(User diaryUser) {
+		this.diaryUser = diaryUser;
+	}
+
 
 	@Override
 	public String toString() {
@@ -110,13 +128,14 @@ public class Diary implements Serializable {
 		builder.append(dTag);
 		builder.append(", uPic=");
 		builder.append(uPic);
-		builder.append(", bNo=");
-		builder.append(bNo);
-		builder.append(", uNo=");
-		builder.append(uNo);
+		builder.append(", diaryBaby=");
+		builder.append(diaryBaby);
+		builder.append(", diaryUser=");
+		builder.append(diaryUser);
 		builder.append("]");
 		return builder.toString();
 	}
 
+	
 	
 }
