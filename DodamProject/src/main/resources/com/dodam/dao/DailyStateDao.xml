@@ -12,12 +12,7 @@
 		<result property="dsDate"		column="ds_date"		jdbcType="DATE"/>
 	</resultMap>
 	
-	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
-	<!-- 
-
-	getDailyStateList(int bNo);
-	deleteDailyState(int no); 
-	 -->
+	
 	<insert id="insertDState" parameterType="DailyState">
 		INSERT
 		INTO daily_state (
@@ -31,7 +26,29 @@
 		)
 	</insert>
 	
-	<select id="getDailyState" parameterType="DailyState"></select>
+	<select id="getDailyState" parameterType="DailyState" resultMap="DailyStateMap">
+		SELECT *
+		FROM daily_state
+		WHERE B_NO =#{bNo} 
+		AND DS_DATE LIKE (#{dsDate})	
+	</select>
 	
+	<select id="getDailyStateList" parameterType="int" resultMap="DailyStateMap">
+		SELECT *
+		FROM daily_state
+		WHERE B_NO =#{bNo}
+		ORDER BY DS_DATE DESC
+	</select>
 	
+	<delete id="deleteDailyStateByDate" parameterType="DailyState">
+		DELETE 
+		FROM daily_state 
+		WHERE DS_DATE LIKE (#{dsDate})
+	</delete>
+	
+	<delete id="deleteDailyStateByBaby" parameterType="DailyState">
+		DELETE 
+		FROM daily_state 
+		WHERE B_NO = #{bNo}
+	</delete>
 </mapper>

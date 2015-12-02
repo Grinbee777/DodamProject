@@ -23,27 +23,28 @@ public class DailyStateServiceImpl implements DailyStateService {
 	}
 
 	@Override
-	public int insertDState() throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertDState(DailyState dailyState) {		
+		return dailyStateDao.insertDState(dailyState);
 	}
 
 	@Override
-	public DailyState getDailyState(int bNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public DailyState getDailyState(DailyState dailyState) {
+		return dailyStateDao.getDailyState(dailyState);
 	}
 
 	@Override
-	public List<DailyState> getDailyStateList(int bNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<DailyState> getDailyStateList(int bNo) {
+		return dailyStateDao.getDailyStateList(bNo);
 	}
 
 	@Override
-	public int deleteDailyState(int no) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteDailyStateByDate(DailyState dailyState) {
+		return deleteDailyStateByDate(dailyState);
 	}
 
+	@Override
+	public int deleteDailyStateByBaby(DailyState dailyState) {
+		return dailyStateDao.deleteDailyStateByBaby(dailyState);
+	}
+	
 }

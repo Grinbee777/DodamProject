@@ -6,11 +6,13 @@ import com.dodam.service.domain.DailyState;
 
 public interface DailyStateService {
 	
-	int insertDState() throws Exception;
-	
-	DailyState getDailyState(int bNo) throws Exception;
-	
-	List<DailyState> getDailyStateList(int bNo) throws Exception;
+	int insertDState(DailyState dailyState);
 
-	int deleteDailyState(int no) throws Exception; 
+	DailyState getDailyState(DailyState dailyState);
+	
+	List<DailyState> getDailyStateList(int bNo);
+
+	int deleteDailyStateByDate(DailyState dailyState);
+
+	int deleteDailyStateByBaby(DailyState dailyState);
 }
