@@ -76,7 +76,7 @@
   </class>  
   <association id="9">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="poo"/>      
+      <attribute id="10" name="dsPoo"/>      
       <multiplicity id="11" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
@@ -84,7 +84,7 @@
   </association>  
   <association id="12">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="feed"/>      
+      <attribute id="13" name="dsFeed"/>      
       <multiplicity id="14" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
@@ -96,7 +96,7 @@
   </dependency>  
   <association id="16">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="nap"/>      
+      <attribute id="17" name="dsNap"/>      
       <multiplicity id="18" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    

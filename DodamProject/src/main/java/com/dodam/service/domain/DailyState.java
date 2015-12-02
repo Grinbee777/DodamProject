@@ -10,9 +10,9 @@ public class DailyState implements Serializable {
 	private int dsNo;
 	private int bNO;
 	private Date dsDate;
-	private List<Nap> nap;
-	private List<Feed> feed;
-	private List<Poo> poo;
+	private List<Nap> dsNap;
+	private List<Feed> dsFeed;
+	private List<Poo> dsPoo;
 	
 
 	public DailyState() {
@@ -50,33 +50,33 @@ public class DailyState implements Serializable {
 	}
 
 
-	public List<Nap> getNap() {
-		return nap;
+	public List<Nap> getDsNap() {
+		return dsNap;
 	}
 
 
-	public void setNap(List<Nap> nap) {
-		this.nap = nap;
+	public void setDsNap(List<Nap> dsNap) {
+		this.dsNap = dsNap;
 	}
 
 
-	public List<Feed> getFeed() {
-		return feed;
+	public List<Feed> getDsFeed() {
+		return dsFeed;
 	}
 
 
-	public void setFeed(List<Feed> feed) {
-		this.feed = feed;
+	public void setDsFeed(List<Feed> dsFeed) {
+		this.dsFeed = dsFeed;
 	}
 
 
-	public List<Poo> getPoo() {
-		return poo;
+	public List<Poo> getDsPoo() {
+		return dsPoo;
 	}
 
 
-	public void setPoo(List<Poo> poo) {
-		this.poo = poo;
+	public void setDsPoo(List<Poo> dsPoo) {
+		this.dsPoo = dsPoo;
 	}
 
 
@@ -89,15 +89,14 @@ public class DailyState implements Serializable {
 		builder.append(bNO);
 		builder.append(", dsDate=");
 		builder.append(dsDate);
-		builder.append(", nap=");
-		builder.append(nap);
-		builder.append(", feed=");
-		builder.append(feed);
-		builder.append(", poo=");
-		builder.append(poo);
+		builder.append(", dsNap=");
+		builder.append(dsNap);
+		builder.append(", dsFeed=");
+		builder.append(dsFeed);
+		builder.append(", dsPoo=");
+		builder.append(dsPoo);
 		builder.append("]");
 		return builder.toString();
 	}
-	
 	
 }
