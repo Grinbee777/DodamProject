@@ -14,7 +14,7 @@ public interface DiaryService {
 	
 	int updateDCode(String dCode) throws Exception;
 	
-	int updateDTag(String dTag) throws Exception;
+	int updateDiary(Diary diary) throws Exception;
 	
 	int deleteDiary(int dNo) throws Exception;
 

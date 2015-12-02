@@ -10,7 +10,7 @@ public interface DiaryDao {
 	Diary getDiary(int dNo);
 	List<Diary> getDiaryList();
 	int updateDCode(String dCode);
-	int updateDTag(String dTag);
+	int updateDiary(Diary diary);
 	int deleteDiary(int dNo);
 	
 }

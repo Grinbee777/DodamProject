@@ -26,6 +26,12 @@
 	</insert>
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
 	
-	<update id="">
+	<select id="getDiary" resultMap="DiaryMap" parameterType="int">
+		SELECT * FROM diary WHERE d_no = #{value}
+	</select>
+	
+	<update id="updateDiary" parameterType="diary">
+		UPDATE diary SET  D_PIC = #{dPic:VARCHAR}  ,D_CONTENT = #{dContent:CLOB}  ,D_CODE = #{dCode:VARCHAR}  ,D_TAG = #{dTag:VARCHAR}  ,B_NO = #{diaryBaby.bNo:NUMERIC}
+		WHERE D_NO = #{dNo:NUMERIC}
 	</update>	 
 </mapper>
