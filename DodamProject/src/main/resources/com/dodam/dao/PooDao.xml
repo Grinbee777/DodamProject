@@ -13,5 +13,30 @@
 	</resultMap>
 	
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
-	
+	<!-- 
+
+	int updatePoo(Poo poo);
+	int deletePoo(int no);
+	 -->
+	 
+	 <insert id="insertPoo" parameterType="Poo">
+		INSERT
+		INTO poo (P_NO, P_TIME, DS_NO) 
+		VALUES (NULL, #{pTime}, #{dsNo}
+		)
+	 </insert>
+	 
+	 <select id="getPoo" parameterType="int" parameterMap="PooMap">
+	 	SELECT *
+	 	FROM poo
+	 	WHERE p_no = #{pNO}
+	 </select>	
+	 
+	 <select id="getPooList" parameterType="int" parameterMap="PooMap">
+	 	SELECT *
+	 	FROM poo
+	 	WHERE ds_no = #{dsNo}
+	 </select>
+	 
+	 
 </mapper>

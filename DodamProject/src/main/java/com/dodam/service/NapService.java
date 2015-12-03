@@ -15,4 +15,6 @@ public interface NapService {
 	int updateNap(Nap nap) throws Exception;
 
 	int deleteNap(int No) throws Exception;
+	
+	String getNState(int dsNo) throws Exception;
 }

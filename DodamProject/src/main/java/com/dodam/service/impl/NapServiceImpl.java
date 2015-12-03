@@ -52,4 +52,12 @@ public class NapServiceImpl implements NapService {
 		return 0;
 	}
 
+	@Override
+	public String getNState(int dsNo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
 }
