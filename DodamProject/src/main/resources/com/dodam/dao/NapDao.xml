@@ -15,5 +15,34 @@
 	</resultMap>
 	
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	<!-- 
+
+	String getNState(int dsNo);
+	int updateNap(Nap nap);
+
+	int deleteNap(int No);
+	 -->
+	 
+	<insert id="insertNap" parameterType="Nap">
+		INSERT 
+		INTO nap (N_NO,N_START,N_END,N_STATE,DS_NO) 
+		VALUES (NULL, #{nStart}, NULL, 1, #{dsNo})
+	</insert>
+	 
+	<select id="getNap" parameterType="int" resultMap="NapMap">
+		SELECT *
+		FROM nap
+		WHERE N_NO = #{nNo}
+	</select>
+	
+	<select id="getNapList" parameterType="int" resultMap="NapMap">
+		SELECT *
+		FROM nap
+		WHERE DS_NO = #{dsNo}
+	</select>
+	
+	<select id="getNState">
+	
+	</select>
 	
 </mapper>
