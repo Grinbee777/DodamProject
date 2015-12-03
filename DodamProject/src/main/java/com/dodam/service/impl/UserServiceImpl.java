@@ -1,5 +1,8 @@
 package com.dodam.service.impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +10,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jca.cci.connection.ConnectionFactoryUtils;
 import org.springframework.stereotype.Service;
 
 import com.dodam.dao.UserDao;
@@ -29,8 +33,7 @@ public class UserServiceImpl implements UserService {
 
 	
 	public int insertUser(User user) throws Exception {
-		userDao.insertUser(user);
-		return 0;
+		return userDao.insertUser(user);
 	}
 
 	public boolean checkDuplication(String mail) throws Exception {
@@ -57,14 +60,13 @@ public class UserServiceImpl implements UserService {
 
 	
 	public int updateUser(User user) throws Exception {
-		userDao.updateUser(user);
-		return 0;
+		
+		return userDao.updateUser(user);
 	}
 
 	
-	public int deleteUser(int  uNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteUser(int uNo) throws Exception {
+		return userDao.deleteUser(uNo);
 	}
 
 

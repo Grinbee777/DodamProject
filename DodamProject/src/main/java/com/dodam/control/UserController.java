@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,38 +32,37 @@ public class UserController {
 	
 	
 	public UserController() {
-		System.out.println(":::::"+getClass().getName()+" ��!");
+		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
-	@RequestMapping(value="insertUser", method=RequestMethod.POST)
-    	public int insertUser(@ModelAttribute("user") User user)throws Exception{
+	@RequestMapping(value="/json/addUser")
+    	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
 		
-		System.out.println("insertUser ����?? ");
+		System.out.println("insertUser 들어오나요?? ");
 		userservice.insertUser(user);
 		
-		return 0;
+		model.addAttribute("user",user);
 		
 	}
 	
-	@RequestMapping(value="checkDuplication",method=RequestMethod.POST)
-	public String checkDuplication(@RequestParam("mail")String mail, Model model )throws Exception{
+	@RequestMapping(value="/json/checkDuplication") 
+	public void checkDuplication(@RequestBody User user, Model model )throws Exception{
 		System.out.println("checkDuplication 들어오나여?");
-		boolean result=userservice.checkDuplication(mail);
+		/*boolean result=userservice.checkDuplication(mail);
 		
 		model.addAttribute("result", new Boolean(result));
-		model.addAttribute("mail",mail);
+		model.addAttribute("mail",mail);*/
 		
-		
-		return mail ;
+	
 		
 	}
 	
-	@RequestMapping(value="getUser",method=RequestMethod.GET)
-	public String getUser(@RequestParam("uNo")int uNo,Model model)throws Exception{
+	@RequestMapping(value="/jsom/getUser")
+	public void getJsonUser(@RequestBody User user,Model model)throws Exception{
 		System.out.println("getUser 들어오나요??");
-		User user = userservice.getUser(uNo);
-		model.addAttribute("user",user);
-		return null ;
+		User getUser=userservice.getUser(user.getuNo());
+		model.addAttribute("user",getUser);
+		
 	}
 	
 	@RequestMapping(value="getUserList")
@@ -74,21 +74,27 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping( value="updateUser", method=RequestMethod.POST )
-	public int updateUser( @ModelAttribute("user") User user , Model model , HttpSession session) throws Exception{
+	@RequestMapping( value="/json/updateUser")
+	public void updateJsonUser( @RequestBody User user , Model model , HttpSession session) throws Exception{
 
 		System.out.println("updateUser 들어오낭??? ");
 		//Business Logic
 		userservice.updateUser(user);
 		
-		int sessionId=((User)session.getAttribute("user")).getuNo();
-		
-		
-		return sessionId ;
+		model.addAttribute("user",user);
 	}
 	
 	
+	@RequestMapping( value="/json/deleteUser")
+	public void deleteUser(@RequestBody User user,Model model)throws Exception{
+		
+		System.out.println("delete 되나용??");
+		userservice.deleteUser(user.getuNo());
+		model.addAttribute("user",user);
+		
+	}
 	
+
 	
 	
 	
