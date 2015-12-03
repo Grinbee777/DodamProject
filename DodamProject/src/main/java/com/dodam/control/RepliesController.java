@@ -3,9 +3,14 @@ package com.dodam.control;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dodam.service.RepliesService;
+import com.dodam.service.domain.Replies;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 @Controller
 @RequestMapping("/replies/*")
@@ -18,5 +23,47 @@ public class RepliesController {
 	public RepliesController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
+	
+	@RequestMapping(value="/json/addReplies")
+	public void addJsonReplies(@RequestBody Replies replies) throws Exception{
+		System.out.println(":: addJsonReplies ::");
+		System.out.println(":: 전달받은 replies 인스턴스 :"+replies);
+		System.out.println(":: result :"+repliesService.insertReplies(replies));
+	}
+	
+	@RequestMapping(value="/json/getReplies/{rNo}")
+	public void  getJsonReplies(@PathVariable("rNo") int rNo, Model model) throws Exception{
+		System.out.println(":: getJsonReplies ::");
+		System.out.println("::rNo::"+rNo);
+		
+		Replies replies = repliesService.getReplies(rNo);
+		System.out.println("::result :"+replies);
+		model.addAttribute("replies", replies);
+	}
+	
+	@RequestMapping(value="/json/getRepliesList")
+	public void getJsonRepliesList(@PathVariable("dNo") int dNo, Model model ) throws Exception{
+		System.out.println(":: getJsonRepliesList ::");
+		System.out.println(":: dNo :"+dNo);
+		
+		List list = (List) repliesService.getRepliesList(dNo);
+		System.out.println(":: result :"+list.toString() );
+		model.addAttribute("list", list);		
+	}
+	
+	@RequestMapping(value="/json/updateReplies")
+	public void updateJsonReplies(@RequestBody Replies replies) throws Exception{
+		System.out.println(":: updateJsonReplies ::");
+		System.out.println(":: replies :"+replies);
+		System.out.println(":: result :"+repliesService.updateReplies(replies));
+	}
+	
+	@RequestMapping(value="/json/deleteReplies")
+	public void deleteJsonReplies(@PathVariable("rNo") int rNo) throws Exception{
+		System.out.println(":: deleteJsonReplies ::");
+		System.out.println(":: rNo :"+rNo);
+		System.out.println(":: result :"+repliesService.deleteReplies(rNo));		
+	}
+	
 
 }

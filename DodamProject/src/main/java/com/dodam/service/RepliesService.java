@@ -14,5 +14,5 @@ public interface RepliesService {
 	
 	int updateReplies(Replies replies) throws Exception;
 	
-	int deleteReplies(int no) throws Exception;
+	int deleteReplies(int rNo) throws Exception;
 }

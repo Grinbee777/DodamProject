@@ -24,32 +24,27 @@ public class RepliesServiceImpl implements RepliesService {
 
 	@Override
 	public int insertReplies(Replies replies) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return repliesDao.insertReplies(replies);
 	}
 
 	@Override
 	public Replies getReplies(int rNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return repliesDao.getReplies(rNo);
 	}
 
 	@Override
 	public List<Replies> getRepliesList(int dNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return repliesDao.getRepliesList(dNo);
 	}
 
 	@Override
 	public int updateReplies(Replies replies) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return repliesDao.updateReplies(replies);
 	}
 
 	@Override
-	public int deleteReplies(int no) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteReplies(int rNo) throws Exception {
+		return repliesDao.deleteReplies(rNo);
 	}
 
 }

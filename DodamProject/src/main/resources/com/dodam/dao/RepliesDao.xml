@@ -18,5 +18,40 @@
 	</resultMap>
 	
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	<insert id="insertReplies" parameterMap="RepliesMap">
+		INSERT INTO replies(`R_NAME`,
+                    `R_CONTENT`,
+                    `P_NO`,
+                    `R_ORDER`,
+                    `R_LEVEL`,
+                    `R_DATE`,
+                    `D_NO`)
+     VALUES (#{rName},
+             #{rContent},
+             #{pNo},
+             #{rOrder},
+             #{rLevel},
+             now(),
+             #{dNo})	
+	</insert>
+	
+	<select id="getReplies" parameterType="int" resultMap="RepliesMap">
+		SELECT * FROM replies 
+		WHERE replies.`R_NO` = #{rNo}
+	</select>
+	
+	<select id="getRepliesList" parameterType="int" resultMap="RepliesMap">
+		SELECT * FROM replies WHERE replies.`D_NO`=#{dNo}
+	</select>
+	
+	<update id="updateReplies" parameterMap="RepliesMap">
+		UPDATE replies SET `R_CONTENT` = '#{rContent}' WHERE `R_NO` = #{rNo}
+	</update>
+	
+	<delete id="deleteReplies" parameterType="int">
+		DELETE FROM replies WHERE `R_NO` = #{rNo}
+	</delete>
+	
+	
 	
 </mapper>

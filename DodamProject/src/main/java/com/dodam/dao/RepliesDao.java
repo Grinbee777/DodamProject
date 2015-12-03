@@ -10,5 +10,6 @@ public interface RepliesDao {
 	List<Replies> getRepliesList(int dNo);
 	int updateReplies(Replies replies);
 	//rNo전달시 1개만 삭제 dNo전달시 일괄삭제가능
-	int deleteReplies(int no);
+	int deleteReplies(int rNo);
+	
 }
