@@ -41,7 +41,7 @@
 	
 	<delete id="deleteSBaby" parameterType="int">
 		DELETE FROM s_baby 
-		WHERE sb_no=#{sbNo}
+		WHERE b_no=#{bNo}
 	</delete>
 	
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->

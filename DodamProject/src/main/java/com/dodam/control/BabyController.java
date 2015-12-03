@@ -24,6 +24,7 @@ public class BabyController {
 	@Autowired
 	@Qualifier("babyServiceImpl")
 	private BabyService babyService;
+	
 	@Autowired
 	@Qualifier("sBabyServiceImpl")
 	private SBabyService sBabyService;
@@ -39,19 +40,23 @@ public class BabyController {
 		System.out.println(baby);
 		System.out.println(sBaby);
 		
+		babyService.insertBaby(baby);
+		sBabyService.insertSBaby(sBaby);
+		
 		
 		
 	}
 	
 	@RequestMapping(value="/json/updateBaby")
-	public void updateJsonBaby(@RequestBody Baby baby, Model model) throws Exception{
+	public void updateJsonBaby(@RequestBody Baby baby,@RequestBody SBaby sBaby, Model model) throws Exception{
 		
 		System.out.println("updateBaby Controller 들어옴");
 		System.out.println(baby);
 		
 		babyService.updateBaby(baby);
+		sBabyService.updateSBaby(sBaby);
 		
-		model.addAttribute("baby",baby);
+		
 	}
 	
 	@RequestMapping(value="/json/getBaby")
@@ -66,14 +71,14 @@ public class BabyController {
 	}
 	
 	@RequestMapping(value="/json/deleteBaby")
-	public void deleteJsonBaby(@RequestBody Baby baby,Model model) throws Exception{
+	public void deleteJsonBaby(@RequestBody Baby baby,@RequestBody SBaby sBaby,Model model) throws Exception{
 		
 		System.out.println("deleteBaby Controller 들어옴");
 		System.out.println(baby);
 		
+		sBabyService.deleteSBaby(sBaby.getbNo());
 		babyService.deleteBaby(baby.getbNo());
 		
-		model.addAttribute("baby",baby);
 	}
 	
 	
