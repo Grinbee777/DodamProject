@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dodam.service.BabyService;
+import com.dodam.service.SBabyService;
 import com.dodam.service.domain.Baby;
+import com.dodam.service.domain.SBaby;
 import com.dodam.service.domain.User;
 
 @Controller
@@ -22,21 +24,22 @@ public class BabyController {
 	@Autowired
 	@Qualifier("babyServiceImpl")
 	private BabyService babyService;
+	@Autowired
+	@Qualifier("sBabyServiceImpl")
+	private SBabyService sBabyService;
 	
 	public BabyController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
 	@RequestMapping(value="/json/addBaby")
-	public void addJsonBaby(@RequestBody Baby baby, Model model) throws Exception{
+	public void addJsonBaby(@RequestBody Baby baby,@RequestBody SBaby sBaby, Model model) throws Exception{
 		
 		System.out.println("addBaby Controller 들어옴");
 		System.out.println(baby);
+		System.out.println(sBaby);
 		
-		babyService.insertBaby(baby);
 		
-		
-		model.addAttribute("baby",baby);
 		
 	}
 	

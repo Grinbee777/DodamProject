@@ -42,7 +42,7 @@ public class BabyTest {
 		
 	}
 	
-	//@Test
+	@Test
 	public void testInsertBaby() throws Exception {
 		Baby baby=new Baby();
 		User user=new User();
@@ -57,9 +57,11 @@ public class BabyTest {
 		baby.setMom(user);
 		
 		babyService.insertBaby(baby);
+		
+		System.out.println("baby 일련번호 : "+baby.getbNo());
 	}
 	
-	@Test
+//	@Test
 	public void testGetBaby() throws Exception {
 		Baby baby=babyService.getBaby(100012);
 		

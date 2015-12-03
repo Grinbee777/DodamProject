@@ -8,9 +8,9 @@ public interface SBabyService {
 	
 	int insertSBaby(SBaby sBaby) throws Exception;
 
-	SBaby getSBaby(int no) throws Exception;
+	//SBaby getSBaby(int no) throws Exception;
 	
-	List<SBaby> getSBabyList(int bNo) throws Exception;
+	//List<SBaby> getSBabyList(int bNo) throws Exception;
 	
 	int updateSBaby(SBaby sBaby) throws Exception;
 

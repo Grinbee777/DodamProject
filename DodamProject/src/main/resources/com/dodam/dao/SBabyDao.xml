@@ -14,6 +14,36 @@
 		<result property="bNo"			column="b_no"		jdbcType="NUMERIC"/>
 	</resultMap>
 	
+	<insert id="insertSBaby" parameterType="SBaby">
+		INSERT INTO s_baby (
+			HEIGHT
+			,WEIGHT
+			,D_NO
+			,B_NO) VALUES (
+			#{height:VARCHAR}
+			,#{weight:VARCHAR}
+			,#{dNo:NUMERIC}
+			,#{bNo}
+			)
+	</insert>
+	
+	<update id="updateSBaby" parameterType="int">
+		UPDATE s_baby 
+		<set>
+			height=#{height:VARCHAR}
+			,weight=#{weight:VARCHAR}
+			,d_no=#{dNo}
+		</set>
+		<where>
+			sb_no=#{sbNo}
+		</where>
+	</update>
+	
+	<delete id="deleteSBaby" parameterType="int">
+		DELETE FROM s_baby 
+		WHERE sb_no=#{sbNo}
+	</delete>
+	
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
 	
 </mapper>

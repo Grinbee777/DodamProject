@@ -6,8 +6,8 @@ public class SBaby implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int sbNo;
-	private float height;
-	private float weight;
+	private String height;
+	private String weight;
 	private int dNo;
 	private int bNo;
 	
@@ -18,16 +18,16 @@ public class SBaby implements Serializable {
 	public void setSbNo(int sbNo) {
 		this.sbNo = sbNo;
 	}
-	public float getHeight() {
+	public String getHeight() {
 		return height;
 	}
-	public void setHeight(float height) {
+	public void setHeight(String height) {
 		this.height = height;
 	}
-	public float getWeight() {
+	public String getWeight() {
 		return weight;
 	}
-	public void setWeight(float weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
 	public int getdNo() {

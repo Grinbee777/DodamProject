@@ -1,7 +1,5 @@
 package com.dodam.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,32 +22,29 @@ public class SBabyServiceImpl implements SBabyService {
 
 	@Override
 	public int insertSBaby(SBaby sBaby) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sBabyDao.insertSBaby(sBaby);
 	}
 
-	@Override
+	/*@Override
 	public SBaby getSBaby(int no) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public List<SBaby> getSBabyList(int bNo) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	@Override
 	public int updateSBaby(SBaby sBaby) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sBabyDao.updateSBaby(sBaby);
 	}
 
 	@Override
 	public int deleteSBaby(int no) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sBabyDao.deleteSBaby(no);
 	}
 
 }
