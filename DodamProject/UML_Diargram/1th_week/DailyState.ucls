@@ -4,7 +4,7 @@
   <class id="1" language="java" name="com.dodam.service.impl.DailyStateServiceImpl" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/service/impl/DailyStateServiceImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="353" y="272"/>    
+    <position height="-1" width="-1" x="555" y="425"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -13,7 +13,7 @@
   </class>  
   <class id="2" language="java" name="com.dodam.control.DailyStateController" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/control/DailyStateController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="114" y="44"/>    
+    <position height="-1" width="-1" x="232" y="203"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -22,7 +22,7 @@
   </class>  
   <interface id="3" language="java" name="com.dodam.service.DailyStateService" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/service/DailyStateService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="351" y="73"/>    
+    <position height="-1" width="-1" x="558" y="203"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -31,7 +31,7 @@
   </interface>  
   <interface id="4" language="java" name="com.dodam.dao.DailyStateDao" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/dao/DailyStateDao.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="352" y="468"/>    
+    <position height="-1" width="-1" x="555" y="646"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -40,7 +40,7 @@
   </interface>  
   <class id="5" language="java" name="com.dodam.service.domain.DailyState" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/service/domain/DailyState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="710" y="306"/>    
+    <position height="-1" width="-1" x="889" y="442"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -49,7 +49,7 @@
   </class>  
   <class id="6" language="java" name="com.dodam.service.domain.Feed" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/service/domain/Feed.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1160" y="309"/>    
+    <position height="-1" width="-1" x="1388" y="442"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -58,7 +58,7 @@
   </class>  
   <class id="7" language="java" name="com.dodam.service.domain.Nap" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/service/domain/Nap.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="933" y="95"/>    
+    <position height="-1" width="-1" x="1132" y="230"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -67,7 +67,7 @@
   </class>  
   <class id="8" language="java" name="com.dodam.service.domain.Poo" project="DodamProject" 
     file="/DodamProject/src/main/java/com/dodam/service/domain/Poo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="936" y="466"/>    
+    <position height="-1" width="-1" x="1135" y="601"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -76,63 +76,79 @@
   </class>  
   <association id="9">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="10" name="dsPoo"/>      
-      <multiplicity id="11" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="dsFeed"/>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="16">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="17" name="dsNap"/>      
-      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
+      <attribute id="10" name="dsNap">        
+        <position height="0" width="0" x="199" y="135"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="199" y="135"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="19">    
+  <association id="12">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="20" name="dailyStateService">        
-        <position height="20" width="108" x="122" y="-38"/>      
+      <attribute id="13" name="dailyStateService">        
+        <position height="20" width="108" x="329" y="92"/>      
       </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1">        
-        <position height="18" width="27" x="199" y="-10"/>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="18" width="27" x="399" y="116"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="22">    
+  <dependency id="15">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="17">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="18" name="dsFeed">        
+        <position height="0" width="0" x="228" y="133"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="228" y="133"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="20">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
-  <dependency id="23">    
+  <dependency id="21">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="22">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <dependency id="24">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="25">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="26" name="dailyStateDao">        
-        <position height="20" width="89" x="442" y="357"/>      
+  <association id="23">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="24" name="dsPoo">        
+        <position height="0" width="0" x="199" y="135"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
-        <position height="18" width="27" x="500" y="379"/>      
+      <multiplicity id="25" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="199" y="135"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="27" name="dailyStateDao">        
+        <position height="20" width="89" x="646" y="536"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1">        
+        <position height="18" width="27" x="703" y="557"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
