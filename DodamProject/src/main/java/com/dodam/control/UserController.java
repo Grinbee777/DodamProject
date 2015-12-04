@@ -69,18 +69,34 @@ public class UserController {
 		if (user.getMail() != null) {
 			System.out.println("::CheckEmail");
 			String requestMail = user.getMail();	
-		
+			boolean check = true;
+			
 			for(User temp : list){
-				if (temp.getMail().equals(requestMail)) {	
-					System.out.println("Duplicate email");
-					model.addAttribute("result",false);
-				}else{
-					System.out.println("No Duplicate email");
-					model.addAttribute("result",true);
-				}
-				
-			}//end of for		
-		}//end of outter if	
+				if (temp.getMail().equals(requestMail)) {
+					System.out.println("Duplication email!!!");	
+					check = false;					
+				}				
+			}//end of for			
+			model.addAttribute("result", check);
+			
+		}else if(user.getNickname() !=null){
+			System.out.println("::CheckNickname");
+			String requestNickname = user.getNickname();
+			boolean check = true;
+			
+			while (list.size()!=0) {		
+				System.out.println("while of CheckNickname");
+				if ( list.get(list.size()-1).getNickname().equals(requestNickname) ) {
+					check = false;
+					System.out.println("Duplication nickname!!!!");
+					break;
+				}	
+				list.remove(list.size()-1);
+			}// end of while
+			model.addAttribute("result", check);
+		}//end of outter if
+		
+		//end of outter if	
 		
 		
 	}//end of checkJsonDuplication
