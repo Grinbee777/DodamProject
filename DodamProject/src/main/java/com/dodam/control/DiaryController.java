@@ -61,10 +61,10 @@ public class DiaryController {
 		
 	}
 	
-	@RequestMapping(value="/json/getUserDiary", method=RequestMethod.POST)
-	public void getJsonUserDiary(@RequestBody Diary diary, Model model) throws Exception{
+	@RequestMapping(value="/json/getUserDiaryList", method=RequestMethod.POST)
+	public void getJsonUserDiaryList(@RequestBody Diary diary, Model model) throws Exception{
 		
-		System.out.println(":: getJsonDiaryList ::");
+		System.out.println(":: getJsonUserDiaryList ::");
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
 		diaryService.getDiaryList(diary.getDiaryUser().getuNo());
 		

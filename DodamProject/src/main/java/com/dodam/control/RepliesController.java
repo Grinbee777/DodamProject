@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dodam.service.RepliesService;
+import com.dodam.service.domain.Diary;
 import com.dodam.service.domain.Replies;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
@@ -42,12 +43,12 @@ public class RepliesController {
 		model.addAttribute("replies", replies);
 	}
 	
-	@RequestMapping(value="/json/getRepliesList/{dNo}")
-	public void getJsonRepliesList(@PathVariable("dNo") int dNo, Model model ) throws Exception{
+	@RequestMapping(value="/json/getRepliesList")
+	public void getJsonRepliesList(@RequestBody Diary diary, Model model ) throws Exception{
 		System.out.println(":: getJsonRepliesList ::");
-		System.out.println(":: dNo :"+dNo);
+		System.out.println(":: dNo :"+diary.getdNo());
 		
-		System.out.println(":: result :"+repliesService.getRepliesList(dNo));
+		System.out.println(":: result :"+repliesService.getRepliesList(diary.getdNo()));
 //		System.out.println(":: result :"+list.toString() );
 //		model.addAttribute("list", list);		
 	}
@@ -59,11 +60,11 @@ public class RepliesController {
 		System.out.println(":: result :"+repliesService.updateReplies(replies));
 	}
 	
-	@RequestMapping(value="/json/deleteReplies/{rNo}")
-	public void deleteJsonReplies(@PathVariable("rNo") int rNo) throws Exception{
+	@RequestMapping(value="/json/deleteReplies")
+	public void deleteJsonReplies(@RequestBody Replies replies) throws Exception{
 		System.out.println(":: deleteJsonReplies ::");
-		System.out.println(":: rNo :"+rNo);
-		System.out.println(":: result :"+repliesService.deleteReplies(rNo));		
+		System.out.println(":: rNo :"+replies.getrNo());
+		System.out.println(":: result :"+repliesService.deleteReplies(replies.getrNo()));		
 	}
 	
 

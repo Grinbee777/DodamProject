@@ -1,22 +1,13 @@
 package com.dodam.control;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.dodam.service.UserService;
 import com.dodam.service.domain.User;
@@ -36,22 +27,13 @@ public class UserController {
 	@RequestMapping(value="/json/insertUser")
     	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
 		
-		System.out.println("insertUser 들어오나요?? ");
+		System.out.println("::insertJsonUser::");
 		userservice.insertUser(user);
 	}
-	
-	@RequestMapping(value="/json/checkDuplication") 
-	public void checkDuplication(@RequestBody User user, Model model )throws Exception{
-		System.out.println("checkDuplication 들어오나여?");
-		/*boolean result=userservice.checkDuplication(mail);
 		
-		model.addAttribute("result", new Boolean(result));
-		model.addAttribute("mail",mail);*/
-	}
-	
 	@RequestMapping(value="/json/getUser")
 	public void getJsonUser(@RequestBody User user,Model model)throws Exception{
-		System.out.println("getUser 들어오나요??");
+		System.out.println("::getJsonUser::");
 		User getUser=userservice.getUser(user.getuNo());
 		model.addAttribute("user",getUser);		
 	}	
@@ -59,7 +41,7 @@ public class UserController {
 	@RequestMapping( value="/json/updateUser")
 	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{
 
-		System.out.println("updateUser 들어오낭??? ");
+		System.out.println("::updateJsonUser::");
 		//Business Logic
 		userservice.updateUser(user);
 		
@@ -68,9 +50,9 @@ public class UserController {
 	
 	
 	@RequestMapping( value="/json/deleteUser")
-	public void deleteUser(@RequestBody User user,Model model)throws Exception{
+	public void deleteJsonUser(@RequestBody User user,Model model)throws Exception{
 		
-		System.out.println("delete 되나용??");
+		System.out.println("::deleteJsonUser::");
 		userservice.deleteUser(user.getuNo());
 		//model.addAttribute("user",user);		
 	}
