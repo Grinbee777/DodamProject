@@ -50,7 +50,7 @@ public class DiaryController {
 		
 	}
 	
-	@RequestMapping(value="/json/getDiary", method=RequestMethod.POST)
+	/*@RequestMapping(value="/json/getDiary", method=RequestMethod.POST)
 	public void getJsonDiary(@RequestBody Diary diary, Model model) throws Exception{
 		
 		System.out.println(":: getJsonDiary ::");
@@ -58,6 +58,16 @@ public class DiaryController {
 		Diary returnDiary = diaryService.getDiary(diary.getdNo());
 		System.out.println("리턴될 diary : "+returnDiary);
 		model.addAttribute("diary", returnDiary);
+		
+	}*/
+	@RequestMapping(value="/json/getDiary")
+	public void getJsonDiary(Model model) throws Exception{
+		
+		System.out.println(":: getJsonDiary ::");
+		//System.out.println("전달받은 diary 인스턴스 == "+diary);
+		//Diary returnDiary = diaryService.getDiary(diary.getdNo());
+		//System.out.println("리턴될 diary : "+returnDiary);
+		model.addAttribute("diary", diaryService.getDiary(100000));
 		
 	}
 	

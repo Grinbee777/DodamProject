@@ -32,7 +32,7 @@
   <tx:annotation-driven transaction-manager="txManager"/>
   
   <!-- 트랜잭션 정책을 설정하기 -->
-  <!-- 
+  
   <tx:advice id="txAdvice" transaction-manager="txManager">
     <tx:attributes>
       <tx:method name="get*" read-only="true" />
@@ -40,19 +40,19 @@
       <tx:method name="*" propagation="REQUIRED"/>
     </tx:attributes>
   </tx:advice>
-   -->
-  <!-- 트랜잭션을 적용할 클래스나 메서드를 설정한다. -->
- <!--  <aop:config>
-    적용할 클래스나 메서드 정의
+  
+<!--   트랜잭션을 적용할 클래스나 메서드를 설정한다. -->
+  <aop:config>
+<!--     적용할 클래스나 메서드 정의 -->
     
     <aop:pointcut id="serviceOperation"
       expression="execution(* com.dodam..*ServiceImpl.*(..))" />
     
-    트랜잭션 규칙을 적용
+<!--     트랜잭션 규칙을 적용 -->
     <aop:advisor pointcut-ref="serviceOperation" 
                  advice-ref="txAdvice" />
   	</aop:config>
-   -->
+  
   <!-- SqlSessionFactory 객체 생성하라! -->
   <bean id="sqlSessionFactory" 
         class="org.mybatis.spring.SqlSessionFactoryBean">
