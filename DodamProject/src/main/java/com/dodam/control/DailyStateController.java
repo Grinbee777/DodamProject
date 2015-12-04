@@ -58,7 +58,7 @@ public class DailyStateController {
 	public void updateJsonNap(@RequestBody Nap nap) throws Exception{
 	}
 	*/
-	
+	/*
 	@RequestMapping(value="/json/")
 	public void n2() throws Exception{
 		
@@ -68,7 +68,7 @@ public class DailyStateController {
 	public void n3() throws Exception{
 		
 	}
-	
+	*/
 	
 	
 	@RequestMapping(value="/json/addFeed")
@@ -76,7 +76,7 @@ public class DailyStateController {
 		//check 로직 추가 - DS 도메인 or dsNo
 		feedService.insertFeed(feed);
 	}
-	
+	/*
 	@RequestMapping(value="/json/")
 	public void f1() throws Exception{
 		
@@ -91,13 +91,13 @@ public class DailyStateController {
 	public void f3() throws Exception{
 		
 	}
-	
+	*/
 	@RequestMapping(value="/json/addPoo")
 	public void addJsonPoo(@RequestBody DailyState dailyState, @RequestBody Poo poo) throws Exception {
 		//check 로직 추가 - DS 도메인 or dsNo
 		pooService.insertPoo(poo);
 	}
-	
+	/*
 	@RequestMapping(value="/json/")
 	public void p1() throws Exception{
 		
@@ -112,13 +112,13 @@ public class DailyStateController {
 	public void p3() throws Exception{
 		
 	}
-	
+	*/
 	@RequestMapping(value="/json/getDailyState")
 	public void getJsonDailyState(@RequestBody DailyState dailyState, Model model) throws Exception {
 		System.out.println("@@ "+dailyState);
 		//model.addAttribute(dailyStateService.getDailyState(dailyState));
 	}
-	
+/*	
 	@RequestMapping(value="/json/")
 	public void d1() throws Exception{
 		
@@ -132,6 +132,6 @@ public class DailyStateController {
 	@RequestMapping(value="/json/")
 	public void d3() throws Exception{
 		
-	}
+	}*/
 
 }
