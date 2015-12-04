@@ -24,9 +24,10 @@ public class AccessFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		System.out.println("AccessFilter Start");
 		String origin = ((HttpServletRequest)request).getHeader("Origin");
 		((HttpServletResponse)response).setHeader("Access-Control-Allow-Origin", "*");
-		 //((HttpServletResponse) response).setHeader("Access-Control-Allow-Methods", "POST, GET");
+		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Methods", "POST, GET");
 		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Credentials", "true");
 		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept");
 		chain.doFilter(request, response);

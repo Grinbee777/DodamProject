@@ -28,7 +28,7 @@ public class UserController {
     	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
 		
 		System.out.println("::insertJsonUser::");
-		userservice.insertUser(user);
+		System.out.println("::result :"+userservice.insertUser(user));
 	}
 		
 	@RequestMapping(value="/json/getUser")

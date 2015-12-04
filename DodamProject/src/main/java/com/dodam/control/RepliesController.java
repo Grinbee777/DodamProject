@@ -14,7 +14,7 @@ import com.dodam.service.domain.Replies;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 @Controller
-@RequestMapping("/replies/*")
+@RequestMapping("/replies/**")
 public class RepliesController {
 	
 	@Autowired
@@ -24,6 +24,7 @@ public class RepliesController {
 	public RepliesController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
+
 	
 	@RequestMapping(value="/json/addReplies")
 	public void addJsonReplies(@RequestBody Replies replies) throws Exception{
@@ -32,6 +33,8 @@ public class RepliesController {
 		System.out.println(":: result :"+repliesService.insertReplies(replies));
 		//
 	}
+	
+
 	
 	@RequestMapping(value="/json/getReplies")
 	public void  getJsonReplies(@RequestBody Replies replies, Model model) throws Exception{
