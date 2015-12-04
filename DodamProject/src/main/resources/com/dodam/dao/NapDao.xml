@@ -13,15 +13,6 @@
 		<result property="nState"		column="n_state"		jdbcType="NUMERIC"/>
 		<result property="dsNo"			column="ds_no"			jdbcType="NUMERIC"/>
 	</resultMap>
-	
-	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
-	<!-- 
-
-	String getNState(int dsNo);
-	int updateNap(Nap nap);
-
-	int deleteNap(int No);
-	 -->
 	 
 	<insert id="insertNap" parameterType="Nap">
 		INSERT 
@@ -42,7 +33,18 @@
 	</select>
 	
 	<select id="getNState">
-	
+		<!-- ORDER BY로 정렬해서 가장 최신꺼 출력할것 -->
 	</select>
 	
+	<update id="updateNap" parameterType="Nap">
+		UPDATE nap SET
+  		N_END = #{nEnd}
+		WHERE (<!-- 조건 지정해줄것 -->)
+	</update>
+	
+	<delete id="deleteNap" parameterType="int">
+		DELETE
+		FROM nap
+		WHERE nNo = #{nNo}
+	</delete>
 </mapper>

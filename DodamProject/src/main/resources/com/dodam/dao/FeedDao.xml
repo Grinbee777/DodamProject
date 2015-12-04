@@ -13,6 +13,36 @@
 		<result property="dsNo"			column="ds_no"			jdbcType="NUMERIC"/>
 	</resultMap>
 	
-	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
 	
+	<insert id="insertFeed">
+		INSERT INTO feed (
+		F_NO, F_TIME, F_AMOUNT, DS_NO) 
+		VALUES (NULL, #{time}, #{fAmount}, #{dsNo})
+	</insert>
+	
+	<select id="getFeed" parameterType="int" resultMap="FeedMap">
+		SELECT * 
+		FROM feed 
+		WHERE F_NO = #{fNo}	
+	</select>
+	
+	<select id="getFeedList" parameterType="int" resultMap="FeedMap">
+		SELECT * 
+		FROM feed 
+		WHERE DS_NO = #{dsNo}
+	</select>
+	
+	<update id="updateFeed" parameterType="Feed">
+		UPDATE feed SET
+		F_TIME = #{fTime}
+		,F_AMOUNT = #{fAmount}
+		WHERE F_NO = #{fNo}
+	</update>
+	
+	<delete id="deleteFeed">
+		DELETE 
+		FROM feed
+		<!-- if 사용하여 WHERE 조건 지정해줄것 -->
+		WHERE F_NO = #{fNo}
+	</delete>
 </mapper>
