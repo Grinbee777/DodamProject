@@ -28,21 +28,16 @@ public class UserController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userservice;
-	private SqlSession sqlSession;
-	
 	
 	public UserController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
-	@RequestMapping(value="/json/addUser")
+	@RequestMapping(value="/json/insertUser")
     	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
 		
 		System.out.println("insertUser 들어오나요?? ");
 		userservice.insertUser(user);
-		
-		model.addAttribute("user",user);
-		
 	}
 	
 	@RequestMapping(value="/json/checkDuplication") 
@@ -52,30 +47,17 @@ public class UserController {
 		
 		model.addAttribute("result", new Boolean(result));
 		model.addAttribute("mail",mail);*/
-		
-	
-		
 	}
 	
-	@RequestMapping(value="/jsom/getUser")
+	@RequestMapping(value="/json/getUser")
 	public void getJsonUser(@RequestBody User user,Model model)throws Exception{
 		System.out.println("getUser 들어오나요??");
 		User getUser=userservice.getUser(user.getuNo());
-		model.addAttribute("user",getUser);
-		
-	}
-	
-	@RequestMapping(value="getUserList")
-	public List<User>getUserList()throws Exception{	
-		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("getUserList 들어오나요??");
-		return sqlSession.selectList(null, map);
-		
-		
-	}
+		model.addAttribute("user",getUser);		
+	}	
 	
 	@RequestMapping( value="/json/updateUser")
-	public void updateJsonUser( @RequestBody User user , Model model , HttpSession session) throws Exception{
+	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{
 
 		System.out.println("updateUser 들어오낭??? ");
 		//Business Logic
@@ -90,20 +72,7 @@ public class UserController {
 		
 		System.out.println("delete 되나용??");
 		userservice.deleteUser(user.getuNo());
-		model.addAttribute("user",user);
-		
+		//model.addAttribute("user",user);		
 	}
-	
-
-	
-	
-	
-	
-	
-	
-		
-	
-	
-	
 
 }

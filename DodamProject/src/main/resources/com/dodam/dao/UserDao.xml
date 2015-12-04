@@ -18,6 +18,55 @@
 		
 	</resultMap>
 	
-	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	<insert id="insertUser" parameterType="User">
+		INSERT into users (   
+			 MAIL
+			  ,U_PIC
+			  ,U_PCODE
+			  ,PASSWORD
+			  ,SOCIAL_NO
+			  ,U_BIRTH
+			  ,REG_DATE
+			) VALUES (   
+			  #{mail}  
+			  ,#{uPic} 
+			  ,#{uPcode}  
+			  ,#{password}  
+			  ,#{socialNo}
+			  ,#{uBirth}
+			  ,now() 
+			)
+	</insert>
+	
+	<update id="updateUser" parameterType="User">
+	UPDATE users
+	<set>
+	MAIL = #{mail}
+  ,U_PIC = #{uPic}
+  ,U_PCODE = #{uPcode}
+  ,PASSWORD = #{password}
+  ,SOCIAL_NO = #{socialNo}
+  ,U_BIRTH = #{uBirth}
+  ,REG_DATE = now()
+	
+	</set>
+	WHERE U_NO = #{uNo}
+	
+	</update>
+	
+	<select id="getUser" parameterType="int" resultMap="UserMap">
+	SELECT * FROM users WHERE U_NO=#{uNo}
+	
+	
+	</select>
+	
+	<delete id="deleteUser" parameterType="int">
+	DELETE FROM users WHERE U_NO=#{uNo}
+	
+	</delete>
+	
+	
+	
+	
 	
 </mapper>
