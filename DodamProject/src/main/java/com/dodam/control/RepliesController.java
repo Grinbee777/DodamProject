@@ -29,6 +29,7 @@ public class RepliesController {
 		System.out.println(":: addJsonReplies ::");
 		System.out.println(":: 전달받은 replies 인스턴스 :"+replies);
 		System.out.println(":: result :"+repliesService.insertReplies(replies));
+		//
 	}
 	
 	@RequestMapping(value="/json/getReplies/{rNo}")
