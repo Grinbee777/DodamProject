@@ -8,6 +8,7 @@
 
 	<resultMap id="UserMap" type="User">
 		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
+		<result property="nickname"    column="nickname"  jdbcType="VARCHAR"/>
 		<result property="mail"			column="mail"			jdbcType="VARCHAR"/>
 		<result property="uPic"			column="u_pic"			jdbcType="VARCHAR"/>
 		<result property="uPcode"		column="u_pcode"		jdbcType="NUMERIC"/>
@@ -20,6 +21,7 @@
 	
 	<insert id="insertUser" parameterType="User">
 		INSERT into users (   
+			NICKNAME,	
 			 MAIL
 			  ,U_PIC
 			  ,U_PCODE
@@ -27,8 +29,9 @@
 			  ,SOCIAL_NO
 			  ,U_BIRTH
 			  ,REG_DATE
-			) VALUES (   
-			  #{mail}  
+			) VALUES (  
+			#{nickname} 
+			  ,#{mail}  
 			  ,#{uPic} 
 			  ,#{uPcode}  
 			  ,#{password}  
@@ -55,18 +58,16 @@
 	</update>
 	
 	<select id="getUser" parameterType="int" resultMap="UserMap">
-	SELECT * FROM users WHERE U_NO=#{uNo}
-	
-	
+	SELECT * FROM users WHERE U_NO=#{uNo}	
 	</select>
 	
 	<delete id="deleteUser" parameterType="int">
-	DELETE FROM users WHERE U_NO=#{uNo}
-	
+	DELETE FROM users WHERE U_NO=#{uNo}	
 	</delete>
 	
-	
-	
+	<select id="getUserList" resultMap="UserMap">
+	SELECT * FROM users;
+	</select>
 	
 	
 </mapper>

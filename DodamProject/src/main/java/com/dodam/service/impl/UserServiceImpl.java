@@ -30,47 +30,25 @@ public class UserServiceImpl implements UserService {
 	public UserServiceImpl() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
-
 	
 	public int insertUser(User user) throws Exception {
 		return userDao.insertUser(user);
-	}
-
-	public boolean checkDuplication(String mail) throws Exception {
-		boolean result=true;
-		//User user=userDao.getUser(mail);
-		/*if(user != null){
-			result=false;
-		}*/
-		return result;
-	}
-
+	}	
 	
-	public User getUser(int uNo) throws Exception {
-		
+	public User getUser(int uNo) throws Exception {		
 		return userDao.getUser(uNo);
 	}
-
 	
-	public List<User> getUserList() throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("getUserList 들어완??");
-		return sqlSession.selectList(null, map);
+	public List<User> getUserList() throws Exception {		
+		return userDao.getUserList();
 	}
-
 	
-	public int updateUser(User user) throws Exception {
-		
+	public int updateUser(User user) throws Exception {		
 		return userDao.updateUser(user);
 	}
-
 	
 	public int deleteUser(int uNo) throws Exception {
 		return userDao.deleteUser(uNo);
 	}
-
-
-	
-
 
 }

@@ -10,8 +10,6 @@ public interface UserService {
 	
 	int insertUser(User user) throws Exception;
 	
-	boolean checkDuplication(String mail) throws Exception;
-	
 	User getUser(int uNo) throws Exception;
 
 	List<User> getUserList() throws Exception;
