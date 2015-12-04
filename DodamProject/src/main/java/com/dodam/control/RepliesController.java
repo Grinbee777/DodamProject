@@ -32,12 +32,12 @@ public class RepliesController {
 		//
 	}
 	
-	@RequestMapping(value="/json/getReplies/{rNo}")
-	public void  getJsonReplies(@PathVariable("rNo") int rNo, Model model) throws Exception{
+	@RequestMapping(value="/json/getReplies")
+	public void  getJsonReplies(@RequestBody Replies replies, Model model) throws Exception{
 		System.out.println(":: getJsonReplies ::");
-		System.out.println("::rNo::"+rNo);
+		System.out.println("::rNo::"+replies.getrNo());
 		
-		Replies replies = repliesService.getReplies(rNo);
+		replies = repliesService.getReplies(replies.getrNo());
 		System.out.println("::result :"+replies);
 		model.addAttribute("replies", replies);
 	}
