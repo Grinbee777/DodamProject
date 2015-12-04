@@ -41,14 +41,14 @@ public class RepliesController {
 		model.addAttribute("replies", replies);
 	}
 	
-	@RequestMapping(value="/json/getRepliesList")
+	@RequestMapping(value="/json/getRepliesList/{dNo}")
 	public void getJsonRepliesList(@PathVariable("dNo") int dNo, Model model ) throws Exception{
 		System.out.println(":: getJsonRepliesList ::");
 		System.out.println(":: dNo :"+dNo);
 		
-		List list = (List) repliesService.getRepliesList(dNo);
-		System.out.println(":: result :"+list.toString() );
-		model.addAttribute("list", list);		
+		System.out.println(":: result :"+repliesService.getRepliesList(dNo));
+//		System.out.println(":: result :"+list.toString() );
+//		model.addAttribute("list", list);		
 	}
 	
 	@RequestMapping(value="/json/updateReplies")
@@ -58,7 +58,7 @@ public class RepliesController {
 		System.out.println(":: result :"+repliesService.updateReplies(replies));
 	}
 	
-	@RequestMapping(value="/json/deleteReplies")
+	@RequestMapping(value="/json/deleteReplies/{rNo}")
 	public void deleteJsonReplies(@PathVariable("rNo") int rNo) throws Exception{
 		System.out.println(":: deleteJsonReplies ::");
 		System.out.println(":: rNo :"+rNo);
