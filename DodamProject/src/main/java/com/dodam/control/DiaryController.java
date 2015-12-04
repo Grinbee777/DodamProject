@@ -1,5 +1,7 @@
 package com.dodam.control;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dodam.service.DiaryService;
+import com.dodam.service.RepliesService;
 import com.dodam.service.domain.Diary;
+import com.dodam.service.domain.Replies;
 
 @Controller
 @RequestMapping("/diary/*")
@@ -18,6 +22,10 @@ public class DiaryController {
 	@Autowired
 	@Qualifier("diaryServiceImpl")
 	private DiaryService diaryService;
+	
+	@Autowired
+	@Qualifier("repliesServiceImpl")
+	private RepliesService repliesService;
 	
 	public DiaryController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
@@ -71,12 +79,28 @@ public class DiaryController {
 		
 	}
 	
-	@RequestMapping(value="/json/getUserDiaryList", method=RequestMethod.POST)
+	/*@RequestMapping(value="/json/getUserDiaryList", method=RequestMethod.POST)
 	public void getJsonUserDiaryList(@RequestBody Diary diary, Model model) throws Exception{
 		
 		System.out.println(":: getJsonUserDiaryList ::");
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
 		diaryService.getDiaryList(diary.getDiaryUser().getuNo());
+		
+	}*/
+	
+	@RequestMapping(value="/json/getUserDiaryList")
+	public void getJsonUserDiaryList(Model model) throws Exception{
+		
+		System.out.println(":: getJsonUserDiaryList ::");
+//		System.out.println("전달받은 diary 인스턴스 == "+diary);
+//		diaryService.getDiaryList(diary.getDiaryUser().getuNo());
+		List<Diary> list = diaryService.getDiaryList(100015);
+		for(int i = 0; i<list.size(); i++){
+			List<Replies> temp = repliesService.getRepliesList(list.get(i).getdNo());
+			list.get(i).setReplyList(temp);
+			list.get(i).setReplyCount(temp.size());
+		}
+		model.addAttribute("diaries", list);
 		
 	}
 	

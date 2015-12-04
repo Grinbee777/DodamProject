@@ -1,7 +1,8 @@
 package com.dodam.service.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+import java.util.List;
 
 public class Diary implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,6 +19,9 @@ public class Diary implements Serializable {
 	private int uNo;*/
 	private Baby diaryBaby;
 	private User diaryUser;
+	private Replies diaryReplies;
+	private List<Replies> replyList;
+	private int replyCount;
 	
 	public Diary() {
 		// TODO Auto-generated constructor stub
@@ -78,22 +82,7 @@ public class Diary implements Serializable {
 	public void setuPic(String uPic) {
 		this.uPic = uPic;
 	}
-/*
-	public int getbNo() {
-		return bNo;
-	}
 
-	public void setbNo(int bNo) {
-		this.bNo = bNo;
-	}
-
-	public int getuNo() {
-		return uNo;
-	}
-
-	public void setuNo(int uNo) {
-		this.uNo = uNo;
-	}*/
 	public Baby getDiaryBaby() {
 		return diaryBaby;
 	}
@@ -109,7 +98,32 @@ public class Diary implements Serializable {
 	public void setDiaryUser(User diaryUser) {
 		this.diaryUser = diaryUser;
 	}
+	
 
+	public Replies getDiaryReplies() {
+		return diaryReplies;
+	}
+
+	public void setDiaryReplies(Replies diaryReplies) {
+		this.diaryReplies = diaryReplies;
+	}
+
+	public List<Replies> getReplyList() {
+		return replyList;
+	}
+
+	public void setReplyList(List<Replies> replyList) {
+		this.replyList = replyList;
+	}
+	
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
 
 	@Override
 	public String toString() {
@@ -132,6 +146,12 @@ public class Diary implements Serializable {
 		builder.append(diaryBaby);
 		builder.append(", diaryUser=");
 		builder.append(diaryUser);
+		builder.append(", diaryReplies=");
+		builder.append(diaryReplies);
+		builder.append(", replyList=");
+		builder.append(replyList);
+		builder.append(", replyCount=");
+		builder.append(replyCount);
 		builder.append("]");
 		return builder.toString();
 	}
