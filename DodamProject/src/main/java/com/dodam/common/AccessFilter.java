@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter("/*")
+@WebFilter("*")
 public class AccessFilter implements Filter {
 //	ũ�ν� ������ ������ �ذ��ϱ����� Access����
 	@Override
@@ -26,10 +26,13 @@ public class AccessFilter implements Filter {
 			throws IOException, ServletException {
 		System.out.println("AccessFilter Start");
 		String origin = ((HttpServletRequest)request).getHeader("Origin");
-		((HttpServletResponse)response).setHeader("Access-Control-Allow-Origin", "*");
-		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Methods", "POST, GET");
+		
+		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Credentials", "true");
-		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Headers", "origin, x-requested-with, content-type, accept");
+		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Headers", "content-type, accept, origin, x-requested-with, Content-Type, Content-Range, Content-Disposition, Content-Description");
+		 ((HttpServletResponse) response).setHeader("Access-Control-Max-Age", "3600");
+		 ((HttpServletResponse)response).setHeader("Access-Control-Allow-Origin", "*");
+		 ((HttpServletResponse) response).setHeader("Access-Control-Request-Headers", "accept, content-type");
 		chain.doFilter(request, response);
 		
 	}
