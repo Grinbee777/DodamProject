@@ -69,5 +69,10 @@
 	SELECT * FROM users;
 	</select>
 	
+	<select id="loginUser" parameterType="User" resultMap="UserMap">
+	SELECT * FROM users 
+	WHERE MAIL = #{mail} 
+	</select>
+	
 	
 </mapper>

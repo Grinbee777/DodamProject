@@ -51,4 +51,17 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUser(uNo);
 	}
 
+	@Override
+	public boolean loginUser(User user) throws Exception {
+		boolean result = false;
+		User dbUser = userDao.loginUser(user);
+		
+		if (dbUser != null ) {
+			if (user.getPassword().equals(dbUser.getPassword()) ) {
+				result =true;
+			}			
+		}	
+		return result;
+	}
+
 }

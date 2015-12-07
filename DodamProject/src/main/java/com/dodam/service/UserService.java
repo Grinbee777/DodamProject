@@ -17,5 +17,7 @@ public interface UserService {
 	int updateUser(User user) throws Exception;
 	
 	int deleteUser(int uNo) throws Exception;
+	
+	boolean loginUser(User user) throws Exception;
 
 }

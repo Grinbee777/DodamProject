@@ -26,6 +26,16 @@ public class UserController {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
+	@RequestMapping(value="/json/loginUser")
+	public void loginJsonUser(@RequestBody User user, Model model) throws Exception{
+		System.out.println("::loginJsonUser::");
+		System.out.println("::requestJSON :"+user);
+				
+		boolean result = userservice.loginUser(user);
+		System.out.println("::result :"+result);
+		model.addAttribute("result", result);
+	}
+	
 	@RequestMapping(value="/json/insertUser")
     	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
 		
