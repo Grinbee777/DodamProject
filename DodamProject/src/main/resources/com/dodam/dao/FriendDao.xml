@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.FriendDao">
+
+	<resultMap id="FriendMap" type="Friend">
+		<result property="frNo"			column="fr_no"			jdbcType="NUMERIC"/>
+		<result property="fruNo"		column="fru_no"			jdbcType="NUMERIC"/>
+		<result property="frMate"		column="fr_mate"		jdbcType="NUMERIC"/>
+		<result property="frState"		column="fr_state"		jdbcType="NUMERIC"/>
+		<!-- <result property=""	column=""	jdbcType=""/> -->
+	</resultMap>
+
+	
+	<insert id="insertFriend" parameterType="Friend">
+	</insert>
+	
+	<select id="getFriend" parameterType="int" resultMap="FriendMap">
+	</select>
+	
+	<select id="getFriendList" parameterType="int" resultMap="FriendMap">
+	</select>
+	
+	<select id="getFriendRequestList" parameterType="int" resultMap="FriendMap">
+	</select>
+	
+	<update id="updateFriend" parameterType="Friend">
+	</update>
+	
+	<update id="deleteFriend" parameterType="Friend">
+	</update>
+	
+</mapper>
