@@ -9,6 +9,7 @@ public class Diary implements Serializable {
 
 
 	private int dNo;
+	private String[] dPics;
 	private String dPic;
 	private String dContent;
 	private Date dDate;
@@ -35,6 +36,13 @@ public class Diary implements Serializable {
 		this.dNo = dNo;
 	}
 
+	public String[] getdPics() {
+		return dPics;
+	}
+
+	public void setdPics(String [] dPics) {
+		this.dPics = dPics;
+	}
 	public String getdPic() {
 		return dPic;
 	}
@@ -131,7 +139,7 @@ public class Diary implements Serializable {
 		builder.append("Diary [dNo=");
 		builder.append(dNo);
 		builder.append(", dPic=");
-		builder.append(dPic);
+		builder.append(dPics);
 		builder.append(", dContent=");
 		builder.append(dContent);
 		builder.append(", dDate=");

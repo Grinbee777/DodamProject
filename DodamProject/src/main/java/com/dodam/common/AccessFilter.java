@@ -25,14 +25,14 @@ public class AccessFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("AccessFilter Start");
-		String origin = ((HttpServletRequest)request).getHeader("Origin");
+		//String origin = ((HttpServletRequest)request).getHeader("Origin");
 		
 		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Credentials", "true");
 		 ((HttpServletResponse) response).setHeader("Access-Control-Allow-Headers", "content-type, accept, origin, x-requested-with, Content-Type, Content-Range, Content-Disposition, Content-Description");
-		 ((HttpServletResponse) response).setHeader("Access-Control-Max-Age", "3600");
+		 //((HttpServletResponse) response).setHeader("Access-Control-Max-Age", "3600");
 		 ((HttpServletResponse)response).setHeader("Access-Control-Allow-Origin", "*");
-		 ((HttpServletResponse) response).setHeader("Access-Control-Request-Headers", "accept, content-type");
+		 //((HttpServletResponse) response).setHeader("Access-Control-Request-Headers", "accept, content-type");
 		chain.doFilter(request, response);
 		
 	}

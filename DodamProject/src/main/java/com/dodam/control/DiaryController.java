@@ -2,6 +2,7 @@ package com.dodam.control;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class DiaryController {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
-	@RequestMapping(value="/json/addDiary", method=RequestMethod.POST)
+	@RequestMapping(value="/json/addDiary")
 	public void addJsonDiary(@RequestBody Diary diary, Model model) throws Exception{
 		
 		System.out.println(":: addJsonDiary ::");
@@ -48,6 +49,9 @@ public class DiaryController {
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
 		diaryService.insertDiary(diary);
 		
+		//HashMap<String,Object> resultMap = new HashMap<>();
+		//resultMap.put("status", "success");
+		//return resultMap;
 	}
 	@RequestMapping(value="/json/uploadImg", method=RequestMethod.POST)
 	public void addDiaryImg(MultipartHttpServletRequest request) throws Exception{
@@ -65,7 +69,7 @@ public class DiaryController {
 	         try{
 //	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
-	                  new FileOutputStream("C:/Users/BitCamp/git/DodamProject/DodamProject/src/main/webapp/resources/img/diary"+mpf.getOriginalFilename()));   
+	                  new FileOutputStream("C:/Users/BitCamp/git/DodamProject/DodamProject/src/main/webapp/resources/img/diary/"+mpf.getOriginalFilename()));   
 	         }catch(IOException e){
 	            e.printStackTrace();
 	         }
@@ -131,7 +135,9 @@ public class DiaryController {
 			List<Replies> temp = repliesService.getRepliesList(list.get(i).getdNo());
 			list.get(i).setReplyList(temp);
 			list.get(i).setReplyCount(temp.size());
+			list.get(i).setdPics(list.get(i).getdPic().split(","));
 		}
+		
 		model.addAttribute("diaries", list);
 		
 	}
