@@ -61,6 +61,10 @@
 	SELECT * FROM users WHERE U_NO=#{uNo}	
 	</select>
 	
+	<select id="getMailUser" parameterType="string" resultMap="UserMap">
+	SELECT * FROM users WHERE mail=#{value}	
+	</select>
+	
 	<delete id="deleteUser" parameterType="int">
 	DELETE FROM users WHERE U_NO=#{uNo}	
 	</delete>

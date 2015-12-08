@@ -20,7 +20,7 @@
 	
 	<insert id="insertDiary" parameterType="diary">
 		<!-- INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),#{dCode:VARCHAR},#{dTag:VARCHAR},#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC}) -->
-		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#태그1,태그2',100010,#{diaryUser.uNo:NUMERIC}) ORDER BY D_NO DESC
+		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#태그1,태그2',100010,#{diaryUser.uNo:NUMERIC}) 
 	</insert>
 	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
 	
@@ -42,7 +42,7 @@
 	</update>
 	
 	<select id="getDiaryList" parameterType="int" resultMap="DiaryMap">
-		SELECT * FROM diary WHERE U_NO = #{value}
+		SELECT * FROM diary WHERE U_NO = #{value} ORDER BY D_NO DESC
 	</select>	
 		 
 </mapper>

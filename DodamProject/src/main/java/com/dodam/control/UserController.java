@@ -49,6 +49,14 @@ public class UserController {
 		System.out.println("::getJsonUser::");
 		User getUser=userservice.getUser(user.getuNo());
 		model.addAttribute("user",getUser);		
+	}
+	
+	@RequestMapping(value="/json/getMailUser")
+	public void getJsonMailUser(@RequestBody User user,Model model)throws Exception{
+		
+		System.out.println("::getJsonMailUser::");
+		User getUser=userservice.getMailUser(user.getMail());
+		model.addAttribute("user",getUser);		
 	}	
 	
 	@RequestMapping( value="/json/updateUser")

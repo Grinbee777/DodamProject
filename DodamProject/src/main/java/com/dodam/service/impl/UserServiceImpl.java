@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUser(uNo);
 	}
 	
+	public User getMailUser(String mail) throws Exception {		
+		return userDao.getMailUser(mail);
+	}
+	
 	public List<User> getUserList() throws Exception {		
 		return userDao.getUserList();
 	}
