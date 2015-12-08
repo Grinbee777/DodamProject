@@ -34,15 +34,15 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public List<Friend> getFriendList(int fruNo) {
+	public List<Friend> getFriendList(int uNo) {
 		// TODO Auto-generated method stub
-		return friendDao.getFriendList(fruNo);
+		return friendDao.getFriendList(uNo);
 	}
 
 	@Override
-	public List<Friend> getFriendRequestList(int frMate) {
+	public List<Friend> getFriendRequestList(int uNo) {
 		// TODO Auto-generated method stub
-		return friendDao.getFriendRequestList(frMate);
+		return friendDao.getFriendRequestList(uNo);
 	}
 
 	@Override

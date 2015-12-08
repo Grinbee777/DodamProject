@@ -8,7 +8,7 @@
 
 	<resultMap id="FriendMap" type="Friend">
 		<result property="frNo"			column="fr_no"			jdbcType="NUMERIC"/>
-		<result property="fruNo"		column="fru_no"			jdbcType="NUMERIC"/>
+		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
 		<result property="frMate"		column="fr_mate"		jdbcType="NUMERIC"/>
 		<result property="frState"		column="fr_state"		jdbcType="NUMERIC"/>
 		<!-- <result property=""	column=""	jdbcType=""/> -->
@@ -16,21 +16,33 @@
 
 	
 	<insert id="insertFriend" parameterType="Friend">
+		INSERT INTO friend (FR_NO, U_NO, FR_MATE, FR_STATE) 
+		VALUES (NULL, #{uNO}, #{frMate}, 1)
 	</insert>
 	
 	<select id="getFriend" parameterType="int" resultMap="FriendMap">
+		SELECT * FROM friend WHERE FR_NO = #{frNo}
 	</select>
 	
 	<select id="getFriendList" parameterType="int" resultMap="FriendMap">
+		SELECT * FROM friend WHERE U_NO = #{uNo}
 	</select>
 	
 	<select id="getFriendRequestList" parameterType="int" resultMap="FriendMap">
+		SELECT * FROM friend WHERE FR_MATE = #{uNo}
+		AND FR_STATE = 1
 	</select>
 	
 	<update id="updateFriend" parameterType="Friend">
+		UPDATE friend SET
+		FR_STATE = #{frState}
+		WHERE U_NO = #{uNo}
+		AND FR_MATE = #{frMate}
 	</update>
 	
 	<update id="deleteFriend" parameterType="Friend">
+		DELETE FROM friend WHERE FR_NO = #{frNo}
+		OR U_NO = #{uNo} OR FR_MATE = #{frMate}
 	</update>
 	
 </mapper>

@@ -6,9 +6,10 @@ public class Friend implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int frNo;
-	private int fruNo;
+	private int uNo;
 	private int frMate;
 	private int frState;
+	private User user;
 	
 	public Friend() {
 		// TODO Auto-generated constructor stub
@@ -22,12 +23,12 @@ public class Friend implements Serializable {
 		this.frNo = frNo;
 	}
 
-	public int getFruNo() {
-		return fruNo;
+	public int getuNo() {
+		return uNo;
 	}
 
-	public void setFruNo(int fruNo) {
-		this.fruNo = fruNo;
+	public void setuNo(int uNo) {
+		this.uNo = uNo;
 	}
 
 	public int getFrMate() {
@@ -46,13 +47,21 @@ public class Friend implements Serializable {
 		this.frState = frState;
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Friend [frNo=");
 		builder.append(frNo);
-		builder.append(", fruNo=");
-		builder.append(fruNo);
+		builder.append(", uNo=");
+		builder.append(uNo);
 		builder.append(", frMate=");
 		builder.append(frMate);
 		builder.append(", frState=");
@@ -60,6 +69,7 @@ public class Friend implements Serializable {
 		builder.append("]");
 		return builder.toString();
 	}
+
 	
 	
 

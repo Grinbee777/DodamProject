@@ -10,9 +10,9 @@ public interface FriendService {
 	
 	Friend getFriend(int frNo);
 	
-	List<Friend> getFriendList(int fruNo);
+	List<Friend> getFriendList(int uNo);
 	
-	List<Friend> getFriendRequestList(int frMate);
+	List<Friend> getFriendRequestList(int uNo);
 	
 	int updateFriend(Friend friend);
 	
