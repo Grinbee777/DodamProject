@@ -1,10 +1,15 @@
 package com.dodam.control;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -17,11 +22,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.dodam.service.BabyService;
 import com.dodam.service.DiaryService;
 import com.dodam.service.RepliesService;
+import com.dodam.service.UserService;
 import com.dodam.service.domain.Diary;
 import com.dodam.service.domain.Replies;
 import com.dodam.service.domain.User;
+import com.dodam.service.impl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/diary/*")
@@ -35,6 +43,14 @@ public class DiaryController {
 	@Qualifier("repliesServiceImpl")
 	private RepliesService repliesService;
 	
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	
+	@Autowired
+	@Qualifier("babyServiceImpl")
+	private BabyService babyService;
+	
 	public DiaryController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
@@ -43,15 +59,17 @@ public class DiaryController {
 	public void addJsonDiary(@RequestBody Diary diary, Model model) throws Exception{
 		
 		System.out.println(":: addJsonDiary ::");
-		User diaryUser = new User();
-		diaryUser.setuNo(100015);
-		diary.setDiaryUser(diaryUser);
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
+		diary.setDiaryUser(userService.getUser(diary.getuNo()));
+		diary.setDiaryBaby(babyService.getBaby(diary.getuNo()));
+		System.out.println("user, baby 추가된 인스턴스 =="+diary);
+		
 		diaryService.insertDiary(diary);
 		
 		//HashMap<String,Object> resultMap = new HashMap<>();
 		//resultMap.put("status", "success");
 		//return resultMap;
+		model.addAttribute("result", true);
 	}
 	@RequestMapping(value="/json/uploadImg", method=RequestMethod.POST)
 	public void addDiaryImg(MultipartHttpServletRequest request) throws Exception{
@@ -69,7 +87,21 @@ public class DiaryController {
 	         try{
 //	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
-	                  new FileOutputStream("C:/Users/BitCamp/git/DodamProject/DodamProject/src/main/webapp/resources/img/diary/"+mpf.getOriginalFilename()));   
+	                  new FileOutputStream("C:\\Users\\BitCamp\\git\\DodamProject\\DodamProject\\src\\main\\webapp\\resources\\img\\diary\\"+mpf.getOriginalFilename()));
+	            
+	            File originalFileNm = new File("C:\\Users\\BitCamp\\git\\DodamProject\\DodamProject\\src\\main\\webapp\\resources\\img\\diary\\"+mpf.getOriginalFilename());
+	            File thumbnailFileNm = new File("C:\\Users\\BitCamp\\git\\DodamProject\\DodamProject\\src\\main\\webapp\\resources\\thumbnail\\diary\\"+mpf.getOriginalFilename());
+	            int width = 400;
+	            int height = 400;
+	            // 썸네일 이미지 생성
+	            BufferedImage originalImg = ImageIO.read(originalFileNm);
+	            BufferedImage thumbnailImg = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
+	            // 썸네일 그리기 
+	            Graphics2D g = thumbnailImg.createGraphics();
+	            g.drawImage(originalImg, 0, 0, width, height, null);
+	            // 파일생성
+	            ImageIO.write(thumbnailImg, "jpg", thumbnailFileNm);   
+	            
 	         }catch(IOException e){
 	            e.printStackTrace();
 	         }
@@ -125,12 +157,16 @@ public class DiaryController {
 	}*/
 	
 	@RequestMapping(value="/json/getUserDiaryList")
-	public void getJsonUserDiaryList(Model model) throws Exception{
+	public void getJsonUserDiaryList(@RequestBody Diary diary, Model model) throws Exception{
 		
 		System.out.println(":: getJsonUserDiaryList ::");
-//		System.out.println("전달받은 diary 인스턴스 == "+diary);
-//		diaryService.getDiaryList(diary.getDiaryUser().getuNo());
-		List<Diary> list = diaryService.getDiaryList(100015);
+		System.out.println("전달받은 diary 인스턴스 == "+diary);
+				
+		diary.setDiaryUser(userService.getUser(diary.getuNo()));
+		System.out.println("전달받은 uNo로 찾은 user 인스턴스 == "+diary.getDiaryUser());
+		
+		List<Diary> list = diaryService.getDiaryList(diary.getDiaryUser().getuNo());
+		
 		for(int i = 0; i<list.size(); i++){
 			List<Replies> temp = repliesService.getRepliesList(list.get(i).getdNo());
 			list.get(i).setReplyList(temp);

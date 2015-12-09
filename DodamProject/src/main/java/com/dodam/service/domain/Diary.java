@@ -2,6 +2,7 @@ package com.dodam.service.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Arrays;
 import java.util.List;
 
 public class Diary implements Serializable {
@@ -16,8 +17,8 @@ public class Diary implements Serializable {
 	private String dCode;
 	private String dTag;
 	private String uPic;
-/*	private int bNo;
-	private int uNo;*/
+	private int bNo;
+	private int uNo;
 	private Baby diaryBaby;
 	private User diaryUser;
 	private Replies diaryReplies;
@@ -133,13 +134,31 @@ public class Diary implements Serializable {
 		this.replyCount = replyCount;
 	}
 
+	public int getbNo() {
+		return bNo;
+	}
+
+	public void setbNo(int bNo) {
+		this.bNo = bNo;
+	}
+
+	public int getuNo() {
+		return uNo;
+	}
+
+	public void setuNo(int uNo) {
+		this.uNo = uNo;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Diary [dNo=");
 		builder.append(dNo);
+		builder.append(", dPics=");
+		builder.append(Arrays.toString(dPics));
 		builder.append(", dPic=");
-		builder.append(dPics);
+		builder.append(dPic);
 		builder.append(", dContent=");
 		builder.append(dContent);
 		builder.append(", dDate=");
@@ -150,6 +169,10 @@ public class Diary implements Serializable {
 		builder.append(dTag);
 		builder.append(", uPic=");
 		builder.append(uPic);
+		builder.append(", bNo=");
+		builder.append(bNo);
+		builder.append(", uNo=");
+		builder.append(uNo);
 		builder.append(", diaryBaby=");
 		builder.append(diaryBaby);
 		builder.append(", diaryUser=");
@@ -164,6 +187,8 @@ public class Diary implements Serializable {
 		return builder.toString();
 	}
 
+	
+	
 	
 	
 }
