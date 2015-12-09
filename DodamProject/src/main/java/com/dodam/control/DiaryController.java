@@ -168,9 +168,12 @@ public class DiaryController {
 		List<Diary> list = diaryService.getDiaryList(diary.getDiaryUser().getuNo());
 		
 		for(int i = 0; i<list.size(); i++){
-			List<Replies> temp = repliesService.getRepliesList(list.get(i).getdNo());
-			list.get(i).setReplyList(temp);
-			list.get(i).setReplyCount(temp.size());
+			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());
+			list.get(i).setReplyList(replyList);
+			list.get(i).setReplyCount(replyList.size());
+			for(int j = 0; j<replyList.size(); j++){
+				replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
+			}
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
 		}
 		

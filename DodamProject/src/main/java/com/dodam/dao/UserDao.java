@@ -12,7 +12,9 @@ public interface UserDao {
 	
 	public User getUser(int uNo)throws Exception;
 	
-	User getMailUser(String mail) throws Exception;
+	public User getMailUser(String mail) throws Exception;
+	
+	public User getNickUser(String nickname) throws Exception;
 	
 	//친구기능 추가시 파라메터 값 결정
 	public List<User> getUserList()throws Exception;

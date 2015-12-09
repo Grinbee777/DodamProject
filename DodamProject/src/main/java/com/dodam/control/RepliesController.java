@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dodam.service.RepliesService;
+import com.dodam.service.UserService;
 import com.dodam.service.domain.Diary;
 import com.dodam.service.domain.Replies;
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
@@ -21,17 +22,24 @@ public class RepliesController {
 	@Qualifier("repliesServiceImpl")
 	private RepliesService repliesService;
 	
+	@Autowired
+	@Qualifier("userServiceImpl")
+	private UserService userService;
+	
 	public RepliesController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 
 	
 	@RequestMapping(value="/json/addReplies")
-	public void addJsonReplies(@RequestBody Replies replies) throws Exception{
+	public void addJsonReplies(@RequestBody Replies replies, Model model) throws Exception{
 		System.out.println(":: addJsonReplies ::");
 		System.out.println(":: 전달받은 replies 인스턴스 :"+replies);
+		replies.setrUser(userService.getUser(replies.getrUNo()));
+		
 		System.out.println(":: result :"+repliesService.insertReplies(replies));
-		//
+		model.addAttribute("result", true);
+		
 	}
 	
 

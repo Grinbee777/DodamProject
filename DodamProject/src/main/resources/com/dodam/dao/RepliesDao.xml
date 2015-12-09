@@ -8,7 +8,7 @@
 
 	<resultMap id="RepliesMap" type="Replies">
 		<result property="rNo"			column="r_no"			jdbcType="NUMERIC"/>
-		<result property="rName"		column="r_name"			jdbcType="VARCHAR"/>
+		<result property="rUser.nickname"		column="r_name"			jdbcType="VARCHAR"/>
 		<result property="rContent"		column="r_content"		jdbcType="VARCHAR"/>
 		<result property="pNo"			column="p_no"			jdbcType="NUMERIC"/>
 		<result property="rOrder"		column="r_order"		jdbcType="NUMERIC"/>
@@ -26,7 +26,7 @@
                     `R_LEVEL`,
                     `R_DATE`,
                     `D_NO`)
-     VALUES (#{rName},
+     VALUES (#{rUser.nickname},
              #{rContent},
              #{pNo},
              #{rOrder},

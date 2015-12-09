@@ -14,6 +14,8 @@ public interface UserService {
 	
 	User getMailUser(String mail) throws Exception;
 	
+	User getNickUser(String nickname) throws Exception;
+	
 	List<User> getUserList() throws Exception;
 	
 	int updateUser(User user) throws Exception;
