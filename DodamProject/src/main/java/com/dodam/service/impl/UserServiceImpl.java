@@ -13,8 +13,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jca.cci.connection.ConnectionFactoryUtils;
 import org.springframework.stereotype.Service;
 
+import com.dodam.common.SendEmail;
+import com.dodam.dao.EmailDao;
 import com.dodam.dao.UserDao;
 import com.dodam.service.UserService;
+import com.dodam.service.domain.Email;
 import com.dodam.service.domain.User;
 
 @Service("userServiceImpl")
@@ -27,12 +30,36 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 	
+	@Autowired
+	private EmailDao emailDao;
+	public void setEmailDao(Email email){
+		this.emailDao=emailDao;
+	}
+	
 	public UserServiceImpl() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
 	public int insertUser(User user) throws Exception {
-		return userDao.insertUser(user);
+		int result= userDao.insertUser(user);
+		
+		if(result==1) {
+			String authNum=String.valueOf(Math.round((Math.random()*10000000)));
+			System.out.println("난수 ::"+authNum+"메일주소 ::"+user.getMail());
+			
+			Email email=new Email();
+			email.setAuthnum(authNum);
+			email.setuNo(user.getuNo());
+			email.setMail(user.getMail());
+			
+			emailDao.insertEmail(email);
+			
+			SendEmail sendEmail=new SendEmail();
+			sendEmail.sendEmail(email, authNum,user);
+				
+		}
+		
+		return result;
 	}	
 	
 	public User getUser(int uNo) throws Exception {		
@@ -69,6 +96,10 @@ public class UserServiceImpl implements UserService {
 			}			
 		}	
 		return result;
+	}
+	
+	public int uCodeUpdate(int uNo) throws Exception {
+		return userDao.uCodeUpdate(uNo);
 	}
 
 }

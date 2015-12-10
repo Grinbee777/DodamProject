@@ -14,6 +14,8 @@ public class User implements Serializable {
 	private String uBirth;
 	private String regDate;
 	private String nickname;
+	private String authnum;
+	private String uCode;
 
 	public User() {
 		// TODO Auto-generated constructor stub
@@ -91,6 +93,22 @@ public class User implements Serializable {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
+	
+	public String getAuthnum(){
+		return authnum;
+	}
+	
+	public void setAuthnum(String authnum){
+		this.authnum=authnum;
+	}
+
+	public String getuCode() {
+		return uCode;
+	}
+
+	public void setuCode(String uCode) {
+		this.uCode = uCode;
+	}
 
 	@Override
 	public String toString() {
@@ -113,6 +131,10 @@ public class User implements Serializable {
 		builder.append(regDate);
 		builder.append(", nickname=");
 		builder.append(nickname);
+		builder.append(", authnum=");
+		builder.append(authnum);
+		builder.append(", uCode=");
+		builder.append(uCode);
 		builder.append("]");
 		return builder.toString();
 	}

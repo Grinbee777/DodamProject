@@ -6,14 +6,17 @@ import java.io.Serializable;
 public class Baby implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	protected int bNo;
-	protected String bName;
-	protected String bBirth;
-	protected int bSex;
-	protected String bNature;
-	protected String bType;
-	protected String bPhoto;
-	protected User mom;
+	private int bNo;
+	private String bName;
+	private String bBirth;
+	private int bSex;
+	private String bNature;
+	private String bType;
+	private String bPhoto;
+	private User mom;
+	private String height;
+	private String weight;
+	private int uNo;
 	
 	public Baby() {
 	}
@@ -82,6 +85,30 @@ public class Baby implements Serializable {
 		this.mom=mom;
 	}
 
+	public String getHeight() {
+		return height;
+	}
+
+	public void setHeight(String height) {
+		this.height = height;
+	}
+
+	public String getWeight() {
+		return weight;
+	}
+
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+
+	public int getuNo() {
+		return uNo;
+	}
+
+	public void setuNo(int uNo) {
+		this.uNo = uNo;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -101,6 +128,12 @@ public class Baby implements Serializable {
 		builder.append(bPhoto);
 		builder.append(", mom=");
 		builder.append(mom);
+		builder.append(", height=");
+		builder.append(height);
+		builder.append(", weight=");
+		builder.append(weight);
+		builder.append(", uNo=");
+		builder.append(uNo);
 		builder.append("]");
 		return builder.toString();
 	}

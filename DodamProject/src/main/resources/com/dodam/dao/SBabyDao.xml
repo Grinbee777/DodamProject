@@ -22,9 +22,22 @@
 			,B_NO) VALUES (
 			#{height:VARCHAR}
 			,#{weight:VARCHAR}
-			,#{dNo:NUMERIC}
+			,NULL
 			,#{bNo}
 			)
+	</insert>
+	
+	<insert id="insertDSBaby" parameterType="SBaby">
+	INSERT INTO s_baby (
+		HEIGHT
+		,WEIGHT
+		,D_NO
+		,B_NO) VALUES (
+		#{height:VARCHAR}
+		,#{weight:VARCHAR}
+		,#{dNo:NUMERIC}
+		,#{bNo}
+		)
 	</insert>
 	
 	<update id="updateSBaby" parameterType="int">

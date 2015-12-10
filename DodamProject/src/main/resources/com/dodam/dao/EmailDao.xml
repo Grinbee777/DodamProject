@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.EmailDao">
+
+	<resultMap id="EmailMap" type="email">
+		<result property="authnum" column="authnum" jdbcType="VARCHAR"/>
+		<result property="uNo" column="u_no" jdbcType="NUMERIC"/>
+		<result property="mail" column="mail" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<insert id="insertEmail" parameterType="email">
+		INSERT INTO email (
+			u_no,authnum) VALUES (
+			#{uNo},#{authnum})
+	</insert>
+</mapper>

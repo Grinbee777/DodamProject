@@ -8,7 +8,7 @@
 
 	<resultMap id="UserMap" type="User">
 		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
-		<result property="nickname"    column="nickname"  jdbcType="VARCHAR"/>
+		<result property="nickname"    column="nickname"        jdbcType="VARCHAR"/>
 		<result property="mail"			column="mail"			jdbcType="VARCHAR"/>
 		<result property="uPic"			column="u_pic"			jdbcType="VARCHAR"/>
 		<result property="uPcode"		column="u_pcode"		jdbcType="NUMERIC"/>
@@ -16,10 +16,12 @@
 		<result property="socialNo"		column="social_no"		jdbcType="VARCHAR"/>
 		<result property="uBirth"		column="u_birth"		jdbcType="VARCHAR"/>
 		<result property="regDate"		column="reg_date"		jdbcType="DATE"/>
+		<result property="authnum"      column="authnum"         jdbcType="VARCHAR"/>
+		<result property="uCode"        column="u_code"         jdbcType="VARCHAR"/>
 		
 	</resultMap>
 	
-	<insert id="insertUser" parameterType="User">
+	<insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="uNo">
 		INSERT into users (   
 			NICKNAME,	
 			 MAIL
@@ -29,6 +31,7 @@
 			  ,SOCIAL_NO
 			  ,U_BIRTH
 			  ,REG_DATE
+			  ,U_CODE
 			) VALUES (  
 			#{nickname} 
 			  ,#{mail}  
@@ -37,7 +40,8 @@
 			  ,#{password}  
 			  ,#{socialNo}
 			  ,#{uBirth}
-			  ,now() 
+			  ,now()
+			  ,'1'
 			)
 	</insert>
 	
@@ -58,7 +62,9 @@
 	</update>
 	
 	<select id="getUser" parameterType="int" resultMap="UserMap">
-	SELECT * FROM users WHERE U_NO=#{uNo}	
+	SELECT * FROM users u LEFT OUTER JOIN email e 
+	ON e.U_NO = u.U_NO 
+	WHERE u.U_NO=#{uNo}	
 	</select>
 	
 	<select id="getMailUser" parameterType="string" resultMap="UserMap">
@@ -81,6 +87,16 @@
 	SELECT * FROM users 
 	WHERE MAIL = #{mail} 
 	</select>
+		
+	<update id="uCodeUpdate" parameterType="int">
+		UPDATE users 
+		<set>
+		u_code='2'
+		</set>
+		<where>
+		u_no=#{uNo}
+		</where>
+	</update>
 	
 	
 </mapper>

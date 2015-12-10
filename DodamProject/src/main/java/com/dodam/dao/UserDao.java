@@ -24,5 +24,7 @@ public interface UserDao {
 	public int deleteUser(int uNo)throws Exception;
 
 	public User loginUser(User user) throws Exception;
+	
+	public int uCodeUpdate(int uNo) throws Exception;
 
 }
