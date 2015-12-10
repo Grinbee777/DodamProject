@@ -46,30 +46,58 @@ public class FriendController {
 	
 	//친구목록
 	@RequestMapping(value="/json/getFriendList")
-	public void getJsonFriendList(@RequestParam int uNo, Model model) throws Exception{
+	public void getJsonFriendList(@RequestBody int uNo, Model model) throws Exception{
 		
-		List<Friend> temp = friendService.getFriendList(uNo);
-		int count = temp.size();
-		model.addAttribute("FriendList", temp);
+		
+		//친구목록 가져오는 로직
+		List<Friend> frTemp = friendService.getFriendList(uNo);
+		int count = frTemp.size();
+		
+		for(int i=0; i<count; i++){
+			frTemp.get(i).setUser(userService.getUser(frTemp.get(i).getFrMate()));
+		}
+		model.addAttribute("friendList", frTemp);
 		model.addAttribute("frCount", count);
+		
+		//친구요청목록 가져오기위한 로직
+		List<Friend> reqTemp=friendService.getFriendRequestList(uNo);
+		count = reqTemp.size();
+		
+		for(int i=0; i<count; i++){
+			reqTemp.get(i).setUser(userService.getUser(reqTemp.get(i).getuNo()));
+		}
+		
+		model.addAttribute("friendReqList", reqTemp);
+		model.addAttribute("frReqCount", count);
 	
 	}
 	
 	
-	//친구 요청목록 받기
+	//친구 목록 테스트용 
 	@RequestMapping(value="/json/getFriendRequestList")
 	public void getJsonFriendRequestList(/*@RequestParam int uNo,*/ Model model) throws Exception{
 		//테스트용
 		int uNo = 100016;
 		
-		List<Friend> temp=friendService.getFriendRequestList(uNo);
-		int count = temp.size();
-		
+		//친구목록 가져오는 로직
+		List<Friend> frTemp = friendService.getFriendList(uNo);
+		int count = frTemp.size();
+
 		for(int i=0; i<count; i++){
-			temp.get(i).setUser(userService.getUser(temp.get(i).getuNo()));
+			frTemp.get(i).setUser(userService.getUser(frTemp.get(i).getFrMate()));
 		}
-		
-		model.addAttribute("friendReqList", temp);
+		model.addAttribute("friendList", frTemp);
+		model.addAttribute("frCount", count);
+
+		//친구요청목록 가져오기위한 로직
+		List<Friend> reqTemp=friendService.getFriendRequestList(uNo);
+		count = reqTemp.size();
+
+		for(int i=0; i<count; i++){
+			reqTemp.get(i).setUser(userService.getUser(reqTemp.get(i).getuNo()));
+		}
+
+		model.addAttribute("friendReqList", reqTemp);
 		model.addAttribute("frReqCount", count);
 	}
 	
