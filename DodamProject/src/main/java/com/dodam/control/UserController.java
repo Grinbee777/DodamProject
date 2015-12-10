@@ -31,8 +31,9 @@ public class UserController {
 		System.out.println("::loginJsonUser::");
 		System.out.println("::requestJSON :"+user);
 				
-		boolean result = userservice.loginUser(user);
-		System.out.println("::result :"+result);
+		int result = userservice.loginUser(user);		
+		
+		System.out.println("::result(0:로그인 정보틀림, 1:이메일인증안됨, 2:로그인 완료) :"+result);
 		model.addAttribute("result", result);
 	}
 	
@@ -82,8 +83,7 @@ public class UserController {
 	public void deleteJsonUser(@RequestBody User user,Model model)throws Exception{
 		
 		System.out.println("::deleteJsonUser::");
-		userservice.deleteUser(user.getuNo());
-		//model.addAttribute("user",user);		
+		userservice.deleteUser(user.getuNo());	
 	}
 	
 	@RequestMapping( value="/json/checkDuplication")
@@ -114,15 +114,12 @@ public class UserController {
 				System.out.println("while of CheckNickname");
 				if ( list.get(list.size()-1).getNickname().equals(requestNickname) ) {
 					check = false;
-					System.out.println("Duplication nickname!!!!");
 					break;
 				}	
 				list.remove(list.size()-1);
 			}// end of while
 			model.addAttribute("result", check);
 		}//end of outter if
-		
-		//end of outter if	
 		
 		
 	}//end of checkJsonDuplication

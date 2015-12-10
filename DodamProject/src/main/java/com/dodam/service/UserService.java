@@ -22,7 +22,7 @@ public interface UserService {
 	
 	int deleteUser(int uNo) throws Exception;
 	
-	boolean loginUser(User user) throws Exception;
+	int loginUser(User user) throws Exception;
 	
 	int uCodeUpdate(int uNo) throws Exception;
 

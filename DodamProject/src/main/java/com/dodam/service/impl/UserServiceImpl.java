@@ -86,15 +86,33 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean loginUser(User user) throws Exception {
-		boolean result = false;
+	public int loginUser(User user) throws Exception {
+		int result = 0;
+		System.out.println("user :"+user);
 		User dbUser = userDao.loginUser(user);
+		System.out.println("dbUser :"+dbUser);
+		try {
+			if (dbUser != null ) {
+				if (user.getPassword().equals(dbUser.getPassword()) ) {
+					//email 인증 로직 추가
+					if (dbUser.getuCode().trim().equals("1")) {
+						System.out.println("user needed to confirm email");
+						result = 1;
+					} else if(dbUser.getuCode().trim().equals("2")){
+						System.out.println("user confirmed by email");
+						result = 2;
+					}				
+				}else{
+					System.out.println("Wrong Usre Information");
+				}			
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally{
+			
+		}			
 		
-		if (dbUser != null ) {
-			if (user.getPassword().equals(dbUser.getPassword()) ) {
-				result =true;
-			}			
-		}	
 		return result;
 	}
 	
