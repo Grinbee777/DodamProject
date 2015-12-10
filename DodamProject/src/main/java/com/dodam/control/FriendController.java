@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dodam.service.FriendService;
 import com.dodam.service.UserService;
@@ -46,11 +45,12 @@ public class FriendController {
 	
 	//친구목록
 	@RequestMapping(value="/json/getFriendList")
-	public void getJsonFriendList(@RequestBody int uNo, Model model) throws Exception{
+	public void getJsonFriendList(@RequestBody Friend friend, Model model) throws Exception{
 		
+		//int uNo = friend.getuNo();
 		
 		//친구목록 가져오는 로직
-		List<Friend> frTemp = friendService.getFriendList(uNo);
+		List<Friend> frTemp = friendService.getFriendList(friend.getuNo());
 		int count = frTemp.size();
 		
 		for(int i=0; i<count; i++){
@@ -60,7 +60,7 @@ public class FriendController {
 		model.addAttribute("frCount", count);
 		
 		//친구요청목록 가져오기위한 로직
-		List<Friend> reqTemp=friendService.getFriendRequestList(uNo);
+		List<Friend> reqTemp=friendService.getFriendRequestList(friend.getuNo());
 		count = reqTemp.size();
 		
 		for(int i=0; i<count; i++){
