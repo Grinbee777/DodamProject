@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
-	private SqlSession sqlSession;
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
@@ -40,10 +40,11 @@ public class UserServiceImpl implements UserService {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
 	}
 	
-	public int insertUser(User user) throws Exception {
+	public int insertUser(User user) throws Exception {	
+		
 		int result= userDao.insertUser(user);
 		
-		if(result==1) {
+		if(user.getSocialNo() == null && result==1) {
 			String authNum=String.valueOf(Math.round((Math.random()*10000000)));
 			System.out.println("난수 ::"+authNum+"메일주소 ::"+user.getMail());
 			
@@ -55,8 +56,7 @@ public class UserServiceImpl implements UserService {
 			emailDao.insertEmail(email);
 			
 			SendEmail sendEmail=new SendEmail();
-			sendEmail.sendEmail(email, authNum,user);
-				
+			sendEmail.sendEmail(email, authNum,user);				
 		}
 		
 		return result;
