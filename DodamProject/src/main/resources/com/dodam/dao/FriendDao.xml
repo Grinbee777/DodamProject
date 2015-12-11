@@ -17,7 +17,7 @@
 	
 	<insert id="insertFriend" parameterType="Friend">
 		INSERT INTO friend (FR_NO, U_NO, FR_MATE, FR_STATE) 
-		VALUES (NULL, #{uNO}, #{frMate}, 1)
+		VALUES (NULL, #{uNo}, #{frMate}, 1)
 	</insert>
 	
 	<select id="getFriend" parameterType="int" resultMap="FriendMap">
@@ -26,6 +26,7 @@
 	
 	<select id="getFriendList" parameterType="int" resultMap="FriendMap">
 		SELECT * FROM friend WHERE U_NO = #{uNo}
+		AND FR_STATE = 3
 	</select>
 	
 	<select id="getFriendRequestList" parameterType="int" resultMap="FriendMap">
@@ -36,8 +37,7 @@
 	<update id="updateFriend" parameterType="Friend">
 		UPDATE friend SET
 		FR_STATE = #{frState}
-		WHERE U_NO = #{uNo}
-		AND FR_MATE = #{frMate}
+		WHERE FR_NO = #{frNo}
 	</update>
 	
 	<update id="deleteFriend" parameterType="Friend">

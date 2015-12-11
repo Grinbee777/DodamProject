@@ -47,7 +47,6 @@ public class FriendController {
 	@RequestMapping(value="/json/getFriendList")
 	public void getJsonFriendList(@RequestBody Friend friend, Model model) throws Exception{
 		
-		//int uNo = friend.getuNo();
 		
 		//친구목록 가져오는 로직
 		List<Friend> frTemp = friendService.getFriendList(friend.getuNo());
@@ -74,8 +73,8 @@ public class FriendController {
 	
 	
 	//친구 목록 테스트용 
-	@RequestMapping(value="/json/getFriendRequestList")
-	public void getJsonFriendRequestList(/*@RequestParam int uNo,*/ Model model) throws Exception{
+	/*@RequestMapping(value="/json/getFriendRequestList")
+	public void getJsonFriendRequestList(@RequestParam int uNo, Model model) throws Exception{
 		//테스트용
 		int uNo = 100016;
 		
@@ -99,22 +98,33 @@ public class FriendController {
 
 		model.addAttribute("friendReqList", reqTemp);
 		model.addAttribute("frReqCount", count);
-	}
+	}*/
 	
 	
 	//친구 요청에 승낙
 	@RequestMapping(value="/json/approveFriend")
 	public void updateApproveFriend(@RequestBody Friend friend, Model model) throws Exception{
+	
 		friend.setFrState(3);
-		if(friendService.updateFriend(friend)==1){
-		model.addAttribute("message", "친구 요청을 승낙하셨습니다");
 		
+		if(friendService.updateFriend(friend)==1){
+		model.addAttribute("message", "친구 요청을 수락 하셨습니다");
+	
+		friend = friendService.getFriend(friend.getFrNo());
+		friend.setUser(userService.getUser(friend.getuNo()));
+		
+		model.addAttribute("friendList", friend);
+	
 		//서로 친구....
 		int temp=friend.getFrNo();
 		friend.setFrMate(friend.getFrNo());
 		friend.setFrNo(temp);
 		
-		friendService.insertFriend(friend);
+		//상대방도 친구로 뜨게하기
+		//friendService.insertFriend(friend);
+		
+		}else{
+			model.addAttribute("message", "오류가 발생하였습니다");
 		}
 	}
 	
