@@ -16,25 +16,22 @@ import com.dodam.service.domain.User;
 
 public class SendEmail {
 	
-	public SendEmail() {
-		
+	public SendEmail() {		
 	}
 	
 	public static void sendEmail(Email email,String authNum,User user) {
 		String host="smtp.gmail.com";
-		String subject="회원인증";
-		String fromName="이근한";
-		String from="dlrmsgks12@gmail.com";
+		String subject="Dodam 회원가입 이메일 인증";
+		String fromName="Dodam";
+		String from="projectdodam@gmail.com";
 		String to1=email.getMail();
 		
 		String content="<h1>DODAM DODAM</h1>"
-				+"<br/>"+user.getNickname()+"님의 가입을 환영합니다!!"
-				+"<br/>"+"가입완료를 원하시면 "
-				+"<a href='http://192.168.1.4:8080/email/json/insertEmail"
-				+ "?mail="+email.getMail()+"&code="+email.getAuthnum()+"&uNo="+email.getuNo()+"'>"+
-					"인증 <a>"
-				+"버튼을 눌러주세요!!";
-		
+				+"<br/>"+user.getNickname()+"님 아래 링크를 클릭하시면 인증이 완료됩니다. <hr>"			
+				+"<a href='http://127.0.0.1:8080/email/json/insertEmail"
+				+ "?mail="+email.getMail()+"&code="+email.getAuthnum()+"&uNo="+email.getuNo()+"'>"
+						+ "http://127.0.0.1:8080/email/json/insertEmail"
+				+ "?mail="+email.getMail()+"&code="+email.getAuthnum()+"&uNo="+email.getuNo()+"</a>";
 		
 		try{
 			Properties props=new Properties();
@@ -48,11 +45,13 @@ public class SendEmail {
 			props.put("mail.smtp.user", from);
 			props.put("mail.smtp.auth", "true");
 			
+			//dlrmsgks12@gmail.com  gpdus4fkd
+			// projectdodam@gmail.com qwer1234@
 			Session mailSession=Session.getInstance(props,
 					new javax.mail.Authenticator(){
 						protected PasswordAuthentication getPasswordAuthentication(){
-							return new PasswordAuthentication("dlrmsgks12@gmail.com",
-									"gpdus4fkd");
+							return new PasswordAuthentication("projectdodam@gmail.com ",
+									"qwer1234@");
 						}
 			});
 			
@@ -68,8 +67,9 @@ public class SendEmail {
 			message.setContent(content,"text/html;charset=UTF-8");
 			message.setReplyTo(InternetAddress.parse("no_reply@dodam.com", false));
 			
+			
 			Transport.send(message);
-			System.out.println("성공");
+			System.out.println("==sendEmail() success==");
 		}
 		catch(MessagingException e){
 			e.printStackTrace();

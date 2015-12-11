@@ -34,20 +34,19 @@ public class EmailController {
 	@RequestMapping(value="/json/insertEmail")
 	public void addJsonEmail(HttpServletRequest request,
 			HttpServletResponse response) throws Exception{
-		System.out.println("::addJsonEmail");
+		System.out.println("::addJsonEmail for authentication Email");
 		//emailService.insertEmail(email)
 		
 		String mailAddress=request.getParameter("mail");
 		String code=request.getParameter("code");
 		int uNo=Integer.parseInt(request.getParameter("uNo"));
 		
-		User user=userService.getUser(uNo);
+		User dbUser=userService.getUser(uNo);		
 		
+		System.out.println(dbUser.getMail()+"?"+mailAddress+"?"+dbUser.getAuthnum()+" "+code);
 		
-		System.out.println(user.getMail()+" "+mailAddress+" "+user.getAuthnum()+" "+code);
-		
-		if(user.getMail().equals(mailAddress.trim()) && user.getAuthnum().equals(code.trim())) {
-			System.out.println("성공했다 헤헷");
+		if(dbUser.getMail().equals(mailAddress.trim()) && dbUser.getAuthnum().equals(code.trim())) {
+			System.out.println("email and authnum matching success");
 			int result=userService.uCodeUpdate(uNo);
 			System.out.println(result);
 		}
