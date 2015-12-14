@@ -18,6 +18,8 @@ public interface UserService {
 	
 	List<User> getUserList() throws Exception;
 	
+	List<User> getNickUserList()throws Exception;
+	
 	int updateUser(User user) throws Exception;
 	
 	int deleteUser(int uNo) throws Exception;

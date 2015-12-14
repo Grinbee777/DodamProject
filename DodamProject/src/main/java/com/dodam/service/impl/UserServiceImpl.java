@@ -77,6 +77,13 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserList();
 	}
 	
+	
+	@Override
+	public List<User> getNickUserList() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public int updateUser(User user) throws Exception {		
 		return userDao.updateUser(user);
 	}
