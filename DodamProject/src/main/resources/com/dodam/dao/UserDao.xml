@@ -72,7 +72,7 @@
 	</select>
 	
 	<select id="getNickUser" parameterType="string" resultMap="UserMap">
-	SELECT * FROM users WHERE nickname LIKE('%#{value}%')	
+	SELECT * FROM users WHERE nickname LIKE CONCAT('%',#{value},'%')	
 	</select>
 	
 	<delete id="deleteUser" parameterType="int">
