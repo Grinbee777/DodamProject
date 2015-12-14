@@ -40,9 +40,18 @@ public class UserController {
 	@RequestMapping(value="/json/insertUser")
     	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
 		
-		System.out.println("::insertJsonUser::");
+		
+		System.out.println("::insertJsonUser::");		
+		// SNS 로그인 회원은 SocialNo,   Facebook 에서 발행한 ID 넘버를 DB 이메일 컴럼에 인서트한다.
+		user.setMail(user.getSocialNo());
 		System.out.println(":: requestJSON :"+user);
-		System.out.println("::result :"+userservice.insertUser(user));
+		int result = userservice.insertUser(user);
+		System.out.println("::result :"+result);
+		model.addAttribute("result", result);
+		if ( result == 1 && user.getSocialNo() != null) {
+			System.out.println(":: Cookie for Social Login User :: user.getSocialNo() :"+user.getSocialNo());
+			model.addAttribute("user", user);
+		}		
 	}
 		
 	@RequestMapping(value="/json/getUser")
