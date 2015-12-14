@@ -88,9 +88,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int loginUser(User user) throws Exception {
 		int result = 0;
-		System.out.println("user :"+user);
+		System.out.println("::UserServiceImpl.loginUser()::");
+		System.out.println("::::user :"+user);
 		User dbUser = userDao.loginUser(user);
-		System.out.println("dbUser :"+dbUser);
+		System.out.println("::::dbUser :"+dbUser);
 		try {
 			if (dbUser != null ) {
 				if (user.getPassword().equals(dbUser.getPassword()) ) {
