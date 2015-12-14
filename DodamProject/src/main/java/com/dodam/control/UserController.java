@@ -38,20 +38,50 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/json/insertUser")
-    	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{
-		
+    	public void insertJsonUser(@RequestBody User user,Model model)throws Exception{		
 		
 		System.out.println("::insertJsonUser::");		
 		// SNS 로그인 회원은 SocialNo,   Facebook 에서 발행한 ID 넘버를 DB 이메일 컴럼에 인서트한다.
-		user.setMail(user.getSocialNo());
-		System.out.println(":: requestJSON :"+user);
-		int result = userservice.insertUser(user);
-		System.out.println("::result :"+result);
-		model.addAttribute("result", result);
-		if ( result == 1 && user.getSocialNo() != null) {
-			System.out.println(":: Cookie for Social Login User :: user.getSocialNo() :"+user.getSocialNo());
-			model.addAttribute("user", user);
-		}		
+		System.out.println("::request User :"+user);
+		int result = 1;
+		if (user.getSocialNo() != null) {
+			
+			System.out.println("::facebook Login 회원:: 최초 로그인 or 이미 가입된 회원 인지 판단 로직::");
+			user.setMail(user.getSocialNo());
+			User dbUser = userservice.getMailUser(user.getMail());
+			
+			if (dbUser != null) {
+				System.out.println("::::이미 가입된 Facebook 회원::");
+				model.addAttribute("user", dbUser);
+				model.addAttribute("result", result);
+			}else{
+					System.out.println("::::최초  Facebook 로그인 회원::");
+					result = userservice.insertUser(user);
+					model.addAttribute("result", result);
+					if (result == 1) {
+						model.addAttribute("user", user);
+					}
+			}			
+		}else{
+			System.out.println("::::email 회원 가입::");
+			result = userservice.insertUser(user);
+			model.addAttribute("result", result);
+		}
+		
+		
+		
+//		user.setMail(user.getSocialNo());
+//		System.out.println(":: requestJSON :"+user);
+//		User dbUser = userservice.getMailUser(user.getMail());
+//		
+//		int result = userservice.insertUser(user);
+//		System.out.println("::result :"+result);
+//		model.addAttribute("result", result);
+//		if ( result == 1 && user.getSocialNo() != null) {
+//			System.out.println(":: Cookie for Social Login User :: user.getSocialNo() :"+user.getSocialNo());
+//			model.addAttribute("user", user);
+//		}		
+		
 	}
 		
 	@RequestMapping(value="/json/getUser")
