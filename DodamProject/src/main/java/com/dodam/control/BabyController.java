@@ -114,6 +114,25 @@ public class BabyController {
 		model.addAttribute("baby",getBaby);
 	}
 	
+	@RequestMapping(value="/json/getUNoBaby")
+	public void getJsonUNoBaby(@RequestBody Baby baby, Model model ) throws Exception{
+		
+		System.out.println("getBaby controller 들어옴");
+		System.out.println(baby);
+		
+		Baby getBaby=babyService.getUNoBaby(baby.getuNo());
+		
+		System.out.println(getBaby);
+		
+		if(getBaby==null){
+			model.addAttribute("resultCode", 0);
+		}
+		else{
+			model.addAttribute("resultCode", 1);
+			model.addAttribute("baby",getBaby);
+		}
+	}
+	
 	@RequestMapping(value="/json/deleteBaby")
 	public void deleteJsonBaby(@RequestBody Baby baby) throws Exception{
 		

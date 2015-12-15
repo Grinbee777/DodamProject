@@ -14,4 +14,6 @@ public interface BabyService {
 	int updateBaby(Baby baby) throws Exception;
 	
 	int deleteBaby(int bNo)throws Exception;
+	
+	Baby getUNoBaby(int uNo) throws Exception;
 }

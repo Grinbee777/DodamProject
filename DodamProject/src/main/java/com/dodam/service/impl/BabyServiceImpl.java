@@ -49,4 +49,8 @@ public class BabyServiceImpl implements BabyService {
 		return babyDao.deleteBaby(bNo);
 	}
 	
+	@Override
+	public Baby getUNoBaby(int uNo) throws Exception {
+		return babyDao.getUNoBaby(uNo);
+	}
 }

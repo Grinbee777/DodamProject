@@ -12,4 +12,5 @@ public interface BabyDao {
 	//List<Baby> getBabyList();
 	int updateBaby(Baby baby);
 	int deleteBaby(int bNo);
+	Baby getUNoBaby(int uNo);
 }

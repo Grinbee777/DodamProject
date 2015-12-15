@@ -68,6 +68,14 @@
 		</where>
 	</select>
 	
+	<select id="getUNoBaby" parameterType="int" resultMap="BabyMap">
+		SELECT * FROM baby b LEFT OUTER JOIN s_baby s 
+		ON s.b_no=b.b_no
+		<where>
+		b.u_no=#{uNo}
+		</where>
+	</select>
+	
 	<delete id="deleteBaby" parameterType="int">
 		DELETE FROM baby WHERE b_no=#{bNo}
 	</delete>
