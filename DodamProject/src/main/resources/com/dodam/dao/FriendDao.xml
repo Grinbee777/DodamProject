@@ -38,6 +38,11 @@
 		AND FR_STATE = 1
 	</select>
 	
+	<select id="getFriendDenyList" parameterType="int" resultMap="FriendMap">
+		SELECT * FROM friend WHERE FR_MATE = #{uNo}
+		AND FR_STATE = 2
+	</select>
+	
 	<update id="updateFriend" parameterType="Friend">
 		UPDATE friend SET
 		FR_STATE = #{frState}

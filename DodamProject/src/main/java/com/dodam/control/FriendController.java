@@ -101,32 +101,16 @@ public class FriendController {
 	
 	
 	//친구 목록 테스트용 
-	/*@RequestMapping(value="/json/getFriendRequestList")
-	public void getJsonFriendRequestList(@RequestParam int uNo, Model model) throws Exception{
-		//테스트용
-		int uNo = 100016;
+	@RequestMapping(value="/json/getFriendDenyList")
+	public void getFriendDenyList(@RequestBody Friend friend, Model model) throws Exception{
 		
-		//친구목록 가져오는 로직
-		List<Friend> frTemp = friendService.getFriendList(uNo);
-		int count = frTemp.size();
-
-		for(int i=0; i<count; i++){
-			frTemp.get(i).setUser(userService.getUser(frTemp.get(i).getFrMate()));
+		List<Friend> denyList =friendService.getFriendDenyList(friend.getuNo());
+		
+		for(int i=0; i<denyList.size(); i++){
+			denyList.get(i).setUser(userService.getUser(denyList.get(i).getuNo()));
 		}
-		model.addAttribute("friendList", frTemp);
-		model.addAttribute("frCount", count);
-
-		//친구요청목록 가져오기위한 로직
-		List<Friend> reqTemp=friendService.getFriendRequestList(uNo);
-		count = reqTemp.size();
-
-		for(int i=0; i<count; i++){
-			reqTemp.get(i).setUser(userService.getUser(reqTemp.get(i).getuNo()));
-		}
-
-		model.addAttribute("friendReqList", reqTemp);
-		model.addAttribute("frReqCount", count);
-	}*/
+		model.addAttribute("denyList", denyList);
+	}
 	
 	
 	//친구 요청에 승낙
@@ -170,7 +154,7 @@ public class FriendController {
 	public void deleteFriend(@RequestBody Friend friend, Model model) throws Exception{
 		
 		if(friendService.deleteFriend(friend)==1){
-			model.addAttribute("message", "친구 관계를 해제 하셨습니다");
+			model.addAttribute("message", "삭제가 완료되었습니다");
 		}
 	}
 	

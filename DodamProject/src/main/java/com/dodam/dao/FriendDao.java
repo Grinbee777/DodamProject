@@ -10,6 +10,7 @@ public interface FriendDao {
 	List<Friend> getFriendList(int uNo);
 	List<Friend> getRelationList(int uNo);
 	List<Friend> getFriendRequestList(int uNo);
+	List<Friend> getFriendDenyList(int uNo);
 	int updateFriend(Friend friend);
 	int deleteFriend(Friend friend);
 }

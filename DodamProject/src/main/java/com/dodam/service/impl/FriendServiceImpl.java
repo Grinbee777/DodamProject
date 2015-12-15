@@ -51,6 +51,13 @@ public class FriendServiceImpl implements FriendService {
 		return friendDao.getFriendRequestList(uNo);
 	}
 
+
+	@Override
+	public List<Friend> getFriendDenyList(int uNo) {
+		// TODO Auto-generated method stub
+		return friendDao.getFriendDenyList(uNo);
+	}
+
 	@Override
 	public int updateFriend(Friend friend) {
 		// TODO Auto-generated method stub
