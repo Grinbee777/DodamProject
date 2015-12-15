@@ -107,6 +107,20 @@ public class UserController {
 		model.addAttribute("user",getUser);		
 	}
 	
+	
+	@RequestMapping(value="/json/getNickUserList")
+	public void getJsonNickUserList(@RequestBody User user,Model model)throws Exception{
+		
+		List<User> list = null;
+		
+		if(user.getNickname().trim() != ""){
+			list = userservice.getNickUserList(user);
+			model.addAttribute("userList", list);
+		}
+		
+		
+	}
+	
 	@RequestMapping( value="/json/updateUser")
 	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{
 

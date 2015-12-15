@@ -18,7 +18,7 @@ public interface UserService {
 	
 	List<User> getUserList() throws Exception;
 	
-	List<User> getNickUserList()throws Exception;
+	List<User> getNickUserList(User user)throws Exception;
 	
 	int updateUser(User user) throws Exception;
 	

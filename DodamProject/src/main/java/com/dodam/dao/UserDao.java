@@ -19,7 +19,7 @@ public interface UserDao {
 	//친구기능 추가시 파라메터 값 결정
 	public List<User> getUserList()throws Exception;
 	
-	public List<User> getNickUserList()throws Exception;
+	public List<User> getNickUserList(User user)throws Exception;
 	
 	public int updateUser(User user)throws Exception;
 

@@ -8,7 +8,7 @@
 
 	<resultMap id="UserMap" type="User">
 		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
-		<result property="nickname"    column="nickname"        jdbcType="VARCHAR"/>
+		<result property="nickname"    	column="nickname"       jdbcType="VARCHAR"/>
 		<result property="mail"			column="mail"			jdbcType="VARCHAR"/>
 		<result property="uPic"			column="u_pic"			jdbcType="VARCHAR"/>
 		<result property="uPcode"		column="u_pcode"		jdbcType="NUMERIC"/>
@@ -75,8 +75,9 @@
 	SELECT * FROM users WHERE nickname=#{value}	
 	</select>
 	
-	<select id="getNickUserList" parameterType="String" resultMap="UserMap">
-	SELECT * FROM users WHERE nickname LIKE CONCAT('%',#{value},'%')	
+	<select id="getNickUserList" parameterType="User" resultMap="UserMap">
+	SELECT * FROM users WHERE u_no NOT IN(#{uNo}) AND nickname LIKE CONCAT('%',#{nickname},'%')
+	ORDER BY nickname 
 	</select>
 		
 	<delete id="deleteUser" parameterType="int">
