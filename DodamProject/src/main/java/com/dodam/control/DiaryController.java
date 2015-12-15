@@ -113,14 +113,20 @@ public class DiaryController {
 		
 		System.out.println(":: updateJsonDiary ::");
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
-		diaryService.updateDiary(diary);
+		
+				
+		if(diaryService.updateDiary(diary) == 1){
+			model.addAttribute("result", true);
+		}else{
+			model.addAttribute("result", false);
+		}
 		
 	}
 	
 	@RequestMapping(value="/json/deleteDiary", method=RequestMethod.POST)
 	public void deleteJsonDiary(@RequestBody Diary diary, Model model) throws Exception{
 		
-		System.out.println(":: updateJsonDiary ::");
+		System.out.println(":: deleteJsonDiary ::");
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
 		
 		if(repliesService.getRepliesList(diary.getdNo()).size() >= 1){
@@ -135,26 +141,18 @@ public class DiaryController {
 		
 	}
 	
-	/*@RequestMapping(value="/json/getDiary", method=RequestMethod.POST)
+	@RequestMapping(value="/json/getDiary", method=RequestMethod.POST)
 	public void getJsonDiary(@RequestBody Diary diary, Model model) throws Exception{
 		
 		System.out.println(":: getJsonDiary ::");
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
-		Diary returnDiary = diaryService.getDiary(diary.getdNo());
-		System.out.println("리턴될 diary : "+returnDiary);
-		model.addAttribute("diary", returnDiary);
-		
-	}*/
-	@RequestMapping(value="/json/getDiary")
-	public void getJsonDiary(Model model) throws Exception{
-		
-		System.out.println(":: getJsonDiary ::");
-		//System.out.println("전달받은 diary 인스턴스 == "+diary);
 		//Diary returnDiary = diaryService.getDiary(diary.getdNo());
-		//System.out.println("리턴될 diary : "+returnDiary);
-		model.addAttribute("diary", diaryService.getDiary(100000));
+		diary = diaryService.getDiary(diary.getdNo());
+		System.out.println("리턴될 diary : "+diary);
+		model.addAttribute("diary", diary);
 		
 	}
+	
 	
 	/*@RequestMapping(value="/json/getUserDiaryList", method=RequestMethod.POST)
 	public void getJsonUserDiaryList(@RequestBody Diary diary, Model model) throws Exception{
