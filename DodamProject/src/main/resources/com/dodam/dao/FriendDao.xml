@@ -29,6 +29,10 @@
 		AND FR_STATE = 3
 	</select>
 	
+	<select id="getRelationList" parameterType="int" resultMap="FriendMap">
+		SELECT * FROM friend WHERE U_NO = #{uNo} OR FR_MATE =#{uNo}
+	</select>
+	
 	<select id="getFriendRequestList" parameterType="int" resultMap="FriendMap">
 		SELECT * FROM friend WHERE FR_MATE = #{uNo}
 		AND FR_STATE = 1
@@ -42,7 +46,6 @@
 	
 	<update id="deleteFriend" parameterType="Friend">
 		DELETE FROM friend WHERE FR_NO = #{frNo}
-		OR U_NO = #{uNo} OR FR_MATE = #{frMate}
 	</update>
 	
 </mapper>

@@ -38,6 +38,12 @@ public class FriendServiceImpl implements FriendService {
 		// TODO Auto-generated method stub
 		return friendDao.getFriendList(uNo);
 	}
+	
+	@Override
+	public List<Friend> getRelationList(int uNo) {
+		// TODO Auto-generated method stub
+		return friendDao.getRelationList(uNo);
+	}
 
 	@Override
 	public List<Friend> getFriendRequestList(int uNo) {

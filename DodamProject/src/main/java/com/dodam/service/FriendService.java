@@ -12,6 +12,8 @@ public interface FriendService {
 	
 	List<Friend> getFriendList(int uNo);
 	
+	List<Friend> getRelationList(int uNo);
+	
 	List<Friend> getFriendRequestList(int uNo);
 	
 	int updateFriend(Friend friend);

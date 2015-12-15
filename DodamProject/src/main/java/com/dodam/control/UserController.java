@@ -107,7 +107,7 @@ public class UserController {
 		model.addAttribute("user",getUser);		
 	}
 	
-	
+	/*
 	@RequestMapping(value="/json/getNickUserList")
 	public void getJsonNickUserList(@RequestBody User user,Model model)throws Exception{
 		
@@ -119,7 +119,7 @@ public class UserController {
 		}
 		
 		
-	}
+	}*/
 	
 	@RequestMapping( value="/json/updateUser")
 	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{

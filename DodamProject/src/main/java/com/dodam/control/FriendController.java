@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dodam.service.FriendService;
 import com.dodam.service.UserService;
 import com.dodam.service.domain.Friend;
+import com.dodam.service.domain.User;
 
 @Controller
 @RequestMapping("/friend/*")
@@ -33,14 +34,41 @@ public class FriendController {
 	@RequestMapping(value="/json/friendRequest")
 	public void friendRequest(@RequestBody Friend friend, Model model) throws Exception{
 		
+		System.out.println(":::"+friend);
 		if(friend.getFrState()<=0){
 			friend.setFrState(1);
 		}
 		if(friendService.insertFriend(friend)==1){
-			model.addAttribute("message", "친구 요청이 전송되었습니다.");
+			model.addAttribute("message", "친구 요청을 전송하였습니다.");
 		}else{
 			model.addAttribute("message", "친구 요청이 실패하였습니다. 다시 시도해 주시기 바랍니다");
 		}
+	}
+	
+
+	//회원 검색 ( 친구 요청, 거부, 친구목록 제외하고 검색)
+	@RequestMapping(value="/json/searchFriendList")
+	public void searchFriendList(@RequestBody User user, Model model) throws Exception{
+		
+		List<User> userList=null;
+		List<Friend> fNoList=null;
+		
+		if(user.getNickname().trim() != ""){
+			userList = userService.getNickUserList(user);
+			fNoList = friendService.getRelationList(user.getuNo());
+			for(int j=0; j<fNoList.size();j++){
+				for(int i=0; i<userList.size();i++){
+				
+
+					if(userList.get(i).getuNo() == fNoList.get(j).getFrMate() 
+							|| userList.get(i).getuNo() == fNoList.get(j).getuNo()){
+						userList.remove(i);
+					}
+				}
+			}
+			model.addAttribute("userList", userList);
+		}
+		
 	}
 	
 	//친구목록
@@ -140,6 +168,7 @@ public class FriendController {
 	//친구 삭제
 	@RequestMapping(value="/json/deleteFriend")
 	public void deleteFriend(@RequestBody Friend friend, Model model) throws Exception{
+		
 		if(friendService.deleteFriend(friend)==1){
 			model.addAttribute("message", "친구 관계를 해제 하셨습니다");
 		}
