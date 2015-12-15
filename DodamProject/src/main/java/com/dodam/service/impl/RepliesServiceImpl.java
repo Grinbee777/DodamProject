@@ -47,4 +47,12 @@ public class RepliesServiceImpl implements RepliesService {
 		return repliesDao.deleteReplies(rNo);
 	}
 
+	@Override
+	public int deleteDiaryReply(int dNo) throws Exception {
+		// TODO Auto-generated method stub
+		return repliesDao.deleteDiaryReply(dNo);
+	}
+	
+	
+
 }

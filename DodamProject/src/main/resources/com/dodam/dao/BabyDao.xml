@@ -6,7 +6,7 @@
 
 <mapper namespace="com.dodam.dao.BabyDao">
 
-	<resultMap id="BabyMap" type="baby">
+	<resultMap id="BabyMap" type="Baby">
 		<result property="bNo"			column="b_no"			jdbcType="NUMERIC"/>
 		<result property="bName"		column="b_name"			jdbcType="VARCHAR"/>
 		<result property="bBirth"		column="b_birth"		jdbcType="VARCHAR"/>

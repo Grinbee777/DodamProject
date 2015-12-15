@@ -122,7 +122,16 @@ public class DiaryController {
 		
 		System.out.println(":: updateJsonDiary ::");
 		System.out.println("전달받은 diary 인스턴스 == "+diary);
-		diaryService.deleteDiary(diary.getdNo());
+		
+		if(repliesService.getRepliesList(diary.getdNo()).size() >= 1){
+			repliesService.deleteDiaryReply(diary.getdNo());
+		}
+		
+		if(diaryService.deleteDiary(diary.getdNo()) == 1){
+			model.addAttribute("result", true);
+		}else{
+			model.addAttribute("result", false);
+		}
 		
 	}
 	
@@ -166,14 +175,14 @@ public class DiaryController {
 		System.out.println("전달받은 uNo로 찾은 user 인스턴스 == "+diary.getDiaryUser());
 		
 		List<Diary> list = diaryService.getDiaryList(diary.getDiaryUser().getuNo());
-		
+		System.out.println("check");
 		for(int i = 0; i<list.size(); i++){
 			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());
-			list.get(i).setReplyList(replyList);
-			list.get(i).setReplyCount(replyList.size());
 			for(int j = 0; j<replyList.size(); j++){
 				replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
 			}
+			list.get(i).setReplyList(replyList);
+			list.get(i).setReplyCount(replyList.size());
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
 		}
 		

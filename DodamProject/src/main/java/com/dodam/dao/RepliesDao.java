@@ -11,5 +11,6 @@ public interface RepliesDao {
 	int updateReplies(Replies replies);
 	//rNo전달시 1개만 삭제 dNo전달시 일괄삭제가능
 	int deleteReplies(int rNo);
+	int deleteDiaryReply(int dNo);
 	
 }

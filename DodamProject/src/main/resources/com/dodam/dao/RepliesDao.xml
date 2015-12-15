@@ -37,19 +37,23 @@
 	
 	<select id="getReplies" parameterType="int" resultMap="RepliesMap">
 		SELECT * FROM replies 
-		WHERE replies.`R_NO` = #{rNo}
+		WHERE R_NO = #{rNo}
 	</select>
 	
 	<select id="getRepliesList" parameterType="int" resultMap="RepliesMap">
-		SELECT * FROM replies WHERE replies.`D_NO`=#{dNo}
+		SELECT * FROM replies WHERE D_NO = #{dNo}
 	</select>
 	
 	<update id="updateReplies" parameterType="Replies">
-		UPDATE replies SET `R_CONTENT` = '#{rContent}' WHERE `R_NO` = #{rNo}
+		UPDATE replies SET R_CONTENT = #{rContent} WHERE R_NO = #{rNo}
 	</update>
 	
 	<delete id="deleteReplies" parameterType="int">
-		DELETE FROM replies WHERE `R_NO` = #{rNo}
+		DELETE FROM replies WHERE R_NO = #{rNo}
+	</delete>
+	
+	<delete id="deleteDiaryReply" parameterType="int">
+		DELETE FROM replies WHERE D_NO = #{dNo}
 	</delete>
 	
 	
