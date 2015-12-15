@@ -39,7 +39,7 @@
 	</select>
 	
 	<select id="getFriendDenyList" parameterType="int" resultMap="FriendMap">
-		SELECT * FROM friend WHERE FR_MATE = #{uNo}
+		SELECT * FROM friend WHERE U_NO = #{uNo} 
 		AND FR_STATE = 2
 	</select>
 	

@@ -107,7 +107,7 @@ public class FriendController {
 		List<Friend> denyList =friendService.getFriendDenyList(friend.getuNo());
 		
 		for(int i=0; i<denyList.size(); i++){
-			denyList.get(i).setUser(userService.getUser(denyList.get(i).getuNo()));
+			denyList.get(i).setUser(userService.getUser(denyList.get(i).getFrMate()));
 		}
 		model.addAttribute("denyList", denyList);
 	}
