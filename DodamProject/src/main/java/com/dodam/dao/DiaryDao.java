@@ -12,5 +12,6 @@ public interface DiaryDao {
 	int updateDCode(Diary diary);
 	int updateDiary(Diary diary);
 	int deleteDiary(int dNo);
+	List<Diary> getFriendDiaryList(List<Integer> friendNo);
 	
 }

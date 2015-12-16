@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -24,9 +25,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dodam.service.BabyService;
 import com.dodam.service.DiaryService;
+import com.dodam.service.FriendService;
 import com.dodam.service.RepliesService;
 import com.dodam.service.UserService;
 import com.dodam.service.domain.Diary;
+import com.dodam.service.domain.Friend;
 import com.dodam.service.domain.Replies;
 import com.dodam.service.domain.User;
 import com.dodam.service.impl.UserServiceImpl;
@@ -50,6 +53,10 @@ public class DiaryController {
 	@Autowired
 	@Qualifier("babyServiceImpl")
 	private BabyService babyService;
+	
+	@Autowired
+	@Qualifier("friendServiceImpl")
+	private FriendService friendService;
 	
 	public DiaryController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
@@ -174,6 +181,45 @@ public class DiaryController {
 		
 		List<Diary> list = diaryService.getDiaryList(diary.getDiaryUser().getuNo());
 		System.out.println("check");
+		for(int i = 0; i<list.size(); i++){
+			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());
+			for(int j = 0; j<replyList.size(); j++){
+				replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
+			}
+			list.get(i).setReplyList(replyList);
+			list.get(i).setReplyCount(replyList.size());
+			list.get(i).setdPics(list.get(i).getdPic().split(","));
+		}
+		
+		model.addAttribute("diaries", list);
+		
+	}
+	
+	@RequestMapping(value="/json/getFriendDiaryList")
+	public void getJsonFriendDiaryList(@RequestBody Diary diary, Model model) throws Exception{
+		
+		System.out.println(":: getJsonFriendDiaryList ::");
+		System.out.println("전달받은 diary 인스턴스 == "+diary);
+				
+		diary.setDiaryUser(userService.getUser(diary.getuNo()));
+		System.out.println("전달받은 uNo로 찾은 user 인스턴스 == "+diary.getDiaryUser());
+		
+		List<Friend> fList = friendService.getFriendList(diary.getDiaryUser().getuNo());
+		
+		List<Integer> friendNo = new ArrayList<Integer>();
+		for(int i = 0; i<fList.size(); i++){
+			System.out.println("친구목록 "+(i+1)+" :: "+fList.get(i));
+			friendNo.add(i, fList.get(i).getFrMate());
+		}
+		
+		friendNo.add(fList.size(), diary.getDiaryUser().getuNo());
+		for(int i=0; i<friendNo.size(); i++){
+			System.out.println("다이어리 검색할 uNo :: " + friendNo.get(i));
+		}
+		
+		
+		List<Diary> list = diaryService.getFriendDiaryList(friendNo);
+		//System.out.println("check");
 		for(int i = 0; i<list.size(); i++){
 			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());
 			for(int j = 0; j<replyList.size(); j++){

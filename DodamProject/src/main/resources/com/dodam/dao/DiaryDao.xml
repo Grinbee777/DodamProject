@@ -44,6 +44,13 @@
 	
 	<select id="getDiaryList" parameterType="int" resultMap="DiaryMap">
 		SELECT * FROM diary WHERE U_NO = #{value} ORDER BY D_NO DESC
-	</select>	
-		 
+	</select>
+	
+	<select id="getFriendDiaryList" parameterType="list" resultMap="DiaryMap">	
+		SELECT * FROM diary WHERE
+		<foreach collection="list" separator="or" item="value">
+		U_NO = #{value}
+		</foreach>
+		 ORDER BY D_NO DESC	
+	</select>
 </mapper>

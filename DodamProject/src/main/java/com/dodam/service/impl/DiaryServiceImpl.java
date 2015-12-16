@@ -55,5 +55,10 @@ public class DiaryServiceImpl implements DiaryService {
 		return diaryDao.deleteDiary(dNo);
 	}
 	
+	@Override
+	public List<Diary> getFriendDiaryList(List friendNo) throws Exception {		
+		return diaryDao.getFriendDiaryList(friendNo);
+	}
+	
 
 }
