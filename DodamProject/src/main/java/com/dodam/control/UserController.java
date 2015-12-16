@@ -126,9 +126,11 @@ public class UserController {
 
 		System.out.println("::updateJsonUser::");
 		//Business Logic
-		userservice.updateUser(user);
+		int result1=userservice.updateUser(user);
 		
-		model.addAttribute("user",user);
+		if(result1==1){
+			model.addAttribute("result", true);
+		}
 	}
 	
 	
