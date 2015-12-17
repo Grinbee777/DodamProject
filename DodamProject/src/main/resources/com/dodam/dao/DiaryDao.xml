@@ -18,7 +18,7 @@
 	</resultMap>
 	
 	
-	<insert id="insertDiary" parameterType="diary">
+	<insert id="insertDiary" parameterType="Diary">
 		<!-- INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),#{dCode:VARCHAR},#{dTag:VARCHAR},#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC}) -->
 		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#세션,#제발',#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC})
 		<!-- INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#태그1,태그2',100010,#{diaryUser.uNo:NUMERIC}) --> 
@@ -29,7 +29,7 @@
 		SELECT * FROM diary WHERE d_no = #{value}
 	</select>
 	
-	<update id="updateDiary" parameterType="diary">
+	<update id="updateDiary" parameterType="Diary">
 		UPDATE diary SET  D_PIC = #{dPic:VARCHAR}  ,D_CONTENT = #{dContent:CLOB}  ,D_CODE = #{dCode:VARCHAR}  ,D_TAG = #{dTag:VARCHAR}  ,B_NO = #{diaryBaby.bNo:NUMERIC}
 		WHERE D_NO = #{dNo:NUMERIC}
 	</update>
@@ -38,7 +38,7 @@
 		DELETE FROM diary WHERE d_no=#{dNo:NUMERIC}
 	</delete>
 	
-	<update id="updateDCode" parameterType="diary">
+	<update id="updateDCode" parameterType="Diary">
 		UPDATE diary SET D_CODE = #{dCode:VARCHAR} WHERE D_NO = #{dNo:NUMERIC}
 	</update>
 	
@@ -53,4 +53,11 @@
 		</foreach>
 		 ORDER BY D_NO DESC	
 	</select>
+	
+	<select id="getDiaryListForCalender" parameterType="Diary" resultMap="DiaryMap">
+		SELECT * FROM diary d 
+		WHERE d.`D_DATE` LIKE ('%{dDate}%')
+		and d.`U_NO`={uNo};
+	</select>
+	
 </mapper>

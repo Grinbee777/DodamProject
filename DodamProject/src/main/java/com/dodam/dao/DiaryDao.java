@@ -13,5 +13,6 @@ public interface DiaryDao {
 	int updateDiary(Diary diary);
 	int deleteDiary(int dNo);
 	List<Diary> getFriendDiaryList(List<Integer> friendNo);
+	List<Diary> getDiaryListForCalender(Diary diary);
 	
 }
