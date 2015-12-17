@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.dodam.service.DiaryService;
 import com.dodam.service.FriendService;
 import com.dodam.service.UserService;
+import com.dodam.service.domain.Diary;
 import com.dodam.service.domain.Friend;
 import com.dodam.service.domain.User;
 
@@ -25,6 +27,10 @@ public class FriendController {
 	@Autowired
 	@Qualifier("userServiceImpl")
 	private UserService userService;
+	
+	@Autowired
+	@Qualifier("diaryServiceImpl")
+	private DiaryService diaryService;
 
 	public FriendController() {
 		System.out.println(":::::"+getClass().getName()+" 생성!");
@@ -156,6 +162,16 @@ public class FriendController {
 		if(friendService.deleteFriend(friend)==1){
 			model.addAttribute("message", "삭제가 완료되었습니다");
 		}
+	}
+	
+	//친구 다이어리 보기
+	@RequestMapping(value="/json/getFriendDiary")
+	public void getFriendDiary(@RequestBody Friend friend, Model model) throws Exception{
+		
+		System.out.println("::::"+friend.getuNo());
+		List<Diary> frDiary = diaryService.getDiaryList(friend.getuNo());
+		
+		model.addAttribute("diaries", frDiary);
 	}
 	
 }
