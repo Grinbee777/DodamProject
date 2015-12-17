@@ -244,5 +244,13 @@ public class DiaryController {
 		
 	}
 	
+	@RequestMapping(value="/json/getDiaryListForCalender")
+	public void getJsonDiaryListForCalender(@RequestBody Diary diary, Model model) throws Exception{
+		System.out.println("::getJsonDiaryListForCalender::");
+		
+		List<Diary> list = diaryService.getDiaryListForCalender(diary);
+	
+		model.addAttribute("list", list);				
+	}
 	
 }

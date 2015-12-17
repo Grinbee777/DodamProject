@@ -39,8 +39,7 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public int updateDCode(Diary diary) throws Exception {
-		
+	public int updateDCode(Diary diary) throws Exception {		
 		return diaryDao.updateDCode(diary);
 	}
 
@@ -50,14 +49,18 @@ public class DiaryServiceImpl implements DiaryService {
 	}
 
 	@Override
-	public int deleteDiary(int dNo) throws Exception {
-		
+	public int deleteDiary(int dNo) throws Exception {		
 		return diaryDao.deleteDiary(dNo);
 	}
 	
 	@Override
 	public List<Diary> getFriendDiaryList(List friendNo) throws Exception {		
 		return diaryDao.getFriendDiaryList(friendNo);
+	}
+
+	@Override
+	public List<Diary> getDiaryListForCalender(Diary diary) throws Exception {
+		return diaryDao.getDiaryListForCalender(diary);
 	}
 	
 

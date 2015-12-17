@@ -19,5 +19,7 @@ public interface DiaryService {
 	int deleteDiary(int dNo) throws Exception;
 	
 	List<Diary> getFriendDiaryList(List<Integer> friendNo) throws Exception;
+	
+	List<Diary> getDiaryListForCalender(Diary diary) throws Exception;
 
 }

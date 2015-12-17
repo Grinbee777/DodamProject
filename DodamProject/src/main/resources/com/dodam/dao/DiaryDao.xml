@@ -56,8 +56,8 @@
 	
 	<select id="getDiaryListForCalender" parameterType="Diary" resultMap="DiaryMap">
 		SELECT * FROM diary d 
-		WHERE d.`D_DATE` LIKE ('%{dDate}%')
-		and d.`U_NO`={uNo};
+		WHERE d.`D_DATE` LIKE ('%#{dDate}%')
+		and d.`U_NO`=#{uNo};
 	</select>
 	
 </mapper>
