@@ -125,6 +125,7 @@ public class UserController {
 	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{
 
 		System.out.println("::updateJsonUser::");
+		System.out.println(user);
 		//Business Logic
 		int result1=userservice.updateUser(user);
 		

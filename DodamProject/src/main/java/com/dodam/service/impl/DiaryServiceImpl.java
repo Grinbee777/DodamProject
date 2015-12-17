@@ -1,6 +1,7 @@
 package com.dodam.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,7 @@ public class DiaryServiceImpl implements DiaryService {
 
 	@Override
 	public List<Diary> getDiaryList(int uNo) throws Exception {		
+		System.out.println("::DiaryServieImpl.getDiaryList");
 		return diaryDao.getDiaryList(uNo);
 	}
 
@@ -58,9 +60,11 @@ public class DiaryServiceImpl implements DiaryService {
 		return diaryDao.getFriendDiaryList(friendNo);
 	}
 
+
 	@Override
-	public List<Diary> getDiaryListForCalender(Diary diary) throws Exception {
-		return diaryDao.getDiaryListForCalender(diary);
+	public List<Diary> getDiaryListForCalender(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return diaryDao.getDiaryListForCalender(map);
 	}
 	
 

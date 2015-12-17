@@ -19,11 +19,8 @@
 	
 	
 	<insert id="insertDiary" parameterType="Diary">
-		<!-- INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),#{dCode:VARCHAR},#{dTag:VARCHAR},#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC}) -->
-		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#세션,#제발',#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC})
-		<!-- INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#태그1,태그2',100010,#{diaryUser.uNo:NUMERIC}) --> 
+		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#세션,#제발',#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC})		
 	</insert>
-	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
 	
 	<select id="getDiary" resultMap="DiaryMap" parameterType="int">
 		SELECT * FROM diary WHERE d_no = #{value}
@@ -54,10 +51,12 @@
 		 ORDER BY D_NO DESC	
 	</select>
 	
-	<select id="getDiaryListForCalender" parameterType="Diary" resultMap="DiaryMap">
-		SELECT * FROM diary d 
-		WHERE d.`D_DATE` LIKE ('%#{dDate}%')
-		and d.`U_NO`=#{uNo};
-	</select>
+	<select id="getDiaryListForCalender" parameterType="map" resultMap="DiaryMap">
+		SELECT * FROM diary
+			WHERE		
+			U_NO = #{uNo}  			
+			AND D_DATE  <![CDATA[>]]> #{startDate}
+			AND D_DATE <![CDATA[<=]]> #{lastDate}		
+	</select>	
 	
 </mapper>

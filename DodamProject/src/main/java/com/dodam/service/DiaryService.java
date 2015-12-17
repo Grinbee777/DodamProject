@@ -1,6 +1,7 @@
 package com.dodam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dodam.service.domain.Diary;
 
@@ -20,6 +21,6 @@ public interface DiaryService {
 	
 	List<Diary> getFriendDiaryList(List<Integer> friendNo) throws Exception;
 	
-	List<Diary> getDiaryListForCalender(Diary diary) throws Exception;
+	List<Diary> getDiaryListForCalender(Map<String, Object> map) throws Exception;
 
 }

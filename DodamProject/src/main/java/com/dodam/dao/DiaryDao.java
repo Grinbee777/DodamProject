@@ -1,6 +1,7 @@
 package com.dodam.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.dodam.service.domain.Diary;
 
@@ -13,6 +14,6 @@ public interface DiaryDao {
 	int updateDiary(Diary diary);
 	int deleteDiary(int dNo);
 	List<Diary> getFriendDiaryList(List<Integer> friendNo);
-	List<Diary> getDiaryListForCalender(Diary diary);
+	List<Diary> getDiaryListForCalender(Map<String, Object> map);
 	
 }
