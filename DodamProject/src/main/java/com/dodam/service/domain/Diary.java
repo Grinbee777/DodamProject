@@ -16,6 +16,7 @@ public class Diary implements Serializable {
 	private Date dDate;
 	private String dCode;
 	private String dTag;
+	private String[] dTags;
 	private String uPic;
 	private int bNo;
 	private int uNo;
@@ -150,6 +151,14 @@ public class Diary implements Serializable {
 		this.uNo = uNo;
 	}
 
+	public String[] getdTags() {
+		return dTags;
+	}
+
+	public void setdTags(String[] dTags) {
+		this.dTags = dTags;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -167,6 +176,8 @@ public class Diary implements Serializable {
 		builder.append(dCode);
 		builder.append(", dTag=");
 		builder.append(dTag);
+		builder.append(", dTags=");
+		builder.append(Arrays.toString(dTags));
 		builder.append(", uPic=");
 		builder.append(uPic);
 		builder.append(", bNo=");
@@ -187,8 +198,5 @@ public class Diary implements Serializable {
 		return builder.toString();
 	}
 
-	
-	
-	
 	
 }

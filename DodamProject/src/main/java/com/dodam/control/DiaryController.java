@@ -70,6 +70,12 @@ public class DiaryController {
 		diary.setDiaryUser(userService.getUser(diary.getuNo()));
 		diary.setDiaryBaby(babyService.getBaby(diary.getuNo()));
 		System.out.println("user, baby 추가된 인스턴스 =="+diary);
+		if(diary.getdContent().indexOf("#") == -1){
+			diary.setdTag("오늘의 일기");
+		}else{
+			diary.setdTags(diary.getdTag().split("#"));
+		}
+		
 		
 		diaryService.insertDiary(diary);
 		
@@ -189,6 +195,8 @@ public class DiaryController {
 			list.get(i).setReplyList(replyList);
 			list.get(i).setReplyCount(replyList.size());
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
+			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 		}
 		
 		model.addAttribute("diaries", list);
@@ -228,6 +236,8 @@ public class DiaryController {
 			list.get(i).setReplyList(replyList);
 			list.get(i).setReplyCount(replyList.size());
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
+			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 		}
 		
 		model.addAttribute("diaries", list);
