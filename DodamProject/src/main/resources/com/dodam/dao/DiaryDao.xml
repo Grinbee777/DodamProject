@@ -59,4 +59,11 @@
 			AND D_DATE <![CDATA[<=]]> #{lastDate}		
 	</select>	
 	
+	<select id="getDailyDiaryList" parameterType="Diary" resultMap="DiaryMap">
+		SELECT * FROM diary
+		WHERE
+		U_NO = #{uNo}
+		AND D_DATE = #{dDate}
+	</select>
+	
 </mapper>

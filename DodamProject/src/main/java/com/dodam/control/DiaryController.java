@@ -465,5 +465,18 @@ public class DiaryController {
 		model.addAttribute("list", list);
 
 	}
+	
+	// 달력에서 날짜 클릭시 다이어리리스트 불러오는 로직. 
+	@RequestMapping(value="/json/getDailyDiaryList")
+	public void getJsonDailyDiaryList(@RequestBody Diary diary, Model model){
+		System.out.println("::getDailyDiaryList()::");
+		System.out.println(":::: DataFromClient.diary.getuNo():"+diary.getuNo()+", diary.getdDate() :"+diary.getdDate());
+		
+		List<Diary> list = diaryService.getDailyDiaryList(diary);
+		System.out.println("====From DB list.size():"+list.size());
+		System.out.println("==== list :"+list);	
+		model.addAttribute("list", list);
+			
+	}
 
 }

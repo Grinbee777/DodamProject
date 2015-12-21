@@ -23,4 +23,6 @@ public interface DiaryService {
 	
 	List<Diary> getDiaryListForCalender(Map<String, Object> map) throws Exception;
 
+	List<Diary> getDailyDiaryList(Diary diary);
+
 }

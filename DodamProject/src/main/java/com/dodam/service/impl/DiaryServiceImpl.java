@@ -66,6 +66,11 @@ public class DiaryServiceImpl implements DiaryService {
 		// TODO Auto-generated method stub
 		return diaryDao.getDiaryListForCalender(map);
 	}
+
+	@Override
+	public List<Diary> getDailyDiaryList(Diary diary) {
+		return diaryDao.getDailyDiaryList(diary);
+	}
 	
 
 }
