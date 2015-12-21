@@ -25,6 +25,8 @@ public class Diary implements Serializable {
 	private Replies diaryReplies;
 	private List<Replies> replyList;
 	private int replyCount;
+	private List<Like> likeList;
+	private int likeCount;
 	
 	public Diary() {
 		// TODO Auto-generated constructor stub
@@ -42,9 +44,10 @@ public class Diary implements Serializable {
 		return dPics;
 	}
 
-	public void setdPics(String [] dPics) {
+	public void setdPics(String[] dPics) {
 		this.dPics = dPics;
 	}
+
 	public String getdPic() {
 		return dPic;
 	}
@@ -85,54 +88,20 @@ public class Diary implements Serializable {
 		this.dTag = dTag;
 	}
 
+	public String[] getdTags() {
+		return dTags;
+	}
+
+	public void setdTags(String[] dTags) {
+		this.dTags = dTags;
+	}
+
 	public String getuPic() {
 		return uPic;
 	}
 
 	public void setuPic(String uPic) {
 		this.uPic = uPic;
-	}
-
-	public Baby getDiaryBaby() {
-		return diaryBaby;
-	}
-
-	public void setDiaryBaby(Baby diaryBaby) {
-		this.diaryBaby = diaryBaby;
-	}
-
-	public User getDiaryUser() {
-		return diaryUser;
-	}
-
-	public void setDiaryUser(User diaryUser) {
-		this.diaryUser = diaryUser;
-	}
-	
-
-	public Replies getDiaryReplies() {
-		return diaryReplies;
-	}
-
-	public void setDiaryReplies(Replies diaryReplies) {
-		this.diaryReplies = diaryReplies;
-	}
-
-	public List<Replies> getReplyList() {
-		return replyList;
-	}
-
-	public void setReplyList(List<Replies> replyList) {
-		this.replyList = replyList;
-	}
-	
-
-	public int getReplyCount() {
-		return replyCount;
-	}
-
-	public void setReplyCount(int replyCount) {
-		this.replyCount = replyCount;
 	}
 
 	public int getbNo() {
@@ -151,12 +120,61 @@ public class Diary implements Serializable {
 		this.uNo = uNo;
 	}
 
-	public String[] getdTags() {
-		return dTags;
+	public Baby getDiaryBaby() {
+		return diaryBaby;
 	}
 
-	public void setdTags(String[] dTags) {
-		this.dTags = dTags;
+	public void setDiaryBaby(Baby diaryBaby) {
+		this.diaryBaby = diaryBaby;
+	}
+
+	public User getDiaryUser() {
+		return diaryUser;
+	}
+
+	public void setDiaryUser(User diaryUser) {
+		this.diaryUser = diaryUser;
+	}
+
+	public Replies getDiaryReplies() {
+		return diaryReplies;
+	}
+
+	public void setDiaryReplies(Replies diaryReplies) {
+		this.diaryReplies = diaryReplies;
+	}
+
+	public List<Replies> getReplyList() {
+		return replyList;
+	}
+
+	public void setReplyList(List<Replies> replyList) {
+		this.replyList = replyList;
+	}
+
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
+	public List<Like> getLikeList() {
+		return likeList;
+	}
+
+	public void setLikeList(List<Like> likeList) {
+		this.likeList = likeList;
+	}
+	
+	
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 
 	@Override
@@ -194,9 +212,13 @@ public class Diary implements Serializable {
 		builder.append(replyList);
 		builder.append(", replyCount=");
 		builder.append(replyCount);
+		builder.append(", likeList=");
+		builder.append(likeList);
+		builder.append(", likeCount=");
+		builder.append(likeCount);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	
+		
 }

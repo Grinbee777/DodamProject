@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dodam.dao.LikeDao">
+
+	<resultMap id="LikeMap" type="Like">
+		<result property="lNo"			column="l_no"			jdbcType="NUMERIC"/>
+		<result property="lState"		column="l_state"		jdbcType="NUMERIC"/>
+		<result property="dNo"			column="d_no"			jdbcType="NUMERIC"/>
+		<result property="uNo"			column="u_no"			jdbcType="NUMERIC"/>
+	</resultMap>
+	
+	<!-- Dao에 사용된 메소드명  !!반드시 같은 이름으로 할것! -->
+	<insert id="insertLike" parameterType="Like">
+		insert into likes (L_STATE,D_NO,U_NO) VALUES (1,#{dNo},#{uNo})
+	</insert>
+	
+	<select id="getLike" parameterType="int" resultMap="LikeMap">
+		SELECT * FROM Likes WHERE L_NO = #{lNo}
+	</select>
+	
+	<select id="getLikeList" parameterType="int" resultMap="LikeMap">
+		SELECT * FROM Likes WHERE D_NO = #{dNo}
+	</select>
+	
+	<update id="updateLike" parameterType="Like">
+		UPDATE Likes SET l_State = #{lState} WHERE L_NO = #{lNo} and U_NO = #{uNo}
+	</update>
+	
+	<delete id="deleteLike" parameterType="Like">
+		DELETE FROM Likes WHERE D_NO = #{dNo} and U_NO = #{uNo}
+	</delete>
+	
+	<delete id="deleteDiaryLike" parameterType="int">
+		DELETE FROM Likes WHERE d_NO = #{dNo}
+	</delete>
+	
+	
+</mapper>
