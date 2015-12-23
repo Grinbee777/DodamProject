@@ -123,16 +123,16 @@ public class DiaryController {
 		diary.setDiaryBaby(babyService.getBaby(diary.getuNo()));
 
 		System.out.println("user, baby 추가된 인스턴스 ==" + diary);
-
-		if (diary.getdContent().indexOf("#") == -1) {
-
-			diary.setdTag("오늘의 일기");
-
-		} else {
-
-			diary.setdTags(diary.getdTag().split("#"));
-
-		}
+		System.out.println("HashTag :"+diary.getdTag());
+//		if (diary.getdContent().indexOf("#") == -1) {
+//
+//			diary.setdTag("오늘의 일기");
+//
+//		} else {
+//
+//			diary.setdTags(diary.getdTag().split("#"));
+//
+//		}
 
 		diaryService.insertDiary(diary);
 

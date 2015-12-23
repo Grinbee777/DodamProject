@@ -19,7 +19,7 @@
 	
 	
 	<insert id="insertDiary" parameterType="Diary">
-		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self','#세션,#제발',#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC})		
+		INSERT INTO diary (D_PIC,D_CONTENT,D_DATE,D_CODE,D_TAG,B_NO,U_NO) VALUES (#{dPic:VARCHAR},#{dContent:CLOB},now(),'self',#{dTag},#{diaryBaby.bNo:NUMERIC},#{diaryUser.uNo:NUMERIC})		
 	</insert>
 	
 	<select id="getDiary" resultMap="DiaryMap" parameterType="int">
