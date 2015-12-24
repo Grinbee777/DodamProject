@@ -134,7 +134,7 @@ public class FriendController {
 		model.addAttribute("friendList", friend);
 	
 		//서로 친구....
-		int temp=friend.getuNo();
+		int temp=friend.getFrMate();
 		friend.setFrMate(friend.getuNo());
 		friend.setuNo(temp);
 		
