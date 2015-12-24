@@ -17,7 +17,7 @@
 	
 	<insert id="insertFriend" parameterType="Friend">
 		INSERT INTO friend (FR_NO, U_NO, FR_MATE, FR_STATE) 
-		VALUES (NULL, #{uNo}, #{frMate}, 1)
+		VALUES (NULL, #{uNo}, #{frMate}, #{frState})
 	</insert>
 	
 	<select id="getFriend" parameterType="int" resultMap="FriendMap">
