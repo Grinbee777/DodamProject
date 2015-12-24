@@ -35,7 +35,7 @@
 			) VALUES (  
 			#{nickname} 
 			  ,#{mail}  
-			  ,#{uPic} 
+			  ,'default.jpg' 
 			  ,#{uPcode}  
 			  ,#{password}  
 			  ,#{socialNo}
