@@ -5,6 +5,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,10 +27,13 @@ import com.dodam.service.SBabyService;
 import com.dodam.service.domain.Baby;
 import com.dodam.service.domain.SBaby;
 import com.dodam.service.domain.User;
+import com.sun.xml.internal.bind.v2.runtime.reflect.Accessor.GetterOnlyReflection;
 
 @Controller
 @RequestMapping("/baby/*")
 public class BabyController {
+	
+	@Autowired ServletContext servletCtx;
 	
 	@Autowired
 	@Qualifier("babyServiceImpl")
@@ -41,7 +48,7 @@ public class BabyController {
 	}
 	
 	@RequestMapping(value="/json/addBaby")
-	public void addJsonBaby(@RequestBody Baby baby) throws Exception{
+	public void addJsonBaby(@RequestBody Baby baby,Model model) throws Exception{
 		
 		SBaby sBaby=new SBaby();
 		User user=new User();
@@ -51,13 +58,17 @@ public class BabyController {
 		baby.setMom(user);
 		System.out.println("user no??"+user.getuNo());
 		System.out.println(baby);
-		babyService.insertBaby(baby);
+		int babyResult=babyService.insertBaby(baby);
 		
 		System.out.println(baby.getbNo());
 		sBaby.setbNo(baby.getbNo());
 		sBaby.setHeight(baby.getHeight());
 		sBaby.setWeight(baby.getWeight());
-		sBabyService.insertSBaby(sBaby);
+		int sBabyResult=sBabyService.insertSBaby(sBaby);
+		
+		if(babyResult==1 && sBabyResult==1) {
+			model.addAttribute("result", true);
+		}
 			
 	}
 	
@@ -68,17 +79,22 @@ public class BabyController {
 	   @RequestMapping(value="/json/uploadImg", method=RequestMethod.POST)
 	   public void upload(MultipartHttpServletRequest request) throws Exception{
 	      
-	      System.out.println("baby image 들어옴");
-	      
+		   System.out.println("uploadImg 들어옴");
+		      
+//	      FileMeta fileMeta = null;
 	      MultipartFile mpf = null;
 	      
 	      Iterator<String> itr = request.getFileNames(); 
 	      
-	      
 	      while(itr.hasNext()){
 	         mpf = request.getFile(itr.next());         
-          
+//	         fileMeta = new FileMeta();
+//	         fileMeta.setFileName(mpf.getOriginalFilename());
+//	         fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
+//	         fileMeta.setFileType(mpf.getContentType());
+	            
 	         try{
+//	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
 	                  new FileOutputStream("C:/Users/user/git/DodamProject/DodamProject/src/main/webapp/resources/img/baby/"+mpf.getOriginalFilename()));   
 	         }catch(IOException e){
@@ -88,17 +104,21 @@ public class BabyController {
 	   }
 	
 	@RequestMapping(value="/json/updateBaby")
-	public void updateJsonBaby(@RequestBody Baby baby) throws Exception{
+	public void updateJsonBaby(@RequestBody Baby baby,Model model) throws Exception{
 		SBaby sBaby=new SBaby();
 		System.out.println("updateBaby Controller 들어옴");
 		System.out.println(baby);
 		
-		babyService.updateBaby(baby);
+		int babyResult=babyService.updateBaby(baby);
 		sBaby.setbNo(baby.getbNo());
 		sBaby.setHeight(baby.getHeight());
 		sBaby.setWeight(baby.getWeight());
 		
-		sBabyService.updateSBaby(sBaby);
+		int sBabyResult=sBabyService.updateSBaby(sBaby);
+		
+		if(babyResult==1 && sBabyResult==1) {
+			model.addAttribute("result", true);
+		}
 		
 	}
 	

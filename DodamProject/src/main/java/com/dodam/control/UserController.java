@@ -1,15 +1,20 @@
 package com.dodam.control;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.dodam.service.UserService;
 import com.dodam.service.domain.User;
@@ -68,20 +73,6 @@ public class UserController {
 			model.addAttribute("result", result);
 		}
 		
-		
-		
-//		user.setMail(user.getSocialNo());
-//		System.out.println(":: requestJSON :"+user);
-//		User dbUser = userservice.getMailUser(user.getMail());
-//		
-//		int result = userservice.insertUser(user);
-//		System.out.println("::result :"+result);
-//		model.addAttribute("result", result);
-//		if ( result == 1 && user.getSocialNo() != null) {
-//			System.out.println(":: Cookie for Social Login User :: user.getSocialNo() :"+user.getSocialNo());
-//			model.addAttribute("user", user);
-//		}		
-		
 	}
 		
 	@RequestMapping(value="/json/getUser")
@@ -107,19 +98,6 @@ public class UserController {
 		model.addAttribute("user",getUser);		
 	}
 	
-	/*
-	@RequestMapping(value="/json/getNickUserList")
-	public void getJsonNickUserList(@RequestBody User user,Model model)throws Exception{
-		
-		List<User> list = null;
-		
-		if(user.getNickname().trim() != ""){
-			list = userservice.getNickUserList(user);
-			model.addAttribute("userList", list);
-		}
-		
-		
-	}*/
 	
 	@RequestMapping( value="/json/updateUser")
 	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{
@@ -152,10 +130,8 @@ public class UserController {
 			System.out.println("::CheckEmail");
 			String requestMail = user.getMail();	
 			boolean check = true;
-			//System.out.println("====requestMail :"+requestMail);
-			//System.out.println("====listFromDB :"+list);
+			
 			for(User temp : list){
-				//System.out.println("list.user.getMail() :"+temp.getMail());
 				if (temp.getMail().equals(requestMail)) {
 					System.out.println("Duplication email!!!");	
 					check = false;					
@@ -181,4 +157,25 @@ public class UserController {
 		
 		
 	}//end of checkJsonDuplication
+	
+	  @RequestMapping(value="/json/uploadImg", method=RequestMethod.POST)
+	  public void upload(MultipartHttpServletRequest request) throws Exception{
+	      
+		 System.out.println("uploadImg 들어옴");
+		      
+	     MultipartFile mpf = null;
+	      
+	     Iterator<String> itr = request.getFileNames(); 
+	      
+	     while(itr.hasNext()){
+	         mpf = request.getFile(itr.next());         
+	         
+	         try{
+	            FileCopyUtils.copy(mpf.getBytes(), 
+	                  new FileOutputStream("C:/Users/user/git/DodamProject/DodamProject/src/main/webapp/resources/img/user/"+mpf.getOriginalFilename()));   
+	         }catch(IOException e){
+	            e.printStackTrace();
+	         }
+	      }
+	   }
 }
