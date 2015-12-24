@@ -134,18 +134,21 @@ public class FriendController {
 		model.addAttribute("friendList", friend);
 	
 		//서로 친구....
-		int temp=friend.getFrNo();
-		friend.setFrMate(friend.getFrNo());
-		friend.setFrNo(temp);
+		int temp=friend.getuNo();
+		friend.setFrMate(friend.getuNo());
+		friend.setuNo(temp);
 		
 		//상대방도 친구로 뜨게하기
-		//friendService.insertFriend(friend);
+		friendService.insertFriend(friend);
 		
 		}else{
 			model.addAttribute("message", "오류가 발생하였습니다");
 		}
+		
 	}
 	
+	
+
 	//친구요청 거절
 	@RequestMapping(value="/json/denyFriend")
 	public void updateDenyFriend(@RequestBody Friend friend, Model model) throws Exception{
