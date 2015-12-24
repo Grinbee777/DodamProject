@@ -152,8 +152,10 @@ public class UserController {
 			System.out.println("::CheckEmail");
 			String requestMail = user.getMail();	
 			boolean check = true;
-			
+			//System.out.println("====requestMail :"+requestMail);
+			//System.out.println("====listFromDB :"+list);
 			for(User temp : list){
+				//System.out.println("list.user.getMail() :"+temp.getMail());
 				if (temp.getMail().equals(requestMail)) {
 					System.out.println("Duplication email!!!");	
 					check = false;					
