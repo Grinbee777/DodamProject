@@ -353,6 +353,49 @@ public class DiaryController {
 		model.addAttribute("diaries", list);
 
 	}
+	
+	@RequestMapping(value = "/json/getAllDiary")
+
+	public void getJsonAllDiary(@RequestBody Diary diary, Model model) throws Exception {
+
+		System.out.println(":: getJsonAllDiary ::");
+
+		System.out.println("전달받은 diary 인스턴스 == " + diary);
+
+		List<Diary> list = diaryService.getAllDiary();
+
+		for (int i = 0; i < list.size(); i++) {
+
+			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());
+			
+			List<Like> likeList = likeService.getLikeList(list.get(i).getdNo());
+
+			for (int j = 0; j < replyList.size(); j++) {
+
+				replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
+
+			}
+
+			list.get(i).setReplyList(replyList);
+			
+			list.get(i).setLikeList(likeList);
+			
+			list.get(i).setLikeCount(likeList.size());
+
+			list.get(i).setReplyCount(replyList.size());
+
+			list.get(i).setdPics(list.get(i).getdPic().split(","));
+
+			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+
+			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+
+		}
+
+		model.addAttribute("diaries", list);
+
+	}
+	
 
 	@RequestMapping(value = "/json/getFriendDiaryList")
 

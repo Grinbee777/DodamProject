@@ -71,6 +71,12 @@ public class DiaryServiceImpl implements DiaryService {
 	public List<Diary> getDailyDiaryList(Diary diary) {
 		return diaryDao.getDailyDiaryList(diary);
 	}
+
+	@Override
+	public List<Diary> getAllDiary() {
+		return diaryDao.getAllDiary();
+	}
+	
 	
 
 }
