@@ -50,12 +50,8 @@
 	<set>
 	MAIL = #{mail}
   ,U_PIC = #{uPic}
-  ,U_PCODE = #{uPcode}
   ,PASSWORD = #{password}
-  ,SOCIAL_NO = #{socialNo}
-  ,U_BIRTH = #{uBirth}
-  ,REG_DATE = now()
-	
+  ,NICKNAME = #{nickname}
 	</set>
 	WHERE U_NO = #{uNo}
 	

@@ -55,6 +55,11 @@ public class BabyController {
 		user.setuNo(baby.getuNo());
 		System.out.println("addBaby Controller 들어옴");
 		
+		String birth=baby.getbBirth().substring(0, 4)+"-"+baby.getbBirth().substring(4, 6)+"-"+
+		baby.getbBirth().substring(6, 8);
+		
+		baby.setbBirth(birth);
+		
 		baby.setMom(user);
 		System.out.println("user no??"+user.getuNo());
 		System.out.println(baby);
@@ -96,7 +101,7 @@ public class BabyController {
 	         try{
 //	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
-	                  new FileOutputStream("C:/Users/BitCamp/git/DodamProject/DodamProject/src/main/webapp/resources/img/baby/"+mpf.getOriginalFilename()));   
+	                  new FileOutputStream("C:/Users/user/git/DodamProject/DodamProject/src/main/webapp/resources/img/baby/"+mpf.getOriginalFilename()));   
 	         }catch(IOException e){
 	            e.printStackTrace();
 	         }
