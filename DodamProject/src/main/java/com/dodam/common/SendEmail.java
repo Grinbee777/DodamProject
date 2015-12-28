@@ -28,9 +28,9 @@ public class SendEmail {
 		
 		String content="<h1>DODAM DODAM</h1>"
 				+"<br/>"+user.getNickname()+"님 아래 링크를 클릭하시면 인증이 완료됩니다. <hr>"			
-				+"<a href='http://127.0.0.1:8080/email/json/insertEmail"
+				+"<a href='http://192.168.0.3:8080/email/json/insertEmail"
 				+ "?mail="+email.getMail()+"&code="+email.getAuthnum()+"&uNo="+email.getuNo()+"'>"
-						+ "http://127.0.0.1:8080/email/json/insertEmail"
+						+ "http://192.168.0.3:8080/email/json/insertEmail"
 				+ "?mail="+email.getMail()+"&code="+email.getAuthnum()+"&uNo="+email.getuNo()+"</a>";
 		
 		try{

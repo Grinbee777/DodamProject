@@ -279,10 +279,18 @@ public class DiaryController {
 		// Diary returnDiary = diaryService.getDiary(diary.getdNo());
 
 		diary = diaryService.getDiary(diary.getdNo());
+		
+		diary.setDiaryUser(userService.getUser(diary.getDiaryUser().getuNo()));
+		diary.setLikeList(likeService.getLikeList(diary.getdNo()));
+		diary.setReplyList(repliesService.getRepliesList(diary.getdNo()));
+		diary.setLikeCount(diary.getLikeList().size());
+		diary.setReplyCount(diary.getReplyList().size());
+		diary.setdPics(diary.getdPic().split(","));
 
 		System.out.println("리턴될 diary : " + diary);
-
-		model.addAttribute("diary", diary);
+		List<Diary> list = new ArrayList<>();
+		list.add(diary);
+		model.addAttribute("diaries", list);
 
 	}
 

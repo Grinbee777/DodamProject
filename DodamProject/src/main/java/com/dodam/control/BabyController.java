@@ -96,7 +96,7 @@ public class BabyController {
 	         try{
 //	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
-	                  new FileOutputStream("C:/Users/user/git/DodamProject/DodamProject/src/main/webapp/resources/img/baby/"+mpf.getOriginalFilename()));   
+	                  new FileOutputStream("C:/Users/BitCamp/git/DodamProject/DodamProject/src/main/webapp/resources/img/baby/"+mpf.getOriginalFilename()));   
 	         }catch(IOException e){
 	            e.printStackTrace();
 	         }
