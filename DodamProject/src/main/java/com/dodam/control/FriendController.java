@@ -81,7 +81,6 @@ public class FriendController {
 	@RequestMapping(value="/json/getFriendList")
 	public void getJsonFriendList(@RequestBody Friend friend, Model model) throws Exception{
 		
-		
 		//친구목록 가져오는 로직
 		List<Friend> frTemp = friendService.getFriendList(friend.getuNo());
 		int count = frTemp.size();
@@ -91,6 +90,16 @@ public class FriendController {
 		}
 		model.addAttribute("friendList", frTemp);
 		model.addAttribute("frCount", count);
+		
+		//보낸 요청 가져오는 로직
+		List<Friend> sendTemp = friendService.getFriendSendList(friend.getuNo());
+		count = sendTemp.size();
+		
+		for(int i=0; i<count; i++){
+			sendTemp.get(i).setUser(userService.getUser(sendTemp.get(i).getuNo()));
+		}
+		model.addAttribute("sendList", sendTemp);
+		model.addAttribute("sendCount", count);
 		
 		//친구요청목록 가져오기위한 로직
 		List<Friend> reqTemp=friendService.getFriendRequestList(friend.getuNo());

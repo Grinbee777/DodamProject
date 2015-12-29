@@ -38,6 +38,11 @@
 		AND FR_STATE = 1
 	</select>
 	
+	<select id="getFriendSendList" parameterType="int" resultMap="FriendMap">
+		SELECT * FROM friend WHERE FR_MATE = #{uNo}
+		AND FR_STATE = 1
+	</select>
+	
 	<select id="getFriendDenyList" parameterType="int" resultMap="FriendMap">
 		SELECT * FROM friend WHERE U_NO = #{uNo} 
 		AND FR_STATE = 2

@@ -16,6 +16,8 @@ public interface FriendService {
 	
 	List<Friend> getFriendRequestList(int uNo);
 	
+	List<Friend> getFriendSendList(int uNo);
+	
 	List<Friend> getFriendDenyList(int uNo);
 	
 	int updateFriend(Friend friend);
