@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -103,6 +104,9 @@ public class DiaryController {
 	@Autowired
 	@Qualifier("likeServiceImpl")
 	private LikeService likeService;
+	
+	@Autowired
+	private ServletContext servletCtx;
 
 	public DiaryController() {
 
@@ -155,6 +159,9 @@ public class DiaryController {
 		MultipartFile mpf = null;
 
 		Iterator<String> itr = request.getFileNames();
+		
+		String filePath = servletCtx.getRealPath("/dodam_upload") + "/";
+		String thumbnailPath = servletCtx.getRealPath("/thumbnail_upload") + "/";
 
 		while (itr.hasNext()) {
 
@@ -175,15 +182,15 @@ public class DiaryController {
 				FileCopyUtils.copy(mpf.getBytes(),
 
 						new FileOutputStream(
-								"C:\\Users\\BitCamp\\git\\DodamProject\\DodamProject\\src\\main\\webapp\\resources\\img\\diary\\"
+								filePath+"diary/"
 										+ mpf.getOriginalFilename()));
 
 				File originalFileNm = new File(
-						"C:\\Users\\BitCamp\\git\\DodamProject\\DodamProject\\src\\main\\webapp\\resources\\img\\diary\\"
+						filePath+"diary/"
 								+ mpf.getOriginalFilename());
 
 				File thumbnailFileNm = new File(
-						"C:\\Users\\BitCamp\\git\\DodamProject\\DodamProject\\src\\main\\webapp\\resources\\thumbnail\\diary\\"
+						thumbnailPath+"diary/"
 								+ mpf.getOriginalFilename());
 
 				int width = 400;
