@@ -76,7 +76,10 @@ public class DiaryServiceImpl implements DiaryService {
 	public List<Diary> getAllDiary() {
 		return diaryDao.getAllDiary();
 	}
-	
-	
+
+	@Override
+	public List<Diary> getDiaryListByTag(String dTag) {
+		return diaryDao.getDiaryListByTag(dTag);
+	}	
 
 }

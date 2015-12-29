@@ -70,4 +70,11 @@
 		AND D_DATE = #{dDate}
 	</select>
 	
+	<select id="getDiaryListByTag" parameterType="string" resultMap="DiaryMap">
+		SELECT * FROM diary
+		WHERE
+		d_tag LIKE CONCAT('%',#{value},'%')
+		ORDER BY d_date
+	</select>
+	
 </mapper>

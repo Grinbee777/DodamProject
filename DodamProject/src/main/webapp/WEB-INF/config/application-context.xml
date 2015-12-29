@@ -71,8 +71,8 @@
 	</bean>
  
   <!-- 데이터소스를 JNDI로 찾는다. -->
-  <jee:jndi-lookup id="dataSource" 
-        jndi-name="java:comp/env/jdbc/mymaria"/> 
+<!--   <jee:jndi-lookup id="dataSource" 
+        jndi-name="java:comp/env/jdbc/mymaria"/> -->
 
   <!-- 아래 부분 주석 풀거나 하단 Servers에 Context.xml 안에 Resource 태그 붙여넣기  -->
   <!-- username, password는 바꿀것!!! -->
@@ -83,6 +83,13 @@
     <property name="username" 			value="root"/>
     <property name="password" 			value="root"/>
   </bean>
+  
+<!--   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName"	value="com.mysql.jdbc.Driver"/>
+    <property name="url" 				value="jdbc:mysql://localhost:3306/localtest"/>
+    <property name="username" 			value="selo"/>
+    <property name="password" 			value="selo"/>
+  </bean> -->
   
    
   <!-- Servers에 Context.xml 안에 붙여넣기 할것 또는 상단에 bean id="dataSource" 주석풀기 -->

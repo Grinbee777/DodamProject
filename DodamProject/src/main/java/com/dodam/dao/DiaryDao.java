@@ -17,5 +17,5 @@ public interface DiaryDao {
 	List<Diary> getDiaryListForCalender(Map<String, Object> map);
 	List<Diary> getDailyDiaryList(Diary diary);
 	List<Diary> getAllDiary();
-	
+	List<Diary> getDiaryListByTag(String dTag);
 }
