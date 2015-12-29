@@ -45,10 +45,9 @@
 		<set>
 			height=#{height:VARCHAR}
 			,weight=#{weight:VARCHAR}
-			,d_no=#{dNo}
 		</set>
 		<where>
-			sb_no=#{sbNo}
+			b_no=#{bNo}
 		</where>
 	</update>
 	

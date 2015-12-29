@@ -57,7 +57,7 @@
 		b_type=#{bType:VARCHAR},
 		b_photo=#{bPhoto}
 		</set>
-		WHERE b_no=#{bNo}
+		WHERE u_no=#{uNo}
 	</update>
 	
 	<select id="getBaby" parameterType="int" resultMap="BabyMap">

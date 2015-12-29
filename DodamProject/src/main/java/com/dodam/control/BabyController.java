@@ -121,7 +121,11 @@ public class BabyController {
 		
 		int sBabyResult=sBabyService.updateSBaby(sBaby);
 		
+		System.out.println(babyResult);
+		System.out.println(sBabyResult);
+		
 		if(babyResult==1 && sBabyResult==1) {
+			System.out.println("둘다 true");
 			model.addAttribute("result", true);
 		}
 		
