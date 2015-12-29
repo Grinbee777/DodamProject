@@ -91,17 +91,15 @@ public class BabyController {
 	      
 	      Iterator<String> itr = request.getFileNames(); 
 	      
+	      String filePath=servletCtx.getRealPath("/dodam_upload")+"/";
+	      
 	      while(itr.hasNext()){
 	         mpf = request.getFile(itr.next());         
-//	         fileMeta = new FileMeta();
-//	         fileMeta.setFileName(mpf.getOriginalFilename());
-//	         fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
-//	         fileMeta.setFileType(mpf.getContentType());
 	            
 	         try{
 //	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
-	                  new FileOutputStream("C:/Users/user/git/DodamProject/DodamProject/src/main/webapp/resources/img/baby/"+mpf.getOriginalFilename()));   
+	                  new FileOutputStream(filePath+"baby/"+mpf.getOriginalFilename()));   
 	         }catch(IOException e){
 	            e.printStackTrace();
 	         }

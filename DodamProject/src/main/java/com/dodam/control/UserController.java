@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import com.dodam.service.domain.User;
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
+
+	@Autowired ServletContext servletCtx;	
 	
 	@Autowired
 	@Qualifier("userServiceImpl")
@@ -166,19 +170,22 @@ public class UserController {
 	      
 		 System.out.println("uploadImg 들어옴");
 		      
-	     MultipartFile mpf = null;
+	      MultipartFile mpf = null;
 	      
-	     Iterator<String> itr = request.getFileNames(); 
+	      Iterator<String> itr = request.getFileNames(); 
 	      
-	     while(itr.hasNext()){
+	      String filePath=servletCtx.getRealPath("/dodam_upload")+"/";
+	      
+	      while(itr.hasNext()){
 	         mpf = request.getFile(itr.next());         
-	         
+	            
 	         try{
+//	            fileMeta.setBytes(mpf.getBytes());
 	            FileCopyUtils.copy(mpf.getBytes(), 
-	                  new FileOutputStream("C:/Users/user/git/DodamProject/DodamProject/src/main/webapp/resources/img/user/"+mpf.getOriginalFilename()));   
+	                  new FileOutputStream(filePath+"user/"+mpf.getOriginalFilename()));   
 	         }catch(IOException e){
 	            e.printStackTrace();
 	         }
 	      }
-	   }
+	  }
 }
