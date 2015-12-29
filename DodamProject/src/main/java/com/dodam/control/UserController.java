@@ -104,6 +104,9 @@ public class UserController {
 
 		System.out.println("::updateJsonUser::");
 		System.out.println(user);
+		if(user.getuPic()==null || user.getuPic()=="") {
+			user.setuPic("default.jpg");
+		}
 		//Business Logic
 		int result1=userservice.updateUser(user);
 		
