@@ -81,6 +81,7 @@ public class UserController {
 		
 	@RequestMapping(value="/json/getUser")
 	public void getJsonUser(@RequestBody User user,Model model)throws Exception{
+		
 		System.out.println("::getJsonUser::");
 		User getUser=userservice.getUser(user.getuNo());
 		model.addAttribute("user",getUser);		
@@ -106,6 +107,12 @@ public class UserController {
 	@RequestMapping( value="/json/updateUser")
 	public void updateJsonUser( @RequestBody User user , Model model) throws Exception{
 
+		User beforeUser=userservice.getUser(user.getuNo());
+		
+		if(user.getuPic()=="undefined") {
+			user.setuPic(beforeUser.getuPic());
+		}
+		
 		System.out.println("::updateJsonUser::");
 		System.out.println(user);
 		if(user.getuPic()==null || user.getuPic()=="") {
