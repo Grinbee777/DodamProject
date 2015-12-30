@@ -109,7 +109,11 @@ public class UserController {
 
 		User beforeUser=userservice.getUser(user.getuNo());
 		
-		if(user.getuPic()=="undefined") {
+		System.out.println(user.getuPic());
+		System.out.println(beforeUser.getuPic());
+		
+		if(user.getuPic()=="undefined" || user.getuPic()=="" || user.getuPic()==null) {
+			System.out.println("여기는 들어오나??");
 			user.setuPic(beforeUser.getuPic());
 		}
 		
