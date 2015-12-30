@@ -39,7 +39,7 @@
 	</select>
 	
 	<select id="getFriendSendList" parameterType="int" resultMap="FriendMap">
-		SELECT * FROM friend WHERE FR_MATE = #{uNo}
+		SELECT * FROM friend WHERE U_NO = #{uNo}
 		AND FR_STATE = 1
 	</select>
 	
@@ -55,7 +55,7 @@
 	</update>
 	
 	<update id="deleteFriend" parameterType="Friend">
-		DELETE FROM friend WHERE FR_NO = #{frNo}
+		DELETE FROM friend WHERE FR_MATE = #{frMate}
 	</update>
 	
 </mapper>

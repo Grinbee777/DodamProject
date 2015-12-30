@@ -96,7 +96,7 @@ public class FriendController {
 		count = sendTemp.size();
 		
 		for(int i=0; i<count; i++){
-			sendTemp.get(i).setUser(userService.getUser(sendTemp.get(i).getuNo()));
+			sendTemp.get(i).setUser(userService.getUser(sendTemp.get(i).getFrMate()));
 		}
 		model.addAttribute("sendList", sendTemp);
 		model.addAttribute("sendCount", count);
@@ -170,10 +170,22 @@ public class FriendController {
 	//친구 삭제
 	@RequestMapping(value="/json/deleteFriend")
 	public void deleteFriend(@RequestBody Friend friend, Model model) throws Exception{
+
 		
-		if(friendService.deleteFriend(friend)==1){
+		friend = friendService.getFriend(friend.getFrNo());
+	
+		int i =0;
+		i+=friendService.deleteFriend(friend);
+			
+		friend.setFrMate(friend.getuNo());
+		i+=friendService.deleteFriend(friend);
+		
+		if(i==2){
 			model.addAttribute("message", "삭제가 완료되었습니다");
+		}else if(i==1){
+			model.addAttribute("message", "요청이 취소되었습니다");
 		}
+		
 	}
 	
 	//친구 다이어리 보기
