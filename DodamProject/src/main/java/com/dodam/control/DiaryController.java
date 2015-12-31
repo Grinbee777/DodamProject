@@ -532,31 +532,59 @@ public class DiaryController {
 	}
 	
 	//[SELO77] 해쉬태그에 의한 다이어리 검색
-	@RequestMapping(value="/json/getDiaryListByTag")
-	public void getJsonDiaryListByTag(@RequestParam String dTag, Model model) throws Exception{
-		System.out.println("==getDiaryListByTag()== requestParam :"+dTag);
-		
-		List<Diary> list = diaryService.getDiaryListByTag(dTag);
-		System.out.println("==== list.size() From DB :"+list.size());
-		System.out.println("==== listByTag From DB :"+list);
-		
-		//Diary필수 디펜던시 데이터 
-		for (int i = 0; i < list.size(); i++) {
-			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());			
-			List<Like> likeList = likeService.getLikeList(list.get(i).getdNo());
-			for (int j = 0; j < replyList.size(); j++) {
-				replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
+		@RequestMapping(value="/json/getDiaryListByTag")
+		public void getJsonDiaryListByTag(@RequestBody Diary diary, Model model) throws Exception{
+			System.out.println("==getDiaryListByTag()== requestParam :"+diary.getdTag());
+			
+			List<Diary> list = diaryService.getDiaryListByTag(diary.getdTag());
+			System.out.println("==== list.size() From DB :"+list.size());
+			System.out.println("==== listByTag From DB :"+list);
+			
+			//Diary필수 디펜던시 데이터 
+			for (int i = 0; i < list.size(); i++) {
+				List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());			
+				List<Like> likeList = likeService.getLikeList(list.get(i).getdNo());
+				for (int j = 0; j < replyList.size(); j++) {
+					replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
+				}
+				list.get(i).setReplyList(replyList);			
+				list.get(i).setLikeList(likeList);
+				list.get(i).setLikeCount(likeList.size());
+				list.get(i).setReplyCount(replyList.size());
+				list.get(i).setdPics(list.get(i).getdPic().split(","));
+				list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+				System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 			}
-			list.get(i).setReplyList(replyList);			
-			list.get(i).setLikeList(likeList);
-			list.get(i).setLikeCount(likeList.size());
-			list.get(i).setReplyCount(replyList.size());
-			list.get(i).setdPics(list.get(i).getdPic().split(","));
-			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
-			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+			
+			model.addAttribute("diaries", list);		
 		}
-		
-		model.addAttribute("diaries", list);		
-	}
+	
+	//[SELO77] 해쉬태그에 의한 다이어리 검색
+//	@RequestMapping(value="/json/getDiaryListByTag")
+//	public void getJsonDiaryListByTag(@RequestParam String dTag, Model model) throws Exception{
+//		System.out.println("==getDiaryListByTag()== requestParam :"+dTag);
+//		
+//		List<Diary> list = diaryService.getDiaryListByTag(dTag);
+//		System.out.println("==== list.size() From DB :"+list.size());
+//		System.out.println("==== listByTag From DB :"+list);
+//		
+//		//Diary필수 디펜던시 데이터 
+//		for (int i = 0; i < list.size(); i++) {
+//			List<Replies> replyList = repliesService.getRepliesList(list.get(i).getdNo());			
+//			List<Like> likeList = likeService.getLikeList(list.get(i).getdNo());
+//			for (int j = 0; j < replyList.size(); j++) {
+//				replyList.get(j).setrUser(userService.getNickUser(replyList.get(j).getrUser().getNickname()));
+//			}
+//			list.get(i).setReplyList(replyList);			
+//			list.get(i).setLikeList(likeList);
+//			list.get(i).setLikeCount(likeList.size());
+//			list.get(i).setReplyCount(replyList.size());
+//			list.get(i).setdPics(list.get(i).getdPic().split(","));
+//			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+//			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+//		}
+//		
+//		model.addAttribute("diaries", list);		
+//	}
 
 }
