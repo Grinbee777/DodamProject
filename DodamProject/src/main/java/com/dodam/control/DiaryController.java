@@ -549,7 +549,7 @@ public class DiaryController {
 
 			System.out.println("lastDate :" + str[0] + str[1] + "31");
 
-			map.put("startDate", str[0] + str[1] + "01");
+			map.put("startDate", str[0] + str[1] + "00");
 
 			map.put("lastDate", str[0] + str[1] + "31");
 
