@@ -176,8 +176,11 @@ public class FriendController {
 	
 		int i =0;
 		i+=friendService.deleteFriend(friend);
-			
+		
+		int temp=friend.getFrMate();
 		friend.setFrMate(friend.getuNo());
+		friend.setuNo(temp);
+
 		i+=friendService.deleteFriend(friend);
 		
 		if(i==2){

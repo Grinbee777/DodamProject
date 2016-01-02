@@ -55,7 +55,7 @@
 	</update>
 	
 	<update id="deleteFriend" parameterType="Friend">
-		DELETE FROM friend WHERE FR_MATE = #{frMate}
+		DELETE FROM friend WHERE FR_MATE = #{frMate} AND U_NO = #{uNo} 
 	</update>
 	
 </mapper>
