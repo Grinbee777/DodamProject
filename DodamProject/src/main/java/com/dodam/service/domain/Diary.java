@@ -27,6 +27,7 @@ public class Diary implements Serializable {
 	private int replyCount;
 	private List<Like> likeList;
 	private int likeCount;
+	private String compareDate;
 	
 	public Diary() {
 		// TODO Auto-generated constructor stub
@@ -177,6 +178,14 @@ public class Diary implements Serializable {
 		this.likeCount = likeCount;
 	}
 
+	public String getCompareDate() {
+		return compareDate;
+	}
+
+	public void setCompareDate(String compareDate) {
+		this.compareDate = compareDate;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -216,6 +225,8 @@ public class Diary implements Serializable {
 		builder.append(likeList);
 		builder.append(", likeCount=");
 		builder.append(likeCount);
+		builder.append(", compareDate=");
+		builder.append(compareDate);
 		builder.append("]");
 		return builder.toString();
 	}

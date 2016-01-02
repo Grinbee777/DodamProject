@@ -11,9 +11,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.sql.Date;
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 import java.util.HashMap;
 
 import java.util.Iterator;
@@ -112,6 +112,51 @@ public class DiaryController {
 
 		System.out.println(":::::" + getClass().getName() + " 생성!");
 
+	}
+	public static String compareDate(Date date){
+		SimpleDateFormat dateForm = new SimpleDateFormat("yyyy-MM-dd");
+		String temp = dateForm.format(date);
+		String [] temp2 = temp.split("-");
+		java.util.Date today = new java.util.Date();
+		Calendar cal = Calendar.getInstance ( );
+		cal.setTime ( today );
+		
+		// 오늘로 설정. 
+		Calendar cal2 = Calendar.getInstance ( );
+		cal2.set ( Integer.parseInt(temp2[0]), Integer.parseInt(temp2[1])-1,Integer.parseInt(temp2[2]) ); 
+		 
+		// 기준일로 설정. month의 경우 해당월수-1을 해줍니다.
+		int count = 0;
+		while ( !cal2.after ( cal ) )
+		{
+		    count++;
+		    cal2.add ( Calendar.DATE, 1 ); 
+		    
+		//다음날로 바뀜
+		    System.out.println ( cal2.get ( Calendar.YEAR ) + "년 "
+		            + ( cal2.get ( Calendar.MONTH ) + 1 ) 
+		            + "월 " + cal2.get ( Calendar.DATE ) + "일"
+		    );
+		}
+		//System.out.println ( "기준일로부터 " + count + "일이 지났습니다." );
+		if(count > 365){
+			if(count > 730){
+				return "2년 이상";
+			}else{
+			return "1년 전";
+			}
+		}else{
+			if(count == 0){
+				return "오늘";
+			}
+			else if(count>=1 && count <7){
+				return count+"일 전";
+			}else if(count >=7 && count <30){
+				return (count / 7) + "주 전";
+			}else{
+				return (count / 30)+"달 전";
+			}
+		}
 	}
 
 	@RequestMapping(value = "/json/addDiary")
@@ -293,6 +338,7 @@ public class DiaryController {
 		diary.setLikeCount(diary.getLikeList().size());
 		diary.setReplyCount(diary.getReplyList().size());
 		diary.setdPics(diary.getdPic().split(","));
+		diary.setCompareDate(DiaryController.compareDate(diary.getdDate()));
 
 		System.out.println("리턴될 diary : " + diary);
 		List<Diary> list = new ArrayList<>();
@@ -360,7 +406,9 @@ public class DiaryController {
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
 
 			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
-
+			
+			list.get(i).setCompareDate(DiaryController.compareDate(list.get(i).getdDate()));
+			
 			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 
 		}
@@ -402,6 +450,8 @@ public class DiaryController {
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
 
 			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+			
+			list.get(i).setCompareDate(DiaryController.compareDate(list.get(i).getdDate()));
 
 			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 
@@ -445,6 +495,7 @@ public class DiaryController {
 			list.get(i).setReplyCount(replyList.size());
 			list.get(i).setdPics(list.get(i).getdPic().split(","));
 			list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+			list.get(i).setCompareDate(DiaryController.compareDate(list.get(i).getdDate()));
 			System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 		}
 
@@ -553,6 +604,7 @@ public class DiaryController {
 				list.get(i).setReplyCount(replyList.size());
 				list.get(i).setdPics(list.get(i).getdPic().split(","));
 				list.get(i).setDiaryUser(userService.getUser(list.get(i).getDiaryUser().getuNo()));
+				list.get(i).setCompareDate(DiaryController.compareDate(list.get(i).getdDate()));
 				System.out.println(userService.getUser(list.get(i).getDiaryUser().getuNo()));
 			}
 			

@@ -40,11 +40,11 @@
 	</update>
 	
 	<select id="getDiaryList" parameterType="int" resultMap="DiaryMap">
-		SELECT * FROM diary WHERE U_NO = #{value} ORDER BY D_NO DESC
+		SELECT * FROM diary WHERE U_NO = #{value} ORDER BY d_Date DESC
 	</select>
 	
 	<select id="getAllDiary" resultMap="DiaryMap">
-		SELECT * FROM diary ORDER BY D_NO DESC
+		SELECT * FROM diary ORDER BY d_Date DESC
 	</select>
 	
 	<select id="getFriendDiaryList" parameterType="list" resultMap="DiaryMap">	
@@ -52,7 +52,7 @@
 		<foreach collection="list" separator="or" item="value">
 		U_NO = #{value}
 		</foreach>
-		 ORDER BY D_NO DESC	
+		 ORDER BY d_Date DESC	
 	</select>
 	
 	<select id="getDiaryListForCalender" parameterType="map" resultMap="DiaryMap">
@@ -74,7 +74,7 @@
 		SELECT * FROM diary
 		WHERE
 		d_tag LIKE CONCAT('%',#{value},'%')
-		ORDER BY d_No DESC
+		ORDER BY d_Date DESC
 	</select>
 	
 </mapper>
