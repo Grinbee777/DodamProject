@@ -112,6 +112,11 @@ public class BabyController {
 		System.out.println("updateBaby Controller 들어옴");
 		System.out.println(baby);
 		
+		String birth=baby.getbBirth().substring(0, 4)+"-"+baby.getbBirth().substring(4, 6)+"-"+
+		baby.getbBirth().substring(6, 8);
+		
+		baby.setbBirth(birth);
+		
 		int babyResult=babyService.updateBaby(baby);
 		sBaby.setbNo(baby.getbNo());
 		sBaby.setHeight(baby.getHeight());
