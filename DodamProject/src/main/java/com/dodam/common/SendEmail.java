@@ -21,12 +21,12 @@ public class SendEmail {
 	
 	public static void sendEmail(Email email,String authNum,User user) {
 		String host="smtp.gmail.com";
-		String subject="Dodam 회원가입 이메일 인증";
+		String subject="도담도담 회원가입 이메일 인증";
 		String fromName="Dodam";
 		String from="projectdodam@gmail.com";
 		String to1=email.getMail();
 		
-		String content="<h1>DODAM DODAM</h1>"
+		String content="<h1>도담도담</h1>"
 				+"<br/>"+user.getNickname()+"님 아래 링크를 클릭하시면 인증이 완료됩니다. <hr>"			
 				+"<a href='http://192.168.0.3:8080/email/json/insertEmail"
 				+ "?mail="+email.getMail()+"&code="+email.getAuthnum()+"&uNo="+email.getuNo()+"'>"
