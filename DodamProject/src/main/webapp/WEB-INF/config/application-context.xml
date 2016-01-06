@@ -79,7 +79,7 @@
   
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName"	value="org.mariadb.jdbc.Driver"/>
-    <property name="url" 				value="jdbc:mariadb://192.168.0.3:7777/dodam01"/>
+    <property name="url" 				value="jdbc:mariadb://192.168.0.17:7777/dodam01"/>
     <property name="username" 			value="root"/>
     <property name="password" 			value="root"/>
   </bean>
